@@ -18,7 +18,8 @@ namespace LexiconLMS.Models
         }
 
         public string Name { get; set; }
-        public int CourseId { get; set; }
+
+        public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
 
     }
@@ -29,6 +30,8 @@ namespace LexiconLMS.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Course> Courses { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
