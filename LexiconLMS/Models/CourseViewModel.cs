@@ -25,5 +25,6 @@ namespace LexiconLMS.Models
         public string ConfirmPassword { get; set; }
 
         public int CourseId { get; set; }
+        public ICollection<Module> Modules { get; set; }
     }
 }

@@ -44,10 +44,16 @@ namespace LexiconLMS.Migrations
             uManager.AddToRole(teacher.Id, "Teacher");
 
 
-            var course = new Course { Name = ".NET Höst 2016", Description = "Blabla", StartDate = DateTime.Now, Students = list };
+
+            var course = new Course {CourseId = 1, Name = ".NET Höst 2016", Description = "Blabla", StartDate = DateTime.Now, Students = list};
+
+            var module = new Module { ModuleId = 1, Name = "MVC5", Description = "Blabla", StartDate = DateTime.Now.AddDays(7),
+                                EndDate = DateTime.Now.AddDays(14), CourseId = course.CourseId};
+
             student.CourseId = course.CourseId;
             teacher.CourseId = course.CourseId;
 
+            context.Modules.AddOrUpdate(module);
             context.Courses.AddOrUpdate(course);
             context.SaveChanges();
         }

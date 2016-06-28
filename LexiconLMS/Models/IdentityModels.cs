@@ -29,7 +29,9 @@ namespace LexiconLMS.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Module> Modules { get; set; }
 
 
         public static ApplicationDbContext Create()
