@@ -261,7 +261,7 @@
     <Content Include="Views\Courses\CourseDetails.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
-    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\TeacherOverview.cshtml" />
     <Content Include="Views\Courses\AddStudent.cshtml" />
     <Content Include="Views\Modules\Create.cshtml" />
     <Content Include="Views\Modules\Delete.cshtml" />

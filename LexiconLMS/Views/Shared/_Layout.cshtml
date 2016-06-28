@@ -17,35 +17,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179"   height="32" />
+                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32" />
                 </a>
 
             </div>
 
-            @if (User.IsInRole("Teacher"))
-
-            {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" style="margin-top:6px;">
-                        <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                        <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
-                    </ul>
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <li>@Html.ActionLink("Courses", "TeacherOverview", "Teacher")</li>
+                            <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
+                        }
+                        else if (User.IsInRole("Student"))
+                        {
+                            <li>@Html.ActionLink("Course", "CourseDetails", "Courses", new { id = 1 }, null)</li>
+                            <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
+                        }
+                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
-            }
-            else
-            {
-                <div class="navbar-collapse collapse" style="margin-top:6px;">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Course", "CourseDetails", "Courses", new { id = 1 }, null)</li>
-                        <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            }
         </div>
     </div>
     <div class="container body-content">
