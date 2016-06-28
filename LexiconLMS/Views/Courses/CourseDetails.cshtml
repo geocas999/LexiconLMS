@@ -33,10 +33,20 @@
         <dd>
             @Html.DisplayFor(model => model.StartDate)
         </dd>
+    </dl>
+</div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Students)
-        </dt>
+@if (User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+    <hr />
+<div>
+    <h4>Students</h4>
+    <dl class="dl-horizontal">
         @foreach (var student in Model.Students)
         {
             <dd>
@@ -44,21 +54,11 @@
             </dd>
         }
     </dl>
-</div>
-
-<p>
-    @Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
-<div>
-        <hr />
-    @if (User.IsInRole("Teacher"))
-    {
-        <h4>Add student</h4>
-        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-        <hr />
-    }
+        @if (User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+            <hr />
+        }
 </div>
 
 <h4>Modules in course</h4>

@@ -37,11 +37,10 @@
                 </div>
             }
             else
-            { 
+            {
                 <div class="navbar-collapse collapse" style="margin-top:6px;">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Course", "Index", "Course")</li>
+                        <li>@Html.ActionLink("Course", "CourseDetails", "Courses", new { id = 1 }, null)</li>
                         <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
                     </ul>
                     @Html.Partial("_LoginPartial")

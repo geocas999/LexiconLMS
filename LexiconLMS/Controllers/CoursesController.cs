@@ -14,7 +14,7 @@ using Microsoft.Owin.Security;
 
 namespace LexiconLMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Teacher")]
     public class CoursesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -91,6 +91,8 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Courses/Details/5
+        [AllowAnonymous]
+        [Authorize(Roles ="Teacher, Student")]
         public ActionResult CourseDetails(int? id)
         {
             if (id == null)
