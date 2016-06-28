@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title Lexicon LMS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,27 +17,43 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    @*<li>@Html.ActionLink("Upload", "Index", "Upload")</li>*@
+                
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179"   height="32" />
+                </a>
 
-                </ul>
-                @Html.Partial("_LoginPartial")
             </div>
+
+            @if (User.IsInRole("Teacher"))
+
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" style="margin-top:6px;">
+                        <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            }
+            else
+            { 
+                <div class="navbar-collapse collapse" style="margin-top:6px;">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Course", "Index", "Course")</li>
+                        <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            }
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year Lexicon LMS </p>
         </footer>
     </div>
 
