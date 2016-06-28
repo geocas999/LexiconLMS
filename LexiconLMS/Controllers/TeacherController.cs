@@ -12,7 +12,7 @@ namespace LexiconLMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Teacher
-        public ActionResult Index()
+        public ActionResult TeacherOverview()
         {
             TeacherViewModels teacherViewModel = new TeacherViewModels();
             teacherViewModel.Courses = new List<Course>();
@@ -24,6 +24,5 @@ namespace LexiconLMS.Controllers
             return View(teacherViewModel);
         }
 
-        
     }
 }

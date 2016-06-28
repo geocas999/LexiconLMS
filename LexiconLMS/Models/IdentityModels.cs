@@ -21,7 +21,6 @@ namespace LexiconLMS.Models
 
         public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -30,7 +29,9 @@ namespace LexiconLMS.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Module> Modules { get; set; }
 
 
         public static ApplicationDbContext Create()

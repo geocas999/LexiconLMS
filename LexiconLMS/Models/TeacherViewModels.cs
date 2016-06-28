@@ -8,9 +8,9 @@ namespace LexiconLMS.Models
 	public class TeacherViewModels
 	{
         //public int? CourseId { get; set; }
-        public string CourseName { get; set; }
-        public string CourseDescription { get; set; }
-        public DateTime CourseStartDate { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
         public List<Course> Courses { get; set; }
 
         //public string UserId { get; set; }

@@ -1,4 +1,4 @@
-﻿@model LexiconLMS.Models.Course
+﻿@model LexiconLMS.Models.Module
 
 @{
     ViewBag.Title = "Details";
@@ -7,9 +7,17 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Course</h4>
+    <h4>Module</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -34,9 +42,20 @@
             @Html.DisplayFor(model => model.StartDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ModuleId }) <span>|</span>
+    }
+    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new { id = 1 }, null)
 </p>
