@@ -18,8 +18,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                
-                @Html.ActionLink("Lexicon LMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand"})
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179"   height="32" />
+                </a>
 
             </div>
 
@@ -27,7 +28,7 @@
 
             {
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" style="margin-top:6px;">
                         <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
                         <li>@Html.ActionLink("Users", "Index", "Users")</li>
                         <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
@@ -37,7 +38,7 @@
             }
             else
             { 
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" style="margin-top:6px;">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("Course", "Index", "Course")</li>
