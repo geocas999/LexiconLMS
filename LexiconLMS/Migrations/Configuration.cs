@@ -4,6 +4,7 @@ namespace LexiconLMS.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -21,10 +22,12 @@ namespace LexiconLMS.Migrations
             var uManager = new UserManager<ApplicationUser>(uStore);
             var rStore = new RoleStore<IdentityRole>(context);
             var rManager = new RoleManager<IdentityRole>(rStore);
+            var list = new List<ApplicationUser>();
 
             foreach (var userName in new[] { "student@lexicon.se", "teacher@lexicon.se" })
             {
                 var user = new ApplicationUser { UserName = userName };
+                list.Add(user);
                 uManager.Create(user, "pass123");
             }
 
@@ -39,6 +42,14 @@ namespace LexiconLMS.Migrations
 
             uManager.AddToRole(student.Id, "Student");
             uManager.AddToRole(teacher.Id, "Teacher");
+
+
+            var course = new Course { Name = ".NET Höst 2016", Description = "Blabla", StartDate = DateTime.Now, Students = list };
+            student.CourseId = course.CourseId;
+            teacher.CourseId = course.CourseId;
+
+            context.Courses.AddOrUpdate(course);
+            context.SaveChanges();
         }
     }
 }

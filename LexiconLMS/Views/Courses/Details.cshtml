@@ -34,7 +34,25 @@
             @Html.DisplayFor(model => model.StartDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Students)
+        </dt>
+        @foreach (var student in Model.Students)
+        {
+            <dd>
+                @Html.DisplayFor(modelItem => student.UserName)
+            </dd>
+        }
     </dl>
+</div>
+
+<div>
+    @if (User.IsInRole("Teacher")){
+        <hr />
+        <h4>Add student</h4>
+        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId} )
+        <hr />
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) |
