@@ -18,9 +18,21 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179"   height="32" />
-                </a>
+
+                @if (User.IsInRole("Teacher"))
+
+            {
+                    <a href="@Url.Action("Index", "Courses")" class="navbar-brand">
+                        <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32" />
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                        <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32" />
+                    </a>
+                }
+
 
             </div>
 
