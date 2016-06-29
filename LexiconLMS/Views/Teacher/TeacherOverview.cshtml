@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Teacher OverView - Index</h2>
+<h2>Teacher OverView</h2>
 
 <p>
     @Html.ActionLink("Create New Course", "Create","Courses")
@@ -42,22 +42,14 @@
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                @Html.ActionLink("Edit", "Edit", "Courses", new { id = item.CourseId }, null) |
+                @Html.ActionLink("Details", "CourseDetails", "Courses", new { id = item.CourseId }, null) |
+                @Html.ActionLink("Delete", "Delete", "Courses", new { id = item.CourseId }, null)
             </td>
         </tr>
     }
 
 </table>
-
-@*//Create User //*@
-@*@model IEnumerable<LexiconLMS.Models>*@
-
-@*@{
-        ViewBag.Title = "Index";
-    }*@
-
 
 <p>
     @Html.ActionLink("Create New Teacher", "Register", "Account")
@@ -97,11 +89,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            </td>*@
         </tr>
     }
 </table>

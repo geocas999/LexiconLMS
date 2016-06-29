@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Web.Security;
 
 namespace LexiconLMS.Controllers
 {
-    [Authorize]
+    // Authorize roles Course Details -Anette
+    [Authorize(Roles = "Teacher")]
     public class CoursesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -51,13 +53,13 @@ namespace LexiconLMS.Controllers
         // Get: Course/AddStudent 
         public ActionResult AddStudent(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             var course = new CourseViewModel();
-            course.CourseId = (int) id;
+            course.CourseId = (int)id;
 
             return View(course);
         }
@@ -69,7 +71,7 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, CourseId = model.CourseId};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, CourseId = model.CourseId };
                 var course = db.Courses.Find(model.CourseId);
                 course.Students.Add(user);
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -81,7 +83,7 @@ namespace LexiconLMS.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Details", new { id = course.CourseId});
+                    return RedirectToAction("CourseDetails", new { id = course.CourseId});
                 }
                 AddErrors(result);
             }
@@ -91,7 +93,9 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Courses/Details/5
-        public ActionResult Details(int? id)
+        [AllowAnonymous]
+        [Authorize(Roles ="Teacher, Student")]
+        public ActionResult CourseDetails(int? id)
         {
             if (id == null)
             {
@@ -106,7 +110,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Courses/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             return View();
         }
@@ -122,7 +126,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("TeacherOverview", "Teacher");
             }
 
             return View(course);

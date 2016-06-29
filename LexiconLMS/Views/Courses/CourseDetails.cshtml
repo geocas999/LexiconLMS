@@ -1,0 +1,117 @@
+﻿@model LexiconLMS.Models.Course
+
+@{
+    ViewBag.Title = "CourseDetails";
+}
+
+<h2>Course Details</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+    </dl>
+</div>
+
+@if (User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+    <hr />
+<div>
+    <h4>Students</h4>
+    <dl class="dl-horizontal">
+        @foreach (var student in Model.Students)
+        {
+            <dd>
+                @Html.DisplayFor(modelItem => student.UserName)
+            </dd>
+        }
+    </dl>
+        @if (User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+            <hr />
+        }
+</div>
+
+<h4>Modules in course</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Modules.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modules.First().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modules.First().StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modules.First().EndDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var module in Model.Modules)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => module.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => module.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => module.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => module.EndDate)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
+                @if (User.IsInRole("Teacher"))
+                {
+                    <span>|</span>
+                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = module.ModuleId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = module.ModuleId }, null)
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if(User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Create New Module", "Create", "Modules")
+    </p>
+}
