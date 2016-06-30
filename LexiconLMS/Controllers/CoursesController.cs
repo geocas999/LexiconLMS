@@ -50,6 +50,50 @@ namespace LexiconLMS.Controllers
             return View(db.Courses.ToList());
         }
 
+
+        //2016-06-30, ym: nedan: skapa dokument
+        // Get: Course/AddDocument
+        public ActionResult AddDocument(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var course = new AddDocumentToCourseModel();
+            course.CourseId = (int)id;
+
+            return View(course);
+        }
+
+        // Post: Courses/AddDocument
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddDocument(AddDocumentToCourseModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var document = new Document { DocumentId = model.DocumentId ,
+                                                    Name = model.Name,
+                                                    Type = model.Type,
+                                             Description = model.Description,
+                                               TimeStamp = model.TimeStamp,
+                                                CourseId = model.CourseId,
+                                                UserId = User.Identity.GetUserId()};
+                
+                var course = db.Courses.Find(model.CourseId);
+                course.Documents.Add(document);
+                return RedirectToAction("CourseDetails", new { id = course.CourseId });
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+        //2016-06-30, ym: ovan: skapa dokument
+
+
+
+
         // Get: Course/AddStudent 
         public ActionResult AddStudent(int? id)
         {
@@ -58,7 +102,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var course = new CourseViewModel();
+            var course = new AddStudenToCourseModel();
             course.CourseId = (int)id;
 
             return View(course);
@@ -67,7 +111,7 @@ namespace LexiconLMS.Controllers
         // Post: Courses/AddStudent
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddStudent(CourseViewModel model)
+        public async Task<ActionResult> AddStudent(AddStudenToCourseModel model)
         {
             if (ModelState.IsValid)
             {

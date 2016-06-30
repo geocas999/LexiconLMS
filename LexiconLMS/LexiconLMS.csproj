@@ -204,12 +204,17 @@
     <Compile Include="Migrations\201606300837131_UserID för Document.Designer.cs">
       <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606300856061_Koppla_kurs_och_dokument.cs" />
+    <Compile Include="Migrations\201606300856061_Koppla_kurs_och_dokument.Designer.cs">
+      <DependentUpon>201606300856061_Koppla_kurs_och_dokument.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddDocumentToCourseModel.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseViewModel.cs" />
+    <Compile Include="Models\AddStudenToCourseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Module.cs" />
@@ -318,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606300837131_UserID för Document.resx">
       <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300856061_Koppla_kurs_och_dokument.resx">
+      <DependentUpon>201606300856061_Koppla_kurs_och_dokument.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

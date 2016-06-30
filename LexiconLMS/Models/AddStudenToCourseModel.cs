@@ -6,7 +6,7 @@ using System.Web;
 
 namespace LexiconLMS.Models
 {
-    public class CourseViewModel
+    public class AddStudenToCourseModel
     {
         [Required]
         [EmailAddress]

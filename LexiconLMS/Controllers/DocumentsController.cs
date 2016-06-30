@@ -46,10 +46,17 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,CourseId")] Document document)
         {
             if (ModelState.IsValid)
             {
+
+                //UserId,CourseId,ModuleId,ActivityId
+
+                document.TimeStamp = DateTime.Now;
+                //document.UserId = "?";
+
                 db.Documents.Add(document);
                 db.SaveChanges();
                 return RedirectToAction("Index");
