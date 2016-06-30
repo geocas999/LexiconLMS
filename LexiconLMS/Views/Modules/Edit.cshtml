@@ -48,12 +48,13 @@
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
-
+         
+        @*2016-06-29, YM, man skall inte kunna ändra en vilken kurs en modul tillhör, så nedan ändras till att bli readonly*@
         <div class="form-group">
             @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })*@
+                @*@Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })*@
             </div>
         </div>
 

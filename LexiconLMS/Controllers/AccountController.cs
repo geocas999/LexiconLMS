@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LexiconLMS.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LexiconLMS.Controllers
 {
@@ -79,7 +80,20 @@ namespace LexiconLMS.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        // 2016-06-30 Fredrik - Beroende på vilken roll användaren har skickas den till olika vyer.
+                        var loggedInUser = UserManager.Find(model.Email, model.Password);
+                        if (UserManager.IsInRole(loggedInUser.Id, "Teacher"))
+                        {
+                            return RedirectToAction("TeacherOverview", "Teacher");
+                        }
+                        else if (UserManager.IsInRole(loggedInUser.Id, "Student"))
+                        {
+                            return RedirectToAction("CourseDetails", "Courses", new { id = loggedInUser.CourseId });
+                        }
+                        else
+                            return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

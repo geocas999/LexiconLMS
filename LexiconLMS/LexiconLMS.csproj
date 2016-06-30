@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
@@ -191,8 +192,21 @@
     <Compile Include="Migrations\201606280729041_Added module model.Designer.cs">
       <DependentUpon>201606280729041_Added module model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606300745451_document.cs" />
+    <Compile Include="Migrations\201606300745451_document.Designer.cs">
+      <DependentUpon>201606300745451_document.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606300819461_nullable document.cs" />
+    <Compile Include="Migrations\201606300819461_nullable document.Designer.cs">
+      <DependentUpon>201606300819461_nullable document.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606300837131_UserID för Document.cs" />
+    <Compile Include="Migrations\201606300837131_UserID för Document.Designer.cs">
+      <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseViewModel.cs" />
@@ -268,6 +282,11 @@
     <Content Include="Views\Modules\Details.cshtml" />
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Documents\Create.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
+    <Content Include="Views\Documents\Details.cshtml" />
+    <Content Include="Views\Documents\Edit.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606280729041_Added module model.resx">
       <DependentUpon>201606280729041_Added module model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300745451_document.resx">
+      <DependentUpon>201606300745451_document.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300819461_nullable document.resx">
+      <DependentUpon>201606300819461_nullable document.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300837131_UserID för Document.resx">
+      <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
