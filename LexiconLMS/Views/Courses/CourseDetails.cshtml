@@ -110,51 +110,60 @@
 </table>
 
 
+
+@if (User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Create New Module", "Create", "Modules")
+    </p>
+}
+
+
 @*2016-06-60, YM, lägger till dokument*@
 
 
 
-<h4>Modules in course</h4>
+<h4>Documents in course</h4>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Modules.First().Name)
+            @Html.DisplayNameFor(model => model.Documents.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modules.First().Description)
+            @Html.DisplayNameFor(model => model.Documents.First().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modules.First().StartDate)
+            @Html.DisplayNameFor(model => model.Documents.First().TimeStamp )
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modules.First().EndDate)
+            @Html.DisplayNameFor(model => model.Documents.First().User.Name  )
         </th>
         <th></th>
     </tr>
 
-    @foreach (var module in Model.Modules)
+    @foreach (var document in Model.Documents )
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => module.Name)
+                @Html.DisplayFor(modelItem => document.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.Description)
+                @Html.DisplayFor(modelItem => document.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.StartDate)
+                @Html.DisplayFor(modelItem => document.TimeStamp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.EndDate)
+                @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
+                @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId    }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = module.ModuleId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = module.ModuleId }, null)
+                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = document.DocumentId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>
@@ -162,13 +171,10 @@
 
 </table>
 
+    <p>
+        @Html.ActionLink("Upload New Document", "Create", "Documents")
+    </p>
+
+
 @*2016-06-60, YM, slut lägger till dokument*@
 
-
-
-@if(User.IsInRole("Teacher"))
-{
-    <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules")
-    </p>
-}
