@@ -7,7 +7,7 @@
 <h2>Teacher OverView</h2>
 
 <p>
-    @Html.ActionLink("Create New Course", "Create","Courses")
+    @Html.ActionLink("Add a Course", "Create","Courses")
 </p>
 <table class="table" id="CreateCourses">
     <tr>
@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @Html.DisplayFor(modelItem =>  item.StartDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "Courses", new { id = item.CourseId }, null) |
@@ -52,7 +52,7 @@
 </table>
 
 <p>
-    @Html.ActionLink("Create New Teacher", "Register", "Account")
+    @Html.ActionLink("Add a Teacher", "Register", "Account")
 </p>
 <table class="table" id="CreateUsers">
     <tr>
