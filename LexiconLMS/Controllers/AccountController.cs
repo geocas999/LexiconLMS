@@ -158,6 +158,7 @@ namespace LexiconLMS.Controllers
 
         //2016-06-29 / George C. / Changed UserName = model.Email to UserName = model.UserName, Added PhoneNumber = model.Phonenumber 
         //2016-06-30 / George C. / Added UserRole
+        //2017-07-01 / George C. / Added AddRole to created UserRole Teacher
         // POST: /Account/Register
         [HttpPost]
         [Authorize (Roles = "Teacher")]
@@ -166,8 +167,9 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, UserRole = model.UserRole.Value.ToString()};
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber};
+                var result = UserManager.Create(user, model.Password);
+                UserManager.AddToRole(UserManager.FindByEmail(user.Email).Id, model.UserRole.Value.ToString());
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
