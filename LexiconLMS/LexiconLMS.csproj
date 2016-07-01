@@ -216,10 +216,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\AddDocumentToCourseModel.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseViewModel.cs" />
+    <Compile Include="Models\AddStudenToCourseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Module.cs" />

@@ -62,11 +62,20 @@ namespace LexiconLMS.Models
         public bool RememberMe { get; set; }
     }
 
-    //RegisterViewModel 
-    //Register a new Teacher
+    //2016-06-30/George C./ RegisterViewModel 
+    //Register/Add a Teacher. Added UserRole
+    public enum UserRole
+    {
+        Teacher = 1
+        //Student = 2
+    }
     public class RegisterViewModel
     {
-        [Required]
+        //[Required]
+        [Display(Name = "UserRole")]
+        public UserRole? UserRole { get; set; }
+
+        //[Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
@@ -75,7 +84,7 @@ namespace LexiconLMS.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; }
 
@@ -90,6 +99,7 @@ namespace LexiconLMS.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
 
     public class ResetPasswordViewModel
     {
