@@ -63,7 +63,7 @@
 
 <h4>Modules in course</h4>
 
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Modules.First().Name)
@@ -108,67 +108,10 @@
     }
 
 </table>
-
-
-@*2016-06-60, YM, lägger till dokument*@
-
-
-
-<h4>Modules in course</h4>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Modules.First().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modules.First().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modules.First().StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modules.First().EndDate)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var module in Model.Modules)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => module.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => module.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => module.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => module.EndDate)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
-                @if (User.IsInRole("Teacher"))
-                {
-                    <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = module.ModuleId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = module.ModuleId }, null)
-                }
-            </td>
-        </tr>
-    }
-
-</table>
-
-@*2016-06-60, YM, slut lägger till dokument*@
-
-
 
 @if(User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules")
+        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
     </p>
 }

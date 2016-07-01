@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -204,8 +205,17 @@
     <Compile Include="Migrations\201606300837131_UserID för Document.Designer.cs">
       <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606301222021_Added lists of documents to existing models.cs" />
+    <Compile Include="Migrations\201606301222021_Added lists of documents to existing models.Designer.cs">
+      <DependentUpon>201606301222021_Added lists of documents to existing models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606301312023_Added Activity model.cs" />
+    <Compile Include="Migrations\201606301312023_Added Activity model.Designer.cs">
+      <DependentUpon>201606301312023_Added Activity model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
@@ -287,6 +297,11 @@
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Activities\Create.cshtml" />
+    <Content Include="Views\Activities\Delete.cshtml" />
+    <Content Include="Views\Activities\Details.cshtml" />
+    <Content Include="Views\Activities\Edit.cshtml" />
+    <Content Include="Views\Activities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606300837131_UserID för Document.resx">
       <DependentUpon>201606300837131_UserID för Document.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301222021_Added lists of documents to existing models.resx">
+      <DependentUpon>201606301222021_Added lists of documents to existing models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606301312023_Added Activity model.resx">
+      <DependentUpon>201606301312023_Added Activity model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
