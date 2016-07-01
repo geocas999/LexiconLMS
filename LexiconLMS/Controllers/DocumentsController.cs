@@ -36,9 +36,32 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Documents/Create
-        public ActionResult Create()
+        //2016-07-01, ym: nedan: ändrar på funktionen
+        public ActionResult Create(int? courseId, int? moduleId, int? Activity)
         {
-            return View();
+            
+            var course = new RegisterDocumentModel();
+
+            if (courseId != null)
+            {
+                course.CourseId = (int)courseId;
+
+            }
+
+            if (moduleId != null)
+            {
+                course.ModelId = (int)moduleId;
+
+            }
+
+            if (Activity != null)
+            {
+                course.ActivityId = (int)Activity;
+
+            }
+
+
+            return View(course);
         }
 
         // POST: Documents/Create
@@ -46,8 +69,8 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,CourseId")] Document document)
+        //[Authorize(Roles = "Teacher")]
+        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -55,15 +78,57 @@ namespace LexiconLMS.Controllers
                 //UserId,CourseId,ModuleId,ActivityId
 
                 document.TimeStamp = DateTime.Now;
-                //document.UserId = "?";
+
+                var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
+                document.UserId = user.Id;
+
+
+                //foreach (var item in db.Users)
+                //{
+
+                //    if (item.Email  == User.Identity.Name)
+                //    {
+                //        document.UserId = item.Id;
+
+                //    }
+
+
+
+                //}
+
+
+
 
                 db.Documents.Add(document);
                 db.SaveChanges();
+
+                if (document.CourseId != null)
+                {
+                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+
+                }
+
+                if (document.ModuleId != null)
+                {
+                    return RedirectToAction("ModuleDetails", "???", new { id = document.ModuleId });
+
+                }
+
+                if (document.ActivityId != null)
+                {
+                    return RedirectToAction("ActivityDetails", "???", new { id = document.ActivityId });
+
+                }
+
+
                 return RedirectToAction("Index");
             }
 
             return View(document);
         }
+
+        //2016-07-01, ym: ovan: ändrar på funktionen
+
 
         // GET: Documents/Edit/5
         public ActionResult Edit(int? id)

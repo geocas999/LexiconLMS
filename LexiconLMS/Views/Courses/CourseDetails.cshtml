@@ -61,6 +61,8 @@
         }
 </div>
 
+       
+
 <h4>Modules in course</h4>
 
 <table class="table">
@@ -119,7 +121,7 @@
 }
 
 
-@*2016-06-60, YM, lägger till dokument*@
+@*2016-06-29, ym: nedan: skapar kod för dokument*@
 
 
 
@@ -172,9 +174,9 @@
 </table>
 
     <p>
-        @Html.ActionLink("Upload New Document", "Create", "Documents")
+        @Html.ActionLink("Upload New Document", "Create", "Documents", new { courseId = Model.CourseId },null)
     </p>
 
 
-@*2016-06-60, YM, slut lägger till dokument*@
+@*2016-06-29, ym: ovan: skapar kod för dokument*@
 

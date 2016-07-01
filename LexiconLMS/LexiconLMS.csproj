@@ -210,7 +210,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddDocumentToCourseModel.cs" />
+    <Compile Include="Models\RegisterDocumentModel.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
