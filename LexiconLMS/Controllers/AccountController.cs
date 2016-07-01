@@ -159,33 +159,19 @@ namespace LexiconLMS.Controllers
         //2016-06-29 / George C. / Changed UserName = model.Email to UserName = model.UserName, Added PhoneNumber = model.Phonenumber 
         //2016-06-30 / George C. / Added UserRole
         //2017-07-01 / George C. / Added AddRole to created UserRole Teacher
+        //2017-07-01 / George C. / Changed public async Tasks <ActionResult> Register to an ordinary ActionResult class
         // POST: /Account/Register
         [HttpPost]
         [Authorize (Roles = "Teacher")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber};
                 var result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(UserManager.FindByEmail(user.Email).Id, model.UserRole.Value.ToString());
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    //return RedirectToAction("TeacherOverView", "Teacher");
-                }
-                AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
