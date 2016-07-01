@@ -35,9 +35,9 @@ namespace LexiconLMS.Controllers
             return View(document);
         }
 
-        // GET: Documents/Create
+        // GET: Documents/AddDocument
         //2016-07-01, ym: nedan: ändrar på funktionen
-        public ActionResult Create(int? courseId, int? moduleId, int? Activity)
+        public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
             
             var course = new RegisterDocumentModel();
@@ -54,9 +54,9 @@ namespace LexiconLMS.Controllers
 
             }
 
-            if (Activity != null)
+            if (activityId != null)
             {
-                course.ActivityId = (int)Activity;
+                course.ActivityId = (int)activityId;
 
             }
 
@@ -64,13 +64,13 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // POST: Documents/Create
+        // POST: Documents/AddDocument
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Teacher")]
-        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
+        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {

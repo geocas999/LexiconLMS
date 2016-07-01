@@ -39,8 +39,8 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // GET: Activities/Create
-        public ActionResult Create(int? id)
+        // GET: Activities/AddActivity
+        public ActionResult AddActivity(int? id)
         {
             if (id == null)
             {
@@ -51,12 +51,12 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // POST: Activities/Create
+        // POST: Activities/AddActivity
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
+        public ActionResult AddActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {

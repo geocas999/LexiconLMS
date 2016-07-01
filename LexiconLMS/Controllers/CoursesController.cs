@@ -109,18 +109,18 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // GET: Courses/Create
-        public ActionResult Create(int? id)
+        // GET: Courses/AddCourse
+        public ActionResult AddCourse(int? id)
         {
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: Courses/AddCourse
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseId,Name,Description,StartDate")] Course course)
+        public ActionResult AddCourse([Bind(Include = "CourseId,Name,Description,StartDate")] Course course)
         {
             if (ModelState.IsValid)
             {

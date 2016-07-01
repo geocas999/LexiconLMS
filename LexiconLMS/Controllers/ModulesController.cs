@@ -32,8 +32,8 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // GET: Modules/Create
-        public ActionResult Create(int? id)
+        // GET: Modules/AddModule
+        public ActionResult AddModule(int? id)
         {
             if (id == null)
             {
@@ -44,13 +44,13 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // POST: Modules/Create
+        // POST: Modules/AddModule
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult Create([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
+        public ActionResult AddModule([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {

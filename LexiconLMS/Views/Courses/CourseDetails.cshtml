@@ -114,7 +114,7 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
+        @Html.ActionLink("Add new module", "AddModule", "Modules", new { id = Model.CourseId }, null)
     </p>
 }
 
@@ -173,7 +173,7 @@
 </table>
 
     <p>
-        @Html.ActionLink("Upload New Document", "Create", "Documents", new { courseId = Model.CourseId },null)
+        @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId },null)
     </p>
 
 

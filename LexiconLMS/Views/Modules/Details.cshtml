@@ -116,6 +116,6 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Add new activity", "Create", "Activities", new {id = Model.ModuleId}, null)
+        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new {id = Model.ModuleId}, null)
     </p>
 }
