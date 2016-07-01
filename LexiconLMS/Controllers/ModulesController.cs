@@ -39,7 +39,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", id);
             var module = new Module() {CourseId = (int) id};
             return View(module);
         }

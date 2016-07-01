@@ -26,6 +26,5 @@ namespace LexiconLMS.Models
 
         public virtual Activity Activity { get; set; }
         public int? ActivityId { get; set; }
-
     }
 }

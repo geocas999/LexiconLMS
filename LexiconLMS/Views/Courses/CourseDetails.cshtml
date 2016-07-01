@@ -4,7 +4,7 @@
     ViewBag.Title = "CourseDetails";
 }
 
-<h2>Course Details</h2>
+<h2>@Model.Name</h2>
 
 <div>
     <h4>Course</h4>
@@ -109,15 +109,14 @@
 
 </table>
 
-
-
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules")
+        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
     </p>
 }
 
+<hr/>
 
 @*2016-06-60, YM, lägger till dokument*@
 
@@ -178,9 +177,4 @@
 
 @*2016-06-60, YM, slut lägger till dokument*@
 
-@if(User.IsInRole("Teacher"))
-{
-    <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
-    </p>
-}
+
