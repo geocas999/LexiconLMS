@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -21,6 +22,8 @@ namespace LexiconLMS.Models
 
         public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -32,11 +35,14 @@ namespace LexiconLMS.Models
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Module> Modules { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
     }
 }

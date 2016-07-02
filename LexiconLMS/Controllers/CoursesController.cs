@@ -58,7 +58,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var course = new CourseViewModel();
+            var course = new AddStudenToCourseModel();
             course.CourseId = (int)id;
 
             return View(course);
@@ -67,7 +67,7 @@ namespace LexiconLMS.Controllers
         // Post: Courses/AddStudent
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddStudent(CourseViewModel model)
+        public async Task<ActionResult> AddStudent(AddStudenToCourseModel model)
         {
             if (ModelState.IsValid)
             {
