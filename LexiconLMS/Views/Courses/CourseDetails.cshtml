@@ -31,7 +31,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @*@Html.DisplayFor(model => model.StartDate)*@
+            @{string startDate = Model.StartDate.ToString("yyyy-mm-dd");
+            }
+            @Html.DisplayFor(modelItem => startDate)
         </dd>
     </dl>
 </div>
@@ -43,7 +46,7 @@
         @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
     </p>
 }
-<hr />
+    <hr />
 <div>
     <h4>Students</h4>
     <dl class="dl-horizontal">
@@ -54,11 +57,11 @@
             </dd>
         }
     </dl>
-    @if (User.IsInRole("Teacher"))
-    {
-        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-        <hr />
-    }
+        @if (User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+            <hr />
+        }
 </div>
 
        
@@ -126,24 +129,24 @@
 
 
 
-    <h4>Documents in course</h4>
+<h4>Documents in course</h4>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Documents.First().Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Documents.First().Description)
-            </th>
-            <th>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Documents.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documents.First().Description)
+        </th>
+        <th>
                 @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
-            </th>
-            <th>
+        </th>
+        <th>
                 @Html.DisplayNameFor(model => model.Documents.First().User.Name)
-            </th>
-            <th></th>
-        </tr>
+        </th>
+        <th></th>
+    </tr>
 
     @foreach (var document in Model.Documents)
     {
@@ -172,7 +175,7 @@
         </tr>
     }
 
-    </table>
+</table>
 
     <p>
         @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId },null)

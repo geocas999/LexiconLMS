@@ -172,7 +172,8 @@ namespace LexiconLMS.Controllers
                 var result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(UserManager.FindByEmail(user.Email).Id, model.UserRole.Value.ToString());
             }
-            return View(model);
+            
+            return RedirectToAction("Register");// View(new RegisterViewModel());
         }
 
         //

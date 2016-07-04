@@ -40,8 +40,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @*@Html.DisplayFor(model => model.StartDate)*@
             @*@StartDate.ToString("yyyy-MM-dd")*@
+            @{string startDate = Model.StartDate.ToString("yyyy-mm-dd");
+            }
+            @Html.DisplayFor(modelItem => startDate)
         </dd>
 
         <dt>
@@ -49,8 +52,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndDate)
+            @*@Html.DisplayFor(model => model.EndDate)*@
             @*@EndDate.ToString("yyyy-MM-dd")*@
+            @{string endDate = Model.EndDate.ToString("yyyy-mm-dd");
+            }
+            @Html.DisplayFor(modelItem => endDate)
         </dd>
 
     </dl>

@@ -33,8 +33,11 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.StartDate)*@
-                @item.StartDate.ToString("yyyy-MM-dd")
+                @*@Html.DisplayFor(modelItem => item.StartDate.ToString("yyyy-MM-dd"))*@
+                @*@item.StartDate.ToString("yyyy-MM-dd")*@
+                @{string startDate = item.StartDate.ToString("yyyy-mm-dd");
+                }
+                @Html.DisplayFor(modelItem => startDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditCourse", new { id = item.CourseId }) |
@@ -43,7 +46,7 @@
             </td>
         </tr>
 
-        @*@Html.ActionLink("Add new teacher", "AddTeacher")*@
+    @*@Html.ActionLink("Add new teacher", "AddTeacher")*@
     }
 
    
