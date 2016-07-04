@@ -158,8 +158,9 @@ namespace LexiconLMS.Controllers
 
         //2016-06-29 / George C. / Changed UserName = model.Email to UserName = model.UserName, Added PhoneNumber = model.Phonenumber 
         //2016-06-30 / George C. / Added UserRole
-        //2017-07-01 / George C. / Added AddRole to created UserRole Teacher
-        //2017-07-01 / George C. / Changed public async Tasks <ActionResult> Register to an ordinary ActionResult class
+        //2016-07-01 / George C. / Added AddRole to created UserRole Teacher
+        //2016-07-01 / George C. / Changed public async Tasks <ActionResult> Register to an ordinary ActionResult class
+        //2016-07-04 / George C. / Changed return to RedirectToAction("Register") in order to get an empty form when registering next time
         // POST: /Account/Register
         [HttpPost]
         [Authorize (Roles = "Teacher")]
