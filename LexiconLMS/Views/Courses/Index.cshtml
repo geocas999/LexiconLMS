@@ -35,7 +35,7 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.StartDate.ToString("yyyy-MM-dd"))*@
                 @*@item.StartDate.ToString("yyyy-MM-dd")*@
-                @{string startDate = item.StartDate.ToString("yyyy-mm-dd");
+                @{string startDate = item.StartDate.ToString("yyyy-MM-dd");
                 }
                 @Html.DisplayFor(modelItem => startDate)
         </td>
