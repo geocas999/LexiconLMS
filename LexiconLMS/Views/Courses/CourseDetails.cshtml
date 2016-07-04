@@ -31,7 +31,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @*@Html.DisplayFor(model => model.StartDate)*@
+            @{string startDate = Model.StartDate.ToString("yyyy-mm-dd");
+            }
+            @Html.DisplayFor(modelItem => startDate)
         </dd>
     </dl>
 </div>
