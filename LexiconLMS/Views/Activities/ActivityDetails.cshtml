@@ -6,19 +6,20 @@
 
 <div>
     <ol class="breadcrumb">
-        <li> <span class="glyphicon glyphicon-envelope"></span> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
-        
-        <li> @Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new { id = @Model.Module.CourseId }, null) </li>
-        <li> @Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new { id = @Model.ModuleId }, null) </li>
+        @if (User.IsInRole("Teacher"))
+        {
+            <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+        }
+        <li>@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new { id = @Model.Module.CourseId }, null)</li>
+        <li>@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new { id = @Model.ModuleId }, null)</li>
         <li class="active"> @Model.Type </li>
     </ol>
 </div>
 
-<h2>@Model.Type</h2>
 
+<hr />
 <div>
-    <h4>Activity</h4>
-    <hr />
+    <h2>Activity - @Model.Type</h2>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Module.Name)
@@ -64,5 +65,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "EditActivity", new { id = Model.ActivityId }) |
-    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.ModuleId}, null)
+    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.ModuleId }, null)
 </p>
