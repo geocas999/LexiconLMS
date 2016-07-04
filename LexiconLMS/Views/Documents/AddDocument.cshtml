@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.RegisterDocumentModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "AddDocument";
 }
 
-<h2>Create</h2>
+<h2>AddDocument</h2>
 
 
 @using (Html.BeginForm())
@@ -80,8 +80,27 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+
+
+    @if (Model.CourseId > 0)
+    {
+        @Html.ActionLink("Back", "CourseDetails/" + Model.CourseId.ToString(), "Courses")
+    }
+
+    @if (Model.ModuleId  > 0)
+    {
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId.ToString(), "Modules")
+    }
+
+    @if (Model.ActivityId > 0)
+    {
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId.ToString(), "Activities")
+    }
+
 </div>
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

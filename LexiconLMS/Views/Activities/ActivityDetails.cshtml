@@ -1,0 +1,117 @@
+﻿@model LexiconLMS.Models.Activity
+
+@{
+    ViewBag.Title = "Activity details";
+}
+
+<h2>@Model.Type</h2>
+
+<div>
+    <h4>Activity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Module.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditActivity", new { id = Model.ActivityId }) |
+    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.ModuleId}, null)
+</p>
+
+@*2016-07-04, ym: nedan: skapar kod för dokument*@
+
+
+
+<h4>Documents in activity</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Documents.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documents.First().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
+        </th>
+        <th>
+            Uploader
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var document in Model.Documents)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => document.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => document.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => document.TimeStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => document.User.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
+                @if (User.IsInRole("Teacher"))
+                {
+                    <span>|</span>
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { activityId = Model.ActivityId }, null)
+</p>
+
+
+@*2016-07-04, ym: ovan: skapar kod för dokument*@
