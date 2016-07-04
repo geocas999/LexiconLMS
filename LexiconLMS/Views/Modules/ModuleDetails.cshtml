@@ -67,7 +67,7 @@
         @Html.ActionLink("Edit", "EditModule", new {id = Model.ModuleId})
         <span>|</span>
     }
-    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = 1}, null)
+    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = @Model.CourseId}, null)
 </p>
 
 <hr/>

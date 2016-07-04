@@ -158,7 +158,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("TeacherOverview", "Teacher");
             }
             return View(course);
         }
