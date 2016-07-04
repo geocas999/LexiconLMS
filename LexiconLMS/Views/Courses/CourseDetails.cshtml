@@ -164,8 +164,8 @@
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = document.DocumentId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = document.DocumentId }, null)
+                    @Html.ActionLink("Edit", "Edit", "Documents", new { id = document.DocumentId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", "Documents", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>
