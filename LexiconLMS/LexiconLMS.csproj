@@ -282,25 +282,25 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Courses\AddCourse.cshtml" />
-    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\DeleteCourse.cshtml" />
     <Content Include="Views\Courses\CourseDetails.cshtml" />
-    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\EditCourse.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Teacher\TeacherOverview.cshtml" />
     <Content Include="Views\Courses\AddStudent.cshtml" />
     <Content Include="Views\Modules\AddModule.cshtml" />
-    <Content Include="Views\Modules\Delete.cshtml" />
-    <Content Include="Views\Modules\Details.cshtml" />
-    <Content Include="Views\Modules\Edit.cshtml" />
+    <Content Include="Views\Modules\DeleteModule.cshtml" />
+    <Content Include="Views\Modules\ModuleDetails.cshtml" />
+    <Content Include="Views\Modules\EditModule.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Documents\AddDocument.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
-    <Content Include="Views\Documents\Details.cshtml" />
-    <Content Include="Views\Documents\Edit.cshtml" />
+    <Content Include="Views\Documents\DeleteDocument.cshtml" />
+    <Content Include="Views\Documents\DocumentDetails.cshtml" />
+    <Content Include="Views\Documents\EditDocument.cshtml" />
     <Content Include="Views\Activities\AddActivity.cshtml" />
-    <Content Include="Views\Activities\Delete.cshtml" />
-    <Content Include="Views\Activities\Details.cshtml" />
-    <Content Include="Views\Activities\Edit.cshtml" />
+    <Content Include="Views\Activities\DeleteActivity.cshtml" />
+    <Content Include="Views\Activities\ActivityDetails.cshtml" />
+    <Content Include="Views\Activities\EditActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

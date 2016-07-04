@@ -42,9 +42,9 @@
                 @Html.DisplayFor(modelItem =>  item.StartDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Courses", new { id = item.CourseId }, null) |
+                @Html.ActionLink("Edit", "EditCourse", "Courses", new { id = item.CourseId }, null) |
                 @Html.ActionLink("Details", "CourseDetails", "Courses", new { id = item.CourseId }, null) |
-                @Html.ActionLink("Delete", "Delete", "Courses", new { id = item.CourseId }, null)
+                @Html.ActionLink("Delete", "DeleteCourse", "Courses", new { id = item.CourseId }, null)
             </td>
         </tr>
     }

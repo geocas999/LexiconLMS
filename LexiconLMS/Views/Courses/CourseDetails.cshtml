@@ -39,8 +39,8 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit course", "EditCourse", new { id = Model.CourseId }) |
+        @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
     </p>
 }
     <hr />
@@ -98,12 +98,12 @@
                 @Html.DisplayFor(modelItem => module.EndDate)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
+                @Html.ActionLink("Details", "ModuleDetails", "Modules", new { id = module.ModuleId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = module.ModuleId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = module.ModuleId }, null)
+                    @Html.ActionLink("Edit", "EditModule", "Modules", new { id = module.ModuleId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new { id = module.ModuleId }, null)
                 }
             </td>
         </tr>
@@ -159,12 +159,12 @@
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId    }, null)
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId    }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = document.DocumentId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = document.DocumentId }, null)
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>

@@ -15,10 +15,10 @@ namespace LexiconLMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Modules/Details/5
+        // GET: Modules/ModuleDetails/5
         [AllowAnonymous]
         [Authorize(Roles = "Teacher, Student")]
-        public ActionResult Details(int? id)
+        public ActionResult ModuleDetails(int? id)
         {
             if (id == null)
             {
@@ -63,8 +63,8 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // GET: Modules/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Modules/EditModule/5
+        public ActionResult EditModule(int? id)
         {
             if (id == null)
             {
@@ -79,12 +79,12 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // POST: Modules/Edit/5
+        // POST: Modules/EditModule/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
+        public ActionResult EditModule([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
@@ -96,8 +96,8 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // GET: Modules/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Modules/DeleteModule/5
+        public ActionResult DeleteModule(int? id)
         {
             if (id == null)
             {
@@ -111,8 +111,8 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
-        // POST: Modules/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Modules/DeleteModule/5
+        [HttpPost, ActionName("DeleteModule")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

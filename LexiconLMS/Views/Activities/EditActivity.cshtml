@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.Activity
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit activity";
 }
 
-<h2>Edit</h2>
+<h2>Edit @Model.Type</h2>
 
 
 @using (Html.BeginForm())
@@ -66,7 +66,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to module", "Details", "Modules", new { id = Model.ModuleId }, null)
+    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.ModuleId }, null)
 </div>
 
 @section Scripts {

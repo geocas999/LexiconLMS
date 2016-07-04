@@ -92,7 +92,7 @@ namespace LexiconLMS.Controllers
             return View(model);
         }
 
-        // GET: Courses/Details/5
+        // GET: Courses/CourseDetails/5
         [AllowAnonymous]
         [Authorize(Roles ="Teacher, Student")]
         public ActionResult CourseDetails(int? id)
@@ -132,8 +132,8 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // GET: Courses/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Courses/EditCourse/5
+        public ActionResult EditCourse(int? id)
         {
             if (id == null)
             {
@@ -147,12 +147,12 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Courses/EditCourse/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseId,Name,Description,StartDate")] Course course)
+        public ActionResult EditCourse([Bind(Include = "CourseId,Name,Description,StartDate")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -163,8 +163,8 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // GET: Courses/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Courses/DeleteCourse/5
+        public ActionResult DeleteCourse(int? id)
         {
             if (id == null)
             {
@@ -178,15 +178,15 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Courses/DeleteCourse/5
+        [HttpPost, ActionName("DeleteCourse")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Courses.Find(id);
             db.Courses.Remove(course);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("TeacherOverview", "Teacher");
         }
 
         protected override void Dispose(bool disposing)
