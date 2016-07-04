@@ -5,6 +5,14 @@
     ViewBag.Title = "Module details";
 }
 
+<div>
+    <ol class="breadcrumb">
+        <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new { id = @Model.CourseId }, null) </li>
+        <li class="active"> @Model.Name </li>
+    </ol>
+</div>
+
 <h2>@Model.Name</h2>
 
 <div>
@@ -64,13 +72,13 @@
 <p>
     @if (User.IsInRole("Teacher"))
     {
-        @Html.ActionLink("Edit", "EditModule", new {id = Model.ModuleId})
+        @Html.ActionLink("Edit", "EditModule", new { id = Model.ModuleId })
         <span>|</span>
     }
-    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = @Model.CourseId}, null)
+    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new { id = @Model.CourseId }, null)
 </p>
 
-<hr/>
+<hr />
 
 <h4>Activities in module</h4>
 
@@ -124,6 +132,6 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new {id = Model.ModuleId}, null)
+        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new { id = Model.ModuleId }, null)
     </p>
 }

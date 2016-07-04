@@ -4,6 +4,16 @@
     ViewBag.Title = "Activity details";
 }
 
+<div>
+    <ol class="breadcrumb">
+        <li> <span class="glyphicon glyphicon-envelope"></span> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+        
+        <li> @Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new { id = @Model.Module.CourseId }, null) </li>
+        <li> @Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new { id = @Model.ModuleId }, null) </li>
+        <li class="active"> @Model.Type </li>
+    </ol>
+</div>
+
 <h2>@Model.Type</h2>
 
 <div>
