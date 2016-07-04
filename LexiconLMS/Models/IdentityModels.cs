@@ -37,12 +37,13 @@ namespace LexiconLMS.Models
         public DbSet<Module> Modules { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Document> Documents { get; set; }
-
+        
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
+        //public System.Data.Entity.DbSet<LexiconLMS.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

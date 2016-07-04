@@ -40,8 +40,8 @@
                     <ul class="nav navbar-nav" style="margin-top:6px;">
                         @if (User.IsInRole("Teacher"))
                         {
-                            <li>@Html.ActionLink("Courses", "TeacherOverview", "Teacher")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Courses", "TeacherOverview", "Teacher")</li>
+                        <li>@Html.ActionLink("Users", "Users", "Teacher")</li>
                         <li>@Html.ActionLink("Upload", "Index", "Upload")</li>
             }
                         else if (User.IsInRole("Student"))
