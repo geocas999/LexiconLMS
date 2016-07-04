@@ -14,9 +14,6 @@ namespace LexiconLMS.Models
 
         public virtual ICollection<ApplicationUser> Students { get; set; }
         public virtual ICollection<Module> Modules { get; set; }
-
-        //2016-06-06, YM, lägger till dokument
         public virtual ICollection<Document> Documents { get; set; }
-        //2016-06-06, YM, lägger till dokument
     }
 }
