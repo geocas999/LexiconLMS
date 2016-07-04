@@ -293,6 +293,7 @@
     <Content Include="Views\Modules\ModuleDetails.cshtml" />
     <Content Include="Views\Modules\EditModule.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+	<Content Include="Views\Teacher\Users.cshtml" />
     <Content Include="Views\Documents\AddDocument.cshtml" />
     <Content Include="Views\Documents\DeleteDocument.cshtml" />
     <Content Include="Views\Documents\DocumentDetails.cshtml" />

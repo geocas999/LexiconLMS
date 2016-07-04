@@ -43,7 +43,7 @@
         @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
     </p>
 }
-    <hr />
+<hr />
 <div>
     <h4>Students</h4>
     <dl class="dl-horizontal">
@@ -54,11 +54,11 @@
             </dd>
         }
     </dl>
-        @if (User.IsInRole("Teacher"))
-        {
-            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-            <hr />
-        }
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+        <hr />
+    }
 </div>
 
        
@@ -92,10 +92,12 @@
                 @Html.DisplayFor(modelItem => module.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.StartDate)
+                @*Html.DisplayFor(modelItem => module.StartDate.ToString("yyyy-dd-MM"))*@
+                @module.StartDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.EndDate)
+                @*@Html.DisplayFor(modelItem => module.EndDate)*@
+                @module.EndDate.ToString("yyyy-MM-dd")
             </td>
             <td>
                 @Html.ActionLink("Details", "ModuleDetails", "Modules", new { id = module.ModuleId }, null)
@@ -124,26 +126,26 @@
 
 
 
-<h4>Documents in course</h4>
+    <h4>Documents in course</h4>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().TimeStamp )
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().User.Name  )
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().User.Name)
+            </th>
+            <th></th>
+        </tr>
 
-    @foreach (var document in Model.Documents )
+    @foreach (var document in Model.Documents)
     {
         <tr>
             <td>
@@ -170,7 +172,7 @@
         </tr>
     }
 
-</table>
+    </table>
 
     <p>
         @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId },null)

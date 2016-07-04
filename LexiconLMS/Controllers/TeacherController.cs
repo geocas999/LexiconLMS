@@ -23,6 +23,12 @@ namespace LexiconLMS.Controllers
 
             return View(teacherViewModel);
         }
-
+        
+        //2016-07-01 Anette - Link navbar Users
+        // GET: /Account/Users
+        public ActionResult Users()
+        {
+            return View(db.Users.ToList());
+        }
     }
 }
