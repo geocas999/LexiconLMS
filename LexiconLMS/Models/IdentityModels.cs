@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,8 +10,6 @@ namespace LexiconLMS.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        internal string UserRole;
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -24,11 +22,8 @@ namespace LexiconLMS.Models
 
         public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
 
-        //public static implicit operator ApplicationUser(ApplicationUser v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -40,6 +35,7 @@ namespace LexiconLMS.Models
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Module> Modules { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         public DbSet<Document> Documents { get; set; }
         
 

@@ -4,7 +4,7 @@
     ViewBag.Title = "CourseDetails";
 }
 
-<h2>Course Details</h2>
+<h2>@Model.Name</h2>
 
 <div>
     <h4>Course</h4>
@@ -43,7 +43,7 @@
         @Html.ActionLink("Back to List", "Index")
     </p>
 }
-    <hr />
+<hr />
 <div>
     <h4>Students</h4>
     <dl class="dl-horizontal">
@@ -54,16 +54,18 @@
             </dd>
         }
     </dl>
-        @if (User.IsInRole("Teacher"))
-        {
-            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-            <hr />
-        }
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+        <hr />
+    }
 </div>
+
+       
 
 <h4>Modules in course</h4>
 
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Modules.First().Name)
@@ -90,10 +92,12 @@
                 @Html.DisplayFor(modelItem => module.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.StartDate)
+                @*Html.DisplayFor(modelItem => module.StartDate.ToString("yyyy-dd-MM"))*@
+                @module.StartDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => module.EndDate)
+                @*@Html.DisplayFor(modelItem => module.EndDate)*@
+                @module.EndDate.ToString("yyyy-MM-dd")
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
@@ -109,72 +113,72 @@
 
 </table>
 
-
-
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules")
+        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
     </p>
 }
 
+<hr/>
 
-@*2016-06-60, YM, lägger till dokument*@
+@*2016-06-29, ym: nedan: skapar kod för dokument*@
 
 
 
-<h4>Documents in course</h4>
+    <h4>Documents in course</h4>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().TimeStamp )
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Documents.First().User.Name  )
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var document in Model.Documents )
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => document.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => document.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => document.TimeStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => document.User.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId    }, null)
-                @if (User.IsInRole("Teacher"))
-                {
-                    <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = document.DocumentId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = document.DocumentId }, null)
-                }
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documents.First().User.Name)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var document in Model.Documents)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => document.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => document.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => document.TimeStamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => document.User.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId }, null)
+                    @if (User.IsInRole("Teacher"))
+                {
+                        <span>|</span>
+                        @Html.ActionLink("Edit", "Edit", "Modules", new { id = document.DocumentId }, null) <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", "Modules", new { id = document.DocumentId }, null)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
 
     <p>
-        @Html.ActionLink("Upload New Document", "Create", "Documents")
+        @Html.ActionLink("Upload New Document", "Create", "Documents", new { courseId = Model.CourseId },null)
     </p>
 
 
-@*2016-06-60, YM, slut lägger till dokument*@
+@*2016-06-29, ym: ovan: skapar kod för dokument*@
+
 
