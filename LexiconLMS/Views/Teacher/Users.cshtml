@@ -12,29 +12,42 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Users", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Course.Name)
+            @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
-        <th></th>
-    </tr>
+        <th>
+            @Html.ActionLink("Course Name", "Users", new { sortOrder = ViewBag.CourseSortParm })
+        </th>
+      
+           @*<th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>*@
+      <tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+           <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Course.Name)
             </td>
+           
+              @*<td>
+              @Html.DisplayFor(modelItem => item.Roles)
+            </td>*@
         </tr>
     }
 

@@ -50,7 +50,7 @@ namespace LexiconLMS.Controllers
 
             if (moduleId != null)
             {
-                course.ModelId = (int)moduleId;
+                course.ModuleId = (int)moduleId;
 
             }
 
@@ -70,7 +70,7 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
+        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -81,23 +81,6 @@ namespace LexiconLMS.Controllers
 
                 var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
                 document.UserId = user.Id;
-
-
-                //foreach (var item in db.Users)
-                //{
-
-                //    if (item.Email  == User.Identity.Name)
-                //    {
-                //        document.UserId = item.Id;
-
-                //    }
-
-
-
-                //}
-
-
-
 
                 db.Documents.Add(document);
                 db.SaveChanges();
@@ -110,13 +93,13 @@ namespace LexiconLMS.Controllers
 
                 if (document.ModuleId != null)
                 {
-                    return RedirectToAction("ModuleDetails", "???", new { id = document.ModuleId });
+                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
 
                 }
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("ActivityDetails", "???", new { id = document.ActivityId });
+                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
 
                 }
 
