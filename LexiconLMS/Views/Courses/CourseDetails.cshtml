@@ -131,7 +131,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Name)
+            name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Documents.First().Description)
@@ -140,7 +140,7 @@
                 @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
         </th>
         <th>
-                @Html.DisplayNameFor(model => model.Documents.First().User.Name)
+                Uploader
         </th>
         <th></th>
     </tr>
@@ -158,7 +158,7 @@
                 @Html.DisplayFor(modelItem => document.TimeStamp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => document.User.Name)
+                    @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
                     @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId }, null)

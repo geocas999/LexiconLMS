@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.Name)
+            Uploader
         </dt>
 
         <dd>
@@ -87,12 +87,12 @@
 
     @if (Model.ModuleId > 0)
     {
-        @Html.ActionLink("Back", "Modules", "Index")
+        @Html.ActionLink("Back", "Details/" + Model.ModuleId.ToString(), "Modules")
     }
 
     @if (Model.ActivityId > 0)
     {
-        @Html.ActionLink("Back","Modules", "Index")
+        @Html.ActionLink("Back", "Details/" + Model.ActivityId.ToString(), "Activities")
     }
 
 </p>
