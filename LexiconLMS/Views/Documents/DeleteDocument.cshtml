@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.Document
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete document";
 }
 
-<h2>Delete</h2>
+<h2>Delete document @Model.Name</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -44,11 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Uploader)
+            @Html.DisplayNameFor(model => model.UserId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Uploader)
+            @Html.DisplayFor(model => model.UserId)
         </dd>
 
         <dt>
@@ -81,7 +81,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-default" /> 
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

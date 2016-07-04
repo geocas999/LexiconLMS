@@ -22,10 +22,10 @@ namespace LexiconLMS.Controllers
             return View(activities.ToList());
         }
 
-        // GET: Activities/Details/5
+        // GET: Activities/ActivityDetails/5
         [AllowAnonymous]
         [Authorize(Roles = "Teacher, Student")]
-        public ActionResult Details(int? id)
+        public ActionResult ActivityDetails(int? id)
         {
             if (id == null)
             {
@@ -39,8 +39,8 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // GET: Activities/Create
-        public ActionResult Create(int? id)
+        // GET: Activities/AddActivity
+        public ActionResult AddActivity(int? id)
         {
             if (id == null)
             {
@@ -51,26 +51,26 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // POST: Activities/Create
+        // POST: Activities/AddActivity
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
+        public ActionResult AddActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
+                return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
             }
 
             ViewBag.ModuleId = new SelectList(db.Modules, "ModuleId", "Name", activity.ModuleId);
             return View(activity);
         }
 
-        // GET: Activities/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Activities/EditActivity/5
+        public ActionResult EditActivity(int? id)
         {
             if (id == null)
             {
@@ -85,12 +85,12 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // POST: Activities/Edit/5
+        // POST: Activities/EditActivity/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
+        public ActionResult EditActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -102,8 +102,8 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // GET: Activities/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Activities/DeleteActivity/5
+        public ActionResult DeleteActivity(int? id)
         {
             if (id == null)
             {
@@ -117,15 +117,15 @@ namespace LexiconLMS.Controllers
             return View(activity);
         }
 
-        // POST: Activities/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Activities/DeleteActivity/5
+        [HttpPost, ActionName("DeleteActivity")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Activity activity = db.Activities.Find(id);
             db.Activities.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
+            return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
         }
 
         protected override void Dispose(bool disposing)

@@ -20,8 +20,8 @@ namespace LexiconLMS.Controllers
             return View(db.Documents.ToList());
         }
 
-        // GET: Documents/Details/5
-        public ActionResult Details(int? id)
+        // GET: Documents/DocumentDetails/5
+        public ActionResult DocumentDetails(int? id)
         {
             if (id == null)
             {
@@ -35,9 +35,9 @@ namespace LexiconLMS.Controllers
             return View(document);
         }
 
-        // GET: Documents/Create
+        // GET: Documents/AddDocument
         //2016-07-01, ym: nedan: ändrar på funktionen
-        public ActionResult Create(int? courseId, int? moduleId, int? Activity)
+        public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
             
             var course = new RegisterDocumentModel();
@@ -54,9 +54,9 @@ namespace LexiconLMS.Controllers
 
             }
 
-            if (Activity != null)
+            if (activityId != null)
             {
-                course.ActivityId = (int)Activity;
+                course.ActivityId = (int)activityId;
 
             }
 
@@ -64,13 +64,13 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
-        // POST: Documents/Create
+        // POST: Documents/AddDocument
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Teacher")]
-        public ActionResult Create([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
+        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace LexiconLMS.Controllers
 
                 var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
                 document.UserId = user.Id;
-             
+
                 db.Documents.Add(document);
                 db.SaveChanges();
 
@@ -93,13 +93,13 @@ namespace LexiconLMS.Controllers
 
                 if (document.ModuleId != null)
                 {
-                    return RedirectToAction("Details", "Modules", new { id = document.ModuleId });
+                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
 
                 }
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("Details", "Activities", new { id = document.ActivityId });
+                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
 
                 }
 
@@ -113,8 +113,8 @@ namespace LexiconLMS.Controllers
         //2016-07-01, ym: ovan: ändrar på funktionen
 
 
-        // GET: Documents/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Documents/EditDocument/5
+        public ActionResult EditDocument(int? id)
         {
             if (id == null)
             {
@@ -128,12 +128,12 @@ namespace LexiconLMS.Controllers
             return View(document);
         }
 
-        // POST: Documents/Edit/5
+        // POST: Documents/EditDocument/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
+        public ActionResult EditDocument([Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -144,8 +144,8 @@ namespace LexiconLMS.Controllers
             return View(document);
         }
 
-        // GET: Documents/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Documents/DeleteDocument/5
+        public ActionResult DeleteDocument(int? id)
         {
             if (id == null)
             {
@@ -159,8 +159,8 @@ namespace LexiconLMS.Controllers
             return View(document);
         }
 
-        // POST: Documents/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Documents/DeleteDocument/5
+        [HttpPost, ActionName("DeleteDocument")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

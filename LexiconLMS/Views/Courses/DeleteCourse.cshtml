@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.Course
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete course";
 }
 
-<h2>Delete</h2>
+<h2>Delete course @Model.Name</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -42,7 +42,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "TeacherOverview", "Teacher")
         </div>
     }
 </div>

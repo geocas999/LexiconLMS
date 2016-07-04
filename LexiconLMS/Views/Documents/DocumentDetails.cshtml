@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.Document
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Document details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name</h2>
 
 <div>
     <h4>Document</h4>
@@ -87,12 +87,12 @@
 
     @if (Model.ModuleId > 0)
     {
-        @Html.ActionLink("Back", "Details/" + Model.ModuleId.ToString(), "Modules")
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId.ToString(), "Modules")
     }
 
     @if (Model.ActivityId > 0)
     {
-        @Html.ActionLink("Back", "Details/" + Model.ActivityId.ToString(), "Activities")
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId.ToString(), "Activities")
     }
 
 </p>

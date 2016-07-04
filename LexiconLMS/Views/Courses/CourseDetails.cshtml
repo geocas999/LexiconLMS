@@ -31,7 +31,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @*@Html.DisplayFor(model => model.StartDate)*@
+            @{string startDate = Model.StartDate.ToString("yyyy-MM-dd");
+            }
+            @Html.DisplayFor(modelItem => startDate)
         </dd>
     </dl>
 </div>
@@ -39,8 +42,8 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit course", "EditCourse", new { id = Model.CourseId }) |
+        @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
     </p>
 }
     <hr />
@@ -100,12 +103,12 @@
                 @module.EndDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Modules", new { id = module.ModuleId }, null)
+                @Html.ActionLink("Details", "ModuleDetails", "Modules", new { id = module.ModuleId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Modules", new { id = module.ModuleId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Modules", new { id = module.ModuleId }, null)
+                    @Html.ActionLink("Edit", "EditModule", "Modules", new { id = module.ModuleId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new { id = module.ModuleId }, null)
                 }
             </td>
         </tr>
@@ -116,7 +119,7 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Create New Module", "Create", "Modules", new { id = Model.CourseId }, null)
+        @Html.ActionLink("Add new module", "AddModule", "Modules", new { id = Model.CourseId }, null)
     </p>
 }
 
@@ -145,7 +148,7 @@
         <th></th>
     </tr>
 
-        @foreach (var document in Model.Documents)
+    @foreach (var document in Model.Documents)
     {
         <tr>
             <td>
@@ -161,12 +164,12 @@
                     @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                    @Html.ActionLink("Details", "Details", "Documents", new { id = document.DocumentId }, null)
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId    }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Documents", new { id = document.DocumentId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Documents", new { id = document.DocumentId }, null)
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>
@@ -175,7 +178,7 @@
 </table>
 
     <p>
-        @Html.ActionLink("Upload New Document", "Create", "Documents", new { courseId = Model.CourseId },null)
+        @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId },null)
     </p>
 
 

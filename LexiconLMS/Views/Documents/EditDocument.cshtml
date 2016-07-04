@@ -1,10 +1,10 @@
 ﻿@model LexiconLMS.Models.Document
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit document";
 }
 
-<h2>Edit</h2>
+<h2>Edit @Model.Name</h2>
 
 
 @using (Html.BeginForm())
@@ -98,12 +98,12 @@
 
     @if (Model.ModuleId > 0)
     {
-        @Html.ActionLink("Back", "Details/" + Model.ModuleId.ToString(), "Modules")
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId.ToString(), "Modules")
     }
 
     @if (Model.ActivityId > 0)
     {
-        @Html.ActionLink("Back", "Details/" + Model.ActivityId.ToString(), "Activities")
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId.ToString(), "Activities")
     }
 
 </div>

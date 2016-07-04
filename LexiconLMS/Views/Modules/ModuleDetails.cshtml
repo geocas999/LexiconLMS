@@ -2,7 +2,7 @@
 @model Module
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Module details";
 }
 
 <h2>@Model.Name</h2>
@@ -40,8 +40,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @*@Html.DisplayFor(model => model.StartDate)*@
             @*@StartDate.ToString("yyyy-MM-dd")*@
+            @{string startDate = Model.StartDate.ToString("yyyy-MM-dd");
+            }
+            @Html.DisplayFor(modelItem => startDate)
         </dd>
 
         <dt>
@@ -49,8 +52,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndDate)
+            @*@Html.DisplayFor(model => model.EndDate)*@
             @*@EndDate.ToString("yyyy-MM-dd")*@
+            @{string endDate = Model.EndDate.ToString("yyyy-MM-dd");
+            }
+            @Html.DisplayFor(modelItem => endDate)
         </dd>
 
     </dl>
@@ -58,10 +64,10 @@
 <p>
     @if (User.IsInRole("Teacher"))
     {
-        @Html.ActionLink("Edit", "Edit", new {id = Model.ModuleId})
+        @Html.ActionLink("Edit", "EditModule", new {id = Model.ModuleId})
         <span>|</span>
     }
-    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = 1}, null)
+    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = @Model.CourseId}, null)
 </p>
 
 <hr/>
@@ -102,12 +108,12 @@
                 @Html.DisplayFor(modelItem => activity.EndTime)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", "Activities", new { id = activity.ActivityId }, null)
+                @Html.ActionLink("Details", "ActivityDetails", "Activities", new { id = activity.ActivityId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "Edit", "Activities", new { id = activity.ActivityId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", "Activities", new { id = activity.ActivityId }, null)
+                    @Html.ActionLink("Edit", "EditActivity", "Activities", new { id = activity.ActivityId }, null) <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteActivity", "Activities", new { id = activity.ActivityId }, null)
                 }
             </td>
         </tr>
@@ -118,7 +124,7 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Add new activity", "Create", "Activities", new {id = Model.ModuleId}, null)
+        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new {id = Model.ModuleId}, null)
     </p>
 }
 
