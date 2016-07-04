@@ -64,9 +64,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditActivity", new { id = Model.ActivityId }) |
-    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.ModuleId }, null)
+    @Html.ActionLink("Edit", "EditActivity", new {id = Model.ActivityId}) |
+    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new {id = Model.ModuleId}, null)
 </p>
+
+<hr/>
 
 @*2016-07-04, ym: nedan: skapar kod för dokument*@
 
@@ -74,7 +76,7 @@
 
 <h4>Documents in activity</h4>
 
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Documents.First().Name)
