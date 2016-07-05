@@ -10,15 +10,10 @@ using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
+    [Authorize]
     public class DocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Documents
-        public ActionResult Index()
-        {
-            return View(db.Documents.ToList());
-        }
 
         // GET: Documents/DocumentDetails/5
         public ActionResult DocumentDetails(int? id)
@@ -37,6 +32,7 @@ namespace LexiconLMS.Controllers
 
         // GET: Documents/AddDocument
         //2016-07-01, ym: nedan: ändrar på funktionen
+        [Authorize(Roles = "Teacher")]
         public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
             
@@ -69,8 +65,8 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument([Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult AddDocument([Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -85,26 +81,26 @@ namespace LexiconLMS.Controllers
                 db.Documents.Add(document);
                 db.SaveChanges();
 
-            //    if (document.CourseId != null)
-            //    {
-            //        return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                if (document.CourseId != null)
+                {
+                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
 
-            //    }
+                }
 
-            //    if (document.ModuleId != null)
-            //    {
-            //        return RedirectToAction("ModuleDetails", "???", new { id = document.ModuleId });
+                if (document.ModuleId != null)
+                {
+                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
 
-            //    }
+                }
 
-            //    if (document.ActivityId != null)
-            //    {
-            //        return RedirectToAction("ActivityDetails", "???", new { id = document.ActivityId });
+                if (document.ActivityId != null)
+                {
+                    return RedirectToAction("ActivityDetails", "Activity", new { id = document.ActivityId });
 
-            //    }
+                }
 
-            //    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
-            //    //return RedirectToAction("Index");
+                return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                //return RedirectToAction("Index");
             }
 
             return RedirectToAction("AddDocument");
@@ -112,9 +108,9 @@ namespace LexiconLMS.Controllers
         }
 
         //2016-07-01, ym: ovan: ändrar på funktionen
-
-
+        
         // GET: Documents/EditDocument/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditDocument(int? id)
         {
             if (id == null)
@@ -134,6 +130,7 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditDocument([Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
@@ -146,6 +143,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Documents/DeleteDocument/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteDocument(int? id)
         {
             if (id == null)
@@ -163,6 +161,7 @@ namespace LexiconLMS.Controllers
         // POST: Documents/DeleteDocument/5
         [HttpPost, ActionName("DeleteDocument")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
             Document document = db.Documents.Find(id);
