@@ -58,6 +58,15 @@ namespace LexiconLMS.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            // Routing depending on if the user is already logged in
+            if (User.IsInRole("Teacher"))
+                return RedirectToAction("TeacherOverview", "Teacher");
+            else if (User.Identity.IsAuthenticated)
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                return RedirectToAction("CourseDetails", "Courses", new {id = user.CourseId});
+            }
+                    
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
