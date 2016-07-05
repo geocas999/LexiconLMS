@@ -66,7 +66,7 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
+        public ActionResult AddDocument([Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -95,15 +95,16 @@ namespace LexiconLMS.Controllers
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
+                    return RedirectToAction("ActivityDetails", "Activity", new { id = document.ActivityId });
 
                 }
 
-
-                return RedirectToAction("Index");
+                return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                //return RedirectToAction("Index");
             }
 
-            return View(document);
+            return RedirectToAction("AddDocument");
+            //return View(document);
         }
 
         //2016-07-01, ym: ovan: ändrar på funktionen

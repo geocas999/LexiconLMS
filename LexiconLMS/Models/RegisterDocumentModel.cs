@@ -6,8 +6,23 @@ using System.Web;
 
 namespace LexiconLMS.Models
 {
+    public enum DocumentType
+    {
+        HandledningAktivitet = 0,
+        Inlämningsuppgift = 1,
+        Övningsuppgift = 2,
+        AnteckningarAktivitet = 3,
+        TorgInfo = 4,
+        Scheman = 5,
+        Övrigt = 6
+    }
+
     public class RegisterDocumentModel
     {
+        [Required]
+        [Display(Name = "DocumentType")]
+        public DocumentType? DocumentType { get; set; }
+
         [Required]
         [Display(Name = "DocumentId")]
         public int DocumentId { get; set; }

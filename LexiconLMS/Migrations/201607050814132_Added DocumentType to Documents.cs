@@ -3,16 +3,16 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class test2 : DbMigration
+    public partial class AddedDocumentTypetoDocuments : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Activities", "Name", c => c.String());
+            AddColumn("dbo.Documents", "DocumentType", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Activities", "Name");
+            DropColumn("dbo.Documents", "DocumentType");
         }
     }
 }
