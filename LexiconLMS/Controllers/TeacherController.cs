@@ -26,14 +26,24 @@ namespace LexiconLMS.Controllers
         }
         
         //2016-07-01 Anette - Link navbar Users
-        //2016-07-05 Anette - Sort Order UserName and CourseName
+        //2016-07-04 Anette - Sort Order UserName and CourseName
+        //2016-07-05 Anette - Search
+
         // GET: /Teacher/Users
-        public ActionResult Users(string sortOrder)
-        {
+        public ViewResult Users(string sortOrder, string searchString)
+        {            
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.CourseSortParm = sortOrder == "Course.Name" ? "course_desc" : "Course.Name";
+            ViewBag.CourseNameSortParm = sortOrder == "Course.Name" ? "course_desc" : "Course.Name";
+            ViewBag.CourseIdSortParm = sortOrder == "Course.Id" ? "courseId_desc" : "Course.Id";
             var users = from s in db.Users
                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.Name.Contains(searchString)
+                                        || s.Course.Name.Contains(searchString));
+            }
+
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -45,12 +55,21 @@ namespace LexiconLMS.Controllers
                 case "course_desc":
                     users = users.OrderByDescending(s => s.Course.Name);
                     break;
+                case "Course.Id":
+                    users = users.OrderBy(s => s.Course.CourseId);
+                    break;
+                case "courseId_desc":
+                    users = users.OrderByDescending(s => s.Course.CourseId);
+                    break;
                 default:
                     users = users.OrderBy(s => s.Name);
                     break;
             }
             return View(users.ToList());
-
+        }
+        public ActionResult UserDetails (string id)
+        {
+            return View();
         }
     }
 }
