@@ -41,21 +41,21 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.TimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TimeStamp, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TimeStamp, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.User.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.User.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.User.Name, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -98,13 +98,14 @@
 
     @if (Model.ModuleId > 0)
     {
-        @Html.ActionLink("Back", "Modules", "Index")
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId.ToString(), "Modules")
     }
 
     @if (Model.ActivityId > 0)
     {
-        @Html.ActionLink("Back","Modules", "Index")
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId.ToString(), "Activities")
     }
+
 </div>
 
 @section Scripts {

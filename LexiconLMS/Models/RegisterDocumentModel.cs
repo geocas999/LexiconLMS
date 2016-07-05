@@ -48,7 +48,7 @@ namespace LexiconLMS.Models
         public DateTime TimeStamp { get; set; }
 
         public int CourseId { get; set; }
-        public int ModelId { get; set; }
+        public int ModuleId { get; set; }
         public int ActivityId { get; set; }
         public string UserId { get; set; }
 

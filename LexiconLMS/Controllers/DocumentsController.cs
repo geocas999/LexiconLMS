@@ -50,7 +50,7 @@ namespace LexiconLMS.Controllers
 
             if (moduleId != null)
             {
-                course.ModelId = (int)moduleId;
+                course.ModuleId = (int)moduleId;
 
             }
 
@@ -81,23 +81,6 @@ namespace LexiconLMS.Controllers
 
                 var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
                 document.UserId = user.Id;
-
-
-                //foreach (var item in db.Users)
-                //{
-
-                //    if (item.Email  == User.Identity.Name)
-                //    {
-                //        document.UserId = item.Id;
-
-                //    }
-
-
-
-                //}
-
-
-
 
                 db.Documents.Add(document);
                 db.SaveChanges();

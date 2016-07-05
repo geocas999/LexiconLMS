@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201606301312023_Added Activity model.Designer.cs">
       <DependentUpon>201606301312023_Added Activity model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607050823124_test2.cs" />
+    <Compile Include="Migrations\201607050823124_test2.Designer.cs">
+      <DependentUpon>201607050823124_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201607050814132_Added DocumentType to Documents.cs" />
     <Compile Include="Migrations\201607050814132_Added DocumentType to Documents.Designer.cs">
       <DependentUpon>201607050814132_Added DocumentType to Documents.cs</DependentUpon>
@@ -346,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607050814132_Added DocumentType to Documents.resx">
       <DependentUpon>201607050814132_Added DocumentType to Documents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607050823124_test2.resx">
+      <DependentUpon>201607050823124_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

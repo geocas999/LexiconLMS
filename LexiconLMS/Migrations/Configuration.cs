@@ -136,10 +136,27 @@ namespace LexiconLMS.Migrations
                 rManager.Create(role);
             }
 
-            foreach (var userName in new[] { "student@lexicon.se", "teacher@lexicon.se", "fredrik@lexicon.se", "anette@lexicon.se", "yaser@lexicon.se", "george@lexicon.se" })
+            var users = new List<ApplicationUser>();
+
+            var user1 = new ApplicationUser { UserName = "student@lexicon.se", Email = "student@lexicon.se", Name = "Student Studentsson", PhoneNumber = "070-0011223", CourseId = 1 };
+            var user2 = new ApplicationUser { UserName = "teacher@lexicon.se", Email = "teacher@lexicon.se", Name = "Teacher Teacher", PhoneNumber = "073-555138232", CourseId = 3 };
+            var user3 = new ApplicationUser { UserName = "fredrik@lexicon.se", Email = "fredrik@lexicon.se", Name = "Fredrik Fredriksson", PhoneNumber = "08-2501223", CourseId = 2 };
+            var user4 = new ApplicationUser { UserName = "anette@lexicon.se", Email = "anette@lexicon.se", Name = "Anette Andersson", PhoneNumber = "076-7788999", CourseId = 3 };
+            var user5 = new ApplicationUser { UserName = "yaser@lexicon.se", Email = "yaser@lexicon.se", Name = "Yaser Yasersson", PhoneNumber = "070-0011223", CourseId = 1 };
+            var user6 = new ApplicationUser { UserName = "george@lexicon.se", Email = "george@lexicon.se", Name = "George Georgsson", PhoneNumber = "070-0011223", CourseId = 1 };
+
+            users.Add(user1);
+            users.Add(user2);
+            users.Add(user3);
+            users.Add(user4);
+            users.Add(user5);
+            users.Add(user6);
+
+            foreach (var userName in users)
             {
-                var user = new ApplicationUser { UserName = userName };
+                var user = userName;
                 uManager.Create(user, "pass123");
+                context.Users.AddOrUpdate(u => u.UserName, user);
 
                 if (user.UserName == "teacher@lexicon.se")
                 {
