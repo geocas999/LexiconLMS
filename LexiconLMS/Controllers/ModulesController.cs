@@ -10,14 +10,12 @@ using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
-    [Authorize(Roles = "Teacher")]
+    [Authorize]
     public class ModulesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+            
         // GET: Modules/ModuleDetails/5
-        [AllowAnonymous]
-        [Authorize(Roles = "Teacher, Student")]
         public ActionResult ModuleDetails(int? id)
         {
             if (id == null)
@@ -32,6 +30,7 @@ namespace LexiconLMS.Controllers
             return View(module);
         }
 
+        [Authorize(Roles = "Teacher")]
         // GET: Modules/AddModule
         public ActionResult AddModule(int? id)
         {
@@ -64,6 +63,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Modules/EditModule/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditModule(int? id)
         {
             if (id == null)
@@ -84,6 +84,7 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditModule([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
@@ -97,6 +98,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Modules/DeleteModule/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteModule(int? id)
         {
             if (id == null)
@@ -112,6 +114,7 @@ namespace LexiconLMS.Controllers
         }
 
         // POST: Modules/DeleteModule/5
+        [Authorize(Roles = "Teacher")]
         [HttpPost, ActionName("DeleteModule")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
