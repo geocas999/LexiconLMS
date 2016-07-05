@@ -8,6 +8,7 @@ namespace LexiconLMS.Models
     public class Activity
     {
         public int ActivityId { get; set; }
+        public string Name { get; set; }
         public ActivityType Type { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
