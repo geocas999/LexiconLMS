@@ -9,32 +9,56 @@
 <p>
     @*@Html.ActionLink("Create New User", "Create")*@
 </p>
-<table class="table">
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Users", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Course.Name)
+            @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
-        <th></th>
-    </tr>
+        <th>
+            @Html.ActionLink("Course Name", "Users", new { sortOrder = ViewBag.CourseNameSortParm })
+        </th>
+         @*<th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>*@
+      <tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+           <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Name)
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Name)
+            </td>        
+            @*@<td>
+                @foreach (var role in item.Roles)
+                {
+                    @Html.DisplayFor(modelItem => role)
+                }
+            </td>*@
+            @*<td>@Html.ActionLink("User details", "Users", "Users", new { id = item.Id }, null)</td>   *@    
         </tr>
     }
 

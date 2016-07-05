@@ -7,13 +7,13 @@ namespace LexiconLMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Koppla_kurs_och_dokument : IMigrationMetadata
+    public sealed partial class AddedDocumentTypetoDocuments : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Koppla_kurs_och_dokument));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedDocumentTypetoDocuments));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606300856061_Koppla_kurs_och_dokument"; }
+            get { return "201607050814132_Added DocumentType to Documents"; }
         }
         
         string IMigrationMetadata.Source
