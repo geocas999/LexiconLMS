@@ -13,6 +13,7 @@ namespace LexiconLMS.Models
         public string Type { get; set; }
         public string Description { get; set; }
         public DateTime TimeStamp { get; set; }
+        public string DocumentType { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]

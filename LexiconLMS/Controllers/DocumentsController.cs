@@ -70,7 +70,7 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument([Bind(Include = "DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
+        public ActionResult AddDocument([Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModelId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -102,29 +102,30 @@ namespace LexiconLMS.Controllers
                 db.Documents.Add(document);
                 db.SaveChanges();
 
-                if (document.CourseId != null)
-                {
-                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+            //    if (document.CourseId != null)
+            //    {
+            //        return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
 
-                }
+            //    }
 
-                if (document.ModuleId != null)
-                {
-                    return RedirectToAction("ModuleDetails", "???", new { id = document.ModuleId });
+            //    if (document.ModuleId != null)
+            //    {
+            //        return RedirectToAction("ModuleDetails", "???", new { id = document.ModuleId });
 
-                }
+            //    }
 
-                if (document.ActivityId != null)
-                {
-                    return RedirectToAction("ActivityDetails", "???", new { id = document.ActivityId });
+            //    if (document.ActivityId != null)
+            //    {
+            //        return RedirectToAction("ActivityDetails", "???", new { id = document.ActivityId });
 
-                }
+            //    }
 
-
-                return RedirectToAction("Index");
+            //    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+            //    //return RedirectToAction("Index");
             }
 
-            return View(document);
+            return RedirectToAction("AddDocument");
+            //return View(document);
         }
 
         //2016-07-01, ym: ovan: ändrar på funktionen
