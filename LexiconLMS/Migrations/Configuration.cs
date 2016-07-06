@@ -143,7 +143,7 @@ namespace LexiconLMS.Migrations
             var user3 = new ApplicationUser { UserName = "fredrik@lexicon.se", Email = "fredrik@lexicon.se", Name = "Fredrik Fredriksson", PhoneNumber = "08-2501223", CourseId = 2 };
             var user4 = new ApplicationUser { UserName = "anette@lexicon.se", Email = "anette@lexicon.se", Name = "Anette Andersson", PhoneNumber = "076-7788999", CourseId = 3 };
             var user5 = new ApplicationUser { UserName = "yaser@lexicon.se", Email = "yaser@lexicon.se", Name = "Yaser Yasersson", PhoneNumber = "070-0011223", CourseId = 1 };
-            var user6 = new ApplicationUser { UserName = "george@lexicon.se", Email = "george@lexicon.se", Name = "George Georgsson", PhoneNumber = "070-0011223", CourseId = 1 };
+            var user6 = new ApplicationUser { UserName = "george@lexicon.se", Email = "george@lexicon.se", Name = "George Caspersson", PhoneNumber = "070-0011223", CourseId = 1 };
 
             users.Add(user1);
             users.Add(user2);
