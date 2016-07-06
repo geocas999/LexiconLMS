@@ -70,11 +70,6 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                document.ModuleId = document.ModuleId == 0 ? null : document.ModuleId;
-                document.CourseId = document.CourseId == 0 ? null : document.CourseId;
-                document.ActivityId = document.ActivityId == 0 ? null : document.ActivityId;
-                //UserId,CourseId,ModuleId,ActivityId
-
                 document.TimeStamp = DateTime.Now;
 
                 var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
@@ -86,19 +81,16 @@ namespace LexiconLMS.Controllers
                 if (document.CourseId != null)
                 {
                     return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
-
                 }
 
                 if (document.ModuleId != null)
                 {
                     return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
-
                 }
 
                 if (document.ActivityId != null)
                 {
                     return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
-
                 }
 
                 return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
@@ -120,6 +112,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Document document = db.Documents.Find(id);
+          
             if (document == null)
             {
                 return HttpNotFound();
