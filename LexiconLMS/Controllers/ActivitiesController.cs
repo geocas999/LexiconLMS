@@ -10,21 +10,12 @@ using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
-    [Authorize(Roles = "Teacher")]
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Activities
-        public ActionResult Index()
-        {
-            var activities = db.Activities.Include(a => a.Module);
-            return View(activities.ToList());
-        }
-
         // GET: Activities/ActivityDetails/5
-        [AllowAnonymous]
-        [Authorize(Roles = "Teacher, Student")]
         public ActionResult ActivityDetails(int? id)
         {
             if (id == null)
@@ -40,6 +31,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Activities/AddActivity
+        [Authorize(Roles = "Teacher")]
         public ActionResult AddActivity(int? id)
         {
             if (id == null)
@@ -56,6 +48,7 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult AddActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
@@ -70,6 +63,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Activities/EditActivity/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditActivity(int? id)
         {
             if (id == null)
@@ -90,19 +84,21 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
             }
             ViewBag.ModuleId = new SelectList(db.Modules, "ModuleId", "Name", activity.ModuleId);
             return View(activity);
         }
 
         // GET: Activities/DeleteActivity/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteActivity(int? id)
         {
             if (id == null)
@@ -120,6 +116,7 @@ namespace LexiconLMS.Controllers
         // POST: Activities/DeleteActivity/5
         [HttpPost, ActionName("DeleteActivity")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
             Activity activity = db.Activities.Find(id);
