@@ -293,7 +293,7 @@ namespace LexiconLMS.Migrations
             {
                 UserName = "george@lexicon.se",
                 Email = "george@lexicon.se",
-                Name = "George Georgsson",
+                Name = "George Caspersson",
                 PhoneNumber = "070-0011223",
                 CourseId = 1
             };
