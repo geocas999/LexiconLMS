@@ -310,6 +310,7 @@
     <Content Include="Views\Activities\DeleteActivity.cshtml" />
     <Content Include="Views\Activities\ActivityDetails.cshtml" />
     <Content Include="Views\Activities\EditActivity.cshtml" />
+    <Content Include="Views\Account\EditApplicationUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

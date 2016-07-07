@@ -94,11 +94,11 @@
                 <td>
                     @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name))
                 </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>*@
+                <td>
+                        @Html.ActionLink("Edit", "EditApplicationUser", "Account",  new { userId = user.Id }, null) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
             </tr>
     }
 </table>

@@ -100,6 +100,23 @@ namespace LexiconLMS.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class EditUserViewModel
+    {
+        public string Id { get; set; }
+        public string UserName { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+        public int? CourseId { get; set; }
+        public virtual Course Course { get; set; }
+    }
 
     public class ResetPasswordViewModel
     {
