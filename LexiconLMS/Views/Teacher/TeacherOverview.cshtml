@@ -5,7 +5,7 @@
 }
 
 <h2>Teacher Overview</h2>
-
+<h3>Courses</h3>
 <p>
     @Html.ActionLink("Add new course", "AddCourse", "Courses")
 </p>
@@ -54,6 +54,7 @@
 
 <hr/>
 
+<h3>Teachers</h3>
 <p>
     @Html.ActionLink("Add a Teacher", "Register", "Account")
 </p>
@@ -64,8 +65,11 @@
                 @Html.DisplayNameFor(model => model.UserId)
             </th>*@
         @*<th>
-                @Html.DisplayNameFor(model => model.UserRole)
+                @Html.DisplayNameFor(model => model.UserType)
             </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
@@ -84,6 +88,9 @@
             @*<td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
