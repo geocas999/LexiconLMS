@@ -5,7 +5,7 @@
 }
 
 <h2>Teacher Overview</h2>
-
+<h3>Courses</h3>
 <p>
     @Html.ActionLink("Add new course", "AddCourse", "Courses")
 </p>
@@ -49,11 +49,12 @@
                 @Html.ActionLink("Delete", "DeleteCourse", "Courses", new { id = item.CourseId }, null)
             </td>
         </tr>
-                    }
+    }
 </table>
 
 <hr />
 
+<h3>Teachers</h3>
 <p>
     @Html.ActionLink("Add a Teacher", "Register", "Account")
 </p>
