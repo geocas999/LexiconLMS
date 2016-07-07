@@ -269,7 +269,7 @@ namespace LexiconLMS.Migrations
             {
                 UserName = "fredrik@lexicon.se",
                 Email = "fredrik@lexicon.se",
-                Name = "Fredrik Fredriksson",
+                Name = "Fredrik Lindroth",
                 PhoneNumber = "08-2501223",
                 CourseId = 2
             };
@@ -277,7 +277,7 @@ namespace LexiconLMS.Migrations
             {
                 UserName = "anette@lexicon.se",
                 Email = "anette@lexicon.se",
-                Name = "Anette Andersson",
+                Name = "Anette Tillbom",
                 PhoneNumber = "076-7788999",
                 CourseId = 3
             };
@@ -285,7 +285,7 @@ namespace LexiconLMS.Migrations
             {
                 UserName = "yaser@lexicon.se",
                 Email = "yaser@lexicon.se",
-                Name = "Yaser Yasersson",
+                Name = "Yaser Mosavi",
                 PhoneNumber = "070-0011223",
                 CourseId = 1
             };
