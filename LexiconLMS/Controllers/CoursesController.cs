@@ -74,7 +74,7 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, CourseId = model.CourseId };
+                var user = new ApplicationUser { UserName = model.Username , Email = model.Email, CourseId = model.CourseId };
                 var course = db.Courses.Find(model.CourseId);
                 course.Students.Add(user);
                 var result = await UserManager.CreateAsync(user, model.Password);
