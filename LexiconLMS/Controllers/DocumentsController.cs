@@ -70,7 +70,9 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                document.ModuleId = document.ModuleId == 0 ? null : document.ModuleId;
+                document.CourseId = document.CourseId == 0 ? null : document.CourseId;
+                document.ActivityId = document.ActivityId == 0 ? null : document.ActivityId;
                 //UserId,CourseId,ModuleId,ActivityId
 
                 document.TimeStamp = DateTime.Now;
@@ -95,7 +97,7 @@ namespace LexiconLMS.Controllers
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("ActivityDetails", "Activity", new { id = document.ActivityId });
+                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
 
                 }
 
