@@ -1,7 +1,7 @@
 ﻿@model LexiconLMS.Models.TeacherViewModels
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Overview";
 }
 
 <h2>Teacher Overview</h2>
@@ -49,10 +49,10 @@
                 @Html.ActionLink("Delete", "DeleteCourse", "Courses", new { id = item.CourseId }, null)
             </td>
         </tr>
-    }
+                    }
 </table>
 
-<hr/>
+<hr />
 
 <p>
     @Html.ActionLink("Add a Teacher", "Register", "Account")
@@ -63,9 +63,6 @@
         @*<th>
                 @Html.DisplayNameFor(model => model.UserId)
             </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.UserRole)
-            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
@@ -75,29 +72,32 @@
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
+        <th>
+            Roles
+        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.Users)
+    @foreach (var user in Model.Users)
     {
-        <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>*@
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.PhoneNumber)
+                </td>
+                <td>
+                    @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name))
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>*@
+            </tr>
     }
 </table>
