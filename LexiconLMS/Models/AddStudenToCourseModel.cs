@@ -8,6 +8,12 @@ namespace LexiconLMS.Models
 {
     public class AddStudenToCourseModel
     {
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
