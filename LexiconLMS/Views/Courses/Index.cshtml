@@ -35,21 +35,20 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.StartDate.ToString("yyyy-MM-dd"))*@
                 @*@item.StartDate.ToString("yyyy-MM-dd")*@
-                @{string startDate = item.StartDate.ToString("yyyy-MM-dd");
-                }
+                @{ var startDate = item.StartDate.ToString("yyyy-MM-dd"); }
                 @Html.DisplayFor(modelItem => startDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditCourse", new { id = item.CourseId }) |
-                @Html.ActionLink("Details", "CourseDetails", new { id = item.CourseId }) |
-                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
+                @Html.ActionLink("Edit", "EditCourse", new {id = item.CourseId}) |
+                @Html.ActionLink("Details", "CourseDetails", new {id = item.CourseId}) |
+                @Html.ActionLink("Delete", "DeleteCourse", new {id = item.CourseId})
             </td>
         </tr>
 
     @*@Html.ActionLink("Add new teacher", "AddTeacher")*@
     }
 
-   
+
 
 
 </table>

@@ -16,7 +16,7 @@
     </ol>
 </div>
 
-<hr />
+<hr/>
 
 <div>
     <h2>Course - @Model.Name</h2>
@@ -43,8 +43,7 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.StartDate)*@
-            @{string startDate = Model.StartDate.ToString("yyyy-MM-dd");
-            }
+            @{ var startDate = Model.StartDate.ToString("yyyy-MM-dd"); }
             @Html.DisplayFor(modelItem => startDate)
         </dd>
     </dl>
@@ -53,11 +52,11 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Edit course", "EditCourse", new { id = Model.CourseId }) |
+        @Html.ActionLink("Edit course", "EditCourse", new {id = Model.CourseId}) |
         @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
     </p>
 }
-    <hr />
+<hr/>
 <div>
     <h4>Students</h4>
     <dl class="dl-horizontal">
@@ -68,14 +67,13 @@
             </dd>
         }
     </dl>
-        @if (User.IsInRole("Teacher"))
-        {
-            @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-            <hr />
-        }
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Add student to course", "AddStudent", new {id = Model.CourseId})
+        <hr/>
+    }
 </div>
 
-       
 
 <h4>Modules in course</h4>
 
@@ -114,12 +112,13 @@
                 @module.EndDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.ActionLink("Details", "ModuleDetails", "Modules", new { id = module.ModuleId }, null)
+                @Html.ActionLink("Details", "ModuleDetails", "Modules", new {id = module.ModuleId}, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditModule", "Modules", new { id = module.ModuleId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new { id = module.ModuleId }, null)
+                    @Html.ActionLink("Edit", "EditModule", "Modules", new {id = module.ModuleId}, null)
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new {id = module.ModuleId}, null)
                 }
             </td>
         </tr>
@@ -130,14 +129,13 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Add new module", "AddModule", "Modules", new { id = Model.CourseId }, null)
+        @Html.ActionLink("Add new module", "AddModule", "Modules", new {id = Model.CourseId}, null)
     </p>
 }
 
 <hr/>
 
 @*2016-06-29, ym: nedan: skapar kod för dokument*@
-
 
 
 <h4>Documents in course</h4>
@@ -154,7 +152,7 @@
             @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
         </th>
         <th>
-                Uploader
+            Uploader
         </th>
         <th></th>
     </tr>
@@ -172,15 +170,16 @@
                 @Html.DisplayFor(modelItem => document.TimeStamp)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => document.User.Name)
+                @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new {id = document.DocumentId}, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null) <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new {id = document.DocumentId}, null)
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new {id = document.DocumentId}, null)
                 }
             </td>
         </tr>
@@ -188,11 +187,9 @@
 
 </table>
 
-    <p>
-        @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId },null)
-    </p>
+<p>
+    @Html.ActionLink("Upload new document", "AddDocument", "Documents", new {courseId = Model.CourseId}, null)
+</p>
 
 
 @*2016-06-29, ym: ovan: skapar kod för dokument*@
-
-

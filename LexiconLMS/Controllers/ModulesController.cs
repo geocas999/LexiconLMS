@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using LexiconLMS.Models;
 
@@ -13,8 +8,8 @@ namespace LexiconLMS.Controllers
     [Authorize]
     public class ModulesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-            
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Modules/ModuleDetails/5
         public ActionResult ModuleDetails(int? id)
         {
@@ -22,7 +17,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            var module = db.Modules.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -39,7 +34,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", id);
-            var module = new Module() {CourseId = (int) id};
+            var module = new Module {CourseId = (int) id};
             return View(module);
         }
 
@@ -49,13 +44,14 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddModule([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
+        public ActionResult AddModule(
+            [Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
                 db.SaveChanges();
-                return RedirectToAction("CourseDetails", "Courses", new { id = module.CourseId });
+                return RedirectToAction("CourseDetails", "Courses", new {id = module.CourseId});
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", module.CourseId);
@@ -70,7 +66,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            var module = db.Modules.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -85,13 +81,14 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult EditModule([Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
+        public ActionResult EditModule(
+            [Bind(Include = "ModuleId,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("CourseDetails", "Courses", new { id = module.CourseId });
+                return RedirectToAction("CourseDetails", "Courses", new {id = module.CourseId});
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", module.CourseId);
             return View(module);
@@ -105,7 +102,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            var module = db.Modules.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -119,10 +116,10 @@ namespace LexiconLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Module module = db.Modules.Find(id);
+            var module = db.Modules.Find(id);
             db.Modules.Remove(module);
             db.SaveChanges();
-            return RedirectToAction("CourseDetails", "Courses", new { id = module.CourseId });
+            return RedirectToAction("CourseDetails", "Courses", new {id = module.CourseId});
         }
 
         protected override void Dispose(bool disposing)

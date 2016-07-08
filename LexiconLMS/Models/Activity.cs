@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace LexiconLMS.Models
 {
@@ -27,5 +25,11 @@ namespace LexiconLMS.Models
         public virtual ICollection<Document> Documents { get; set; }
     }
 
-    public enum ActivityType { Lecture, Exercise, Elearning, Presentation}
+    public enum ActivityType
+    {
+        Lecture,
+        Exercise,
+        Elearning,
+        Presentation
+    }
 }
