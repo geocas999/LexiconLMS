@@ -43,7 +43,7 @@ namespace LexiconLMS.Controllers
             var UsersViewModel = new UsersViewModel();
 
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CourseNameSortParm = sortOrder == "Course.Name" ? "course_desc" : "Course.Name";
             ViewBag.CourseIdSortParm = sortOrder == "Course.Id" ? "courseId_desc" : "Course.Id";
             ViewBag.RolesNameSortParm = sortOrder == "Roles.Name" ? "roles_desc" : "Roles.Name";
