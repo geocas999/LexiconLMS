@@ -187,9 +187,10 @@
 
 </table>
 
-<p>
-    @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { moduleId = Model.ModuleId }, null)
-</p>
-
-
+@if (User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { moduleId = Model.ModuleId }, null)
+    </p>
+}
 @*2016-07-04, ym: ovan: skapar kod för dokument*@
