@@ -234,6 +234,7 @@
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\RegisterDocumentModel.cs" />
     <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\AddStudenToCourseModel.cs" />
