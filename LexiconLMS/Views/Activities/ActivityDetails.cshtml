@@ -4,22 +4,21 @@
     ViewBag.Title = "Activity details";
 }
 
-<div>
-    <ol class="breadcrumb">
-        @if (User.IsInRole("Teacher"))
-        {
-            <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
-        }
-        <li>@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new { id = @Model.Module.CourseId }, null)</li>
-        <li>@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new { id = @Model.ModuleId }, null)</li>
-        <li class="active"> @Model.Type </li>
-    </ol>
-</div>
 
 
-<hr />
+
 <div>
-    <h2>Activity - @Model.Type</h2>
+    <div>
+        <ol class="breadcrumb">
+            @if (User.IsInRole("Teacher"))
+            {
+                <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+            }
+            <li class="h2">@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new { id = @Model.Module.CourseId }, null)</li>
+            <li class="h2">@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new { id = @Model.ModuleId }, null)</li>
+            <li class="active h2"> @Model.Type </li>
+        </ol>
+    </div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Module.Name)

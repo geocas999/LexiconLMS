@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList; 
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LexiconLMS.Controllers
 {
@@ -17,13 +20,19 @@ namespace LexiconLMS.Controllers
         // GET: Teacher
         public ActionResult TeacherOverview()
         {
-            TeacherViewModels teacherViewModel = new TeacherViewModels();
+            var teacherViewModel = new TeacherViewModels();
+            var rStore = new RoleStore<IdentityRole>();
+            var teacherRoleId = rStore.Roles.First(r => r.Name == "Teacher");
+
             teacherViewModel.Courses = new List<Course>();
             teacherViewModel.Users = new List<ApplicationUser>();
-
+            
             teacherViewModel.Courses = db.Courses.ToList();
-            teacherViewModel.Users = db.Users.ToList();
+            
+            // Find users with only the teacher role
+            teacherViewModel.Users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(teacherRoleId.Id)).ToList();
 
+            teacherViewModel.Roles = db.Roles.ToList();
             return View(teacherViewModel);
         }
    

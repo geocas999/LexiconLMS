@@ -18,6 +18,7 @@ namespace LexiconLMS.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -172,8 +173,8 @@ namespace LexiconLMS.Controllers
         //2016-07-04 / George C. / Changed return to RedirectToAction("Register") in order to get an empty form when registering next time
         // POST: /Account/Register
         [HttpPost]
-        [Authorize (Roles = "Teacher")]
         [ValidateAntiForgeryToken]
+        [Authorize (Roles = "Teacher")]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -184,6 +185,45 @@ namespace LexiconLMS.Controllers
             }
             
             return RedirectToAction("Register");// View(new RegisterViewModel());
+        }
+
+        public ActionResult EditApplicationUser(string userId)
+        {
+            var user = UserManager.FindById(userId);
+            var userToEdit = new EditUserViewModel()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Name = user.Name,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                CourseId = user.CourseId,
+                Course = user.Course
+            };
+
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", user.CourseId);
+
+            return View(userToEdit);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
+        public ActionResult EditApplicationUser(ApplicationUser userWithNewInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.FindById(userWithNewInfo.Id);
+                user.Name = userWithNewInfo.Name;
+                user.PhoneNumber = userWithNewInfo.PhoneNumber;
+                user.Email = userWithNewInfo.Email;
+                user.CourseId = userWithNewInfo.CourseId;
+
+                UserManager.Update(user);
+                return RedirectToAction("TeacherOverview", "Teacher");
+            }
+
+            return RedirectPermanent("EditApplicationUser");
         }
 
         //
