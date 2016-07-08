@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList; 
 
 namespace LexiconLMS.Controllers
 {
@@ -25,17 +26,31 @@ namespace LexiconLMS.Controllers
 
             return View(teacherViewModel);
         }
-        
-        //2016-07-01 Anette - Link navbar Users
-        //2016-07-04 Anette - Sort Order UserName and CourseName
-        //2016-07-05 Anette - Search
-
+   
         // GET: /Teacher/Users
-        public ViewResult Users(string sortOrder, string searchString)
-        {            
+        //2016-07-01 Anette - Users, link navbar for Teacher
+        //2016-07-04 Anette - Sort Order UserName and CourseName
+        //2016-07-05 Anette - Search function for view Users
+        //2016-07-07 Anette - PagingList, added PackedList.css in ~/Content/
+
+        public ViewResult Users(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CourseNameSortParm = sortOrder == "Course.Name" ? "course_desc" : "Course.Name";
             ViewBag.CourseIdSortParm = sortOrder == "Course.Id" ? "courseId_desc" : "Course.Id";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;    
+
             var users = from s in db.Users
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -66,9 +81,13 @@ namespace LexiconLMS.Controllers
                     users = users.OrderBy(s => s.Name);
                     break;
             }
-            return View(users.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
+
         }
-        public ActionResult UserDetails (string id)
+     public ActionResult UserDetails(string id)
         {
             return View();
         }

@@ -239,71 +239,484 @@ namespace LexiconLMS.Migrations
 
         private static void SeedRoles(RoleManager<IdentityRole> rManager)
         {
-            foreach (var roleName in new[] {"Teacher", "Student"})
+            foreach (var roleName in new[] { "Teacher", "Student" })
             {
-                var role = new IdentityRole {Name = roleName};
+                var role = new IdentityRole { Name = roleName };
                 rManager.Create(role);
             }
         }
 
+        //2016-07-07 Changed this SeedUsers to List
         private static List<ApplicationUser> SeedUsers()
         {
-            var users = new List<ApplicationUser>();
-            var user1 = new ApplicationUser
+            var users = new List<ApplicationUser>
             {
+            new ApplicationUser{
                 UserName = "student@lexicon.se",
                 Email = "student@lexicon.se",
                 Name = "Student Studentsson",
                 PhoneNumber = "070-0011223",
                 CourseId = 1
-            };
-            var user2 = new ApplicationUser
+            },
+            new ApplicationUser
             {
                 UserName = "teacher@lexicon.se",
                 Email = "teacher@lexicon.se",
                 Name = "Teacher Teachersson",
                 PhoneNumber = "073-555138232",
                 CourseId = 3
-            };
-            var user3 = new ApplicationUser
+            },
+            new ApplicationUser
             {
                 UserName = "fredrik@lexicon.se",
                 Email = "fredrik@lexicon.se",
                 Name = "Fredrik Fredriksson",
                 PhoneNumber = "08-2501223",
                 CourseId = 2
-            };
-            var user4 = new ApplicationUser
+            },
+            new ApplicationUser
             {
                 UserName = "anette@lexicon.se",
                 Email = "anette@lexicon.se",
                 Name = "Anette Andersson",
                 PhoneNumber = "076-7788999",
                 CourseId = 3
-            };
-            var user5 = new ApplicationUser
+            },
+            new ApplicationUser
             {
                 UserName = "yaser@lexicon.se",
                 Email = "yaser@lexicon.se",
                 Name = "Yaser Yasersson",
                 PhoneNumber = "070-0011223",
-                CourseId = 1
-            };
-            var user6 = new ApplicationUser
+                CourseId = 6
+            },
+            new ApplicationUser
             {
                 UserName = "george@lexicon.se",
                 Email = "george@lexicon.se",
                 Name = "George Georgsson",
                 PhoneNumber = "070-0011223",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "Brice.Lambson@lexicon.se",
+                Email = "brice.lambson@lexicon.se",
+                Name = "Brice Lambson",
+                PhoneNumber = "",
+                CourseId = 2
+            },
+            new ApplicationUser
+            {
+                UserName = "RowanMiller@lexicon.se",
+                Email = "rowan.miller@lexicon.se",
+                Name = "Rowan Miller",
+                PhoneNumber = "",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "Annika.Pettersson@lexicon.se",
+                Email = "annika.pettersson@lexicon.se",
+                Name = "Annika Pettersson",
+                PhoneNumber = "",
                 CourseId = 1
-            };
+            },
+            new ApplicationUser
+            {
+                UserName = "Karl.Gunnarsson@lexicon.se",
+                Email = "karl.gunnarsson@lexicon.se",
+                Name = "Karl Gunnarsson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Henrik.Henriksson@lexicon.se",
+                Email = "henrik.henriksson@lexicon.se",
+                Name = "Henrik Henriksson",
+                PhoneNumber = "",
+                CourseId = 6
+            },
+            new ApplicationUser
+            {
+                UserName = "paul.smith@lexicon.se",
+                Email = "paul.smith@lexicon.se",
+                Name = "Paul Smith",
+                PhoneNumber = "",
+                CourseId = 2
+            },
+            new ApplicationUser
+            {
+                UserName = "Karin.Svedin@lexicon.se",
+                Email = "karin.svedin@lexicon.se",
+                Name = "Karin Svedin",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Nicklas.Malm@lexicon.se",
+                Email = "nicklas.malm@lexicon.se",
+                Name = "Nicklas Malm",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Linda.Thatcher@lexicon.se",
+                Email = "linda.thatcher@lexicon.se",
+                Name = "Linda Thatcher",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Charles.deGaulle@lexicon.se",
+                Email = "charles.degaulle@lexicon.se",
+                Name = "Charles de Gaulle",
+                PhoneNumber = "",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "Margret.Thatcher@lexicon.se",
+                Email = "margret.thatcher@lexicon.se",
+                Name = "Margret Thatcher",
+                PhoneNumber = "",
+                CourseId = 4
+            },
+            new ApplicationUser
+            {
+                UserName = "Winston.Churchill@lexicon.se",
+                Email = "winston.churchill@lexicon.se",
+                Name = "Winston Churchill",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Mahatma.Gandhi@lexicon.se",
+                Email = "mahatma.gandhi@lexicon.se",
+                Name = "Mahatma Gandhi",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Bill.Gates@lexicon.se",
+                Email = "bill.gates@lexicon.se",
+                Name = "Bill Gates",
+                PhoneNumber = "",
+                CourseId = 2
+            },
+            new ApplicationUser
+            {
+                UserName = "John.MKeynes@lexicon.se",
+                Email = "john.mkeynes@lexicon.se",
+                Name = "John M Keynes",
+                PhoneNumber = "",
+                CourseId = 6
+            },
+            new ApplicationUser
+            {
+                UserName = "Mikhail.Gorbachev@lexicon.se",
+                Email = "mikhail.gorbachev@lexicon.se",
+                Name = "Mikhail Gorbachev",
+                PhoneNumber = "",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "George.Orwell@lexicon.se",
+                Email = "george.orwell@lexicon.se",
+                Name = "George Orwell",
+                PhoneNumber = "",
+                CourseId = 4
+            },
+            new ApplicationUser
+            {
+                UserName = "Pablo.Picasso@lexicon.se",
+                Email = "pablo.picasso@lexicon.se",
+                Name = "Pablo Picasso",
+                PhoneNumber = "",
+                CourseId = 6
+            },
+            new ApplicationUser
+            {
+                UserName = "Muhammad.Ali@lexicon.se",
+                Email = "muhammad.ali@lexicon.se",
+                Name = "Muhammad Ali",
+                PhoneNumber = "",
+                CourseId = 2
+            },
+           new ApplicationUser
+            {
+                UserName = "Louis.Pasteur@lexicon.se",
+                Email = "louis.pasteur@lexicon.se",
+                Name = "Louis Pasteur",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Lena.Karlsson@lexicon.se",
+                Email = "lena.karlsson@lexicon.se",
+                Name = "Lena Karlsson",
+                PhoneNumber = "",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "Lena.Karlsson2@lexicon.se",
+                Email = "lena.karlsson2@lexicon.se",
+                Name = "Lena Karlsson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Charles.Darwin@lexicon.se",
+                Email = "charles.darwin@lexicon.se",
+                Name = "Charles Darwin",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Per.Karlsson@lexicon.se",
+                Email = "per.karlsson@lexicon.se",
+                Name = "Per Karlsson",
+                PhoneNumber = "",
+                CourseId = 2
+            },
+            new ApplicationUser
+            {
+                UserName = "Svante.Johnsson@lexicon.se",
+                Email = "svante.johnsson@lexicon.se",
+                Name = "Svante Johnsson",
+                PhoneNumber= "",
+                CourseId = 4
+            },
+            new ApplicationUser
+            {
+                UserName = "Leo.Tolstoy@lexicon.se",
+                Email = "leo.tolstoy@lexicon.se",
+                Name = "Leo Tolstoy",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Peter.Taylor@lexicon.se",
+                Email = "peter.taylor@lexicon.se",
+                Name = "Peter Taylor",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Chris.Harrison@lexicon.se",
+                Email = "chris.harrison@lexicon.se",
+                Name = "Chris Harrison",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+           new ApplicationUser
+            {
+                UserName = "Elvis.Presley@lexicon.se",
+                Email = "elvis.presley@lexicon.se",
+                Name = "Elvis Presley",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Christopher.Columbus@lexicon.se",
+                Email = "christopher.columbus@lexicon.se",
+                Name = "Christopher Columbus",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Roger.Karlsson@lexicon.se",
+                Email = "roger.karlsson@lexicon.se",
+                Name = "Roger Karlsson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Gunilla.Berg@lexicon.se",
+                Email = "gunilla.ber@lexicon.se",
+                Name = "Gunilla Berg",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Paul.McCartney@lexicon.se",
+                Email = "paul.mccartney@lexicon.se",
+                Name = "Paul McCartney",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Thomas.Edisson@lexicon.se",
+                Email = "thomas.edisson@lexicon.se",
+                Name = "Thomas Edisson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Aung.SanSuuKyi@lexicon.se",
+                Email = "aung.sansuukyi@lexicon.se",
+                Name = "Aung San Suu Kyi",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Albert.Einstein@lexicon.se",
+                Email = "albert.einstein@lexicon.se",
+                Name = "Albert Einstein",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Nils.Nilsson@lexicon.se",
+                Email = "nils.nilsson@lexicon.se",
+                Name = "Nils Nilsson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Jonas.Helmersson@lexicon.se",
+                Email = "jonas.helmersson@lexicon.se",
+                Name = "Jonas Helmersson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "JK.Rowling@lexicon.se",
+                Email = "jk.rowling@lexicon.se",
+                Name = "J.K. Rowling",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Lisa.Svensson@lexicon.se",
+                Email = "lisa.svensson@lexicon.se",
+                Name = "Lisa Svensson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Pernilla.Lind@lexicon.se",
+                Email = "pernilla.lind@lexicon.se",
+                Name = "Pernilla Lind",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Barack.Obama@lexicon.se",
+                Email = "barack.obama@lexicon.se",
+                Name = "Barack Obama",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Richard.Branson@lexicon.se",
+                Email = "richard.branson@lexicon.se",
+                Name = "Richard Branson",
+                PhoneNumber = "",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Holger.Pettersson@lexicon.se",
+                Email = "holger.pettersson@lexicon.se",
+                Name = "Holger Pettersson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Fia.Nilsson@lexicon.se",
+                Email = "fia.nilsson@lexicon.se",
+                Name = "Fia Nilsson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Thomas.Edison@lexicon.se",
+                Email = "thomas.edison@lexicon.se",
+                Name = "Thomas Edison",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Ulla.Ljung@lexicon.se",
+                Email = "ulla.ljung@lexicon.se",
+                Name = "Ulla Ljung",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Patsy.McBrian@lexicon.se",
+                Email = "patsy.mcbrian@lexicon.se",
+                Name = "Patsy McBrian",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Jens.Eliasson@lexicon.se",
+                Email = "jens.eliasson@lexicon.se",
+                Name = "Jens Eliasson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Kalle.Svensson@lexicon.se",
+                Email = "kalle.svensson@lexicon.se",
+                Name = "Kalle Svensson",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Anne.Reasoner@lexicon.se",
+                Email = "anne.reasoner@lexicon.se",
+                Name = "Anne Reasoner",
+                PhoneNumber = "",
+                CourseId = 1
+            },
+            new ApplicationUser
+            {
+                UserName = "Henry.Ford@lexicon.se",
+                Email = "henry.ford@lexicon.se",
+                Name = "Henry Ford",
+                PhoneNumber = "",
+                CourseId = 1
+            }
+        };
 
-            users.Add(user1);
-            users.Add(user2);
-            users.Add(user3);
-            users.Add(user4);
-            users.Add(user5);
-            users.Add(user6);
+
             return users;
         }
 
