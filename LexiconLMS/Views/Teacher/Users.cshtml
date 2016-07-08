@@ -1,7 +1,6 @@
 ﻿@model LexiconLMS.Models.UsersViewModel
-@using PagedList.Mvc;
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
 @{
     ViewBag.Title = "Users";
@@ -17,7 +16,7 @@
 {
     <p>
         Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search"/>
     </p>
 }
 
@@ -67,8 +66,8 @@
         </tr>
         }
 
-    </table>
-    <br />
+</table>
+<br/>
 
     @Html.PagedListPager(Model.Users, page => Url.Action("Users",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace LexiconLMS.Models
 {
@@ -28,7 +25,7 @@ namespace LexiconLMS.Models
         public int DocumentId { get; set; }
 
         [Required]
-        [DataType(DataType.Text )]
+        [DataType(DataType.Text)]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
@@ -51,6 +48,5 @@ namespace LexiconLMS.Models
         public int? ModuleId { get; set; }
         public int? ActivityId { get; set; }
         public string UserId { get; set; }
-
     }
 }

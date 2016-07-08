@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace LexiconLMS.Models
 {
@@ -18,7 +19,7 @@ namespace LexiconLMS.Models
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+        public ICollection<SelectListItem> Providers { get; set; }
         public string ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
@@ -31,6 +32,7 @@ namespace LexiconLMS.Models
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
@@ -69,6 +71,7 @@ namespace LexiconLMS.Models
         Teacher = 1
         //Student = 2
     }
+
     public class RegisterViewModel
     {
         //[Required]
@@ -96,7 +99,8 @@ namespace LexiconLMS.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password",
+            ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -114,6 +118,7 @@ namespace LexiconLMS.Models
 
         [Required]
         public string PhoneNumber { get; set; }
+
         public int? CourseId { get; set; }
         public virtual Course Course { get; set; }
     }
@@ -133,7 +138,8 @@ namespace LexiconLMS.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password",
+            ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

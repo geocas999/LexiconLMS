@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using LexiconLMS.Models;
 
@@ -13,7 +8,7 @@ namespace LexiconLMS.Controllers
     [Authorize]
     public class ActivitiesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Activities/ActivityDetails/5
         public ActionResult ActivityDetails(int? id)
@@ -22,7 +17,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            var activity = db.Activities.Find(id);
             if (activity == null)
             {
                 return HttpNotFound();
@@ -39,7 +34,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.ModuleId = new SelectList(db.Modules, "ModuleId", "Name", id);
-            var activity = new Activity() {ModuleId = (int) id};
+            var activity = new Activity {ModuleId = (int) id};
             return View(activity);
         }
 
@@ -49,13 +44,14 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
+        public ActionResult AddActivity(
+            [Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
+                return RedirectToAction("ModuleDetails", "Modules", new {id = activity.ModuleId});
             }
 
             ViewBag.ModuleId = new SelectList(db.Modules, "ModuleId", "Name", activity.ModuleId);
@@ -70,7 +66,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            var activity = db.Activities.Find(id);
             if (activity == null)
             {
                 return HttpNotFound();
@@ -85,13 +81,14 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult EditActivity([Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
+        public ActionResult EditActivity(
+            [Bind(Include = "ActivityId,Type,StartTime,EndTime,Description,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
+                return RedirectToAction("ModuleDetails", "Modules", new {id = activity.ModuleId});
             }
             ViewBag.ModuleId = new SelectList(db.Modules, "ModuleId", "Name", activity.ModuleId);
             return View(activity);
@@ -105,7 +102,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            var activity = db.Activities.Find(id);
             if (activity == null)
             {
                 return HttpNotFound();
@@ -119,10 +116,10 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Activity activity = db.Activities.Find(id);
+            var activity = db.Activities.Find(id);
             db.Activities.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("ModuleDetails", "Modules", new { id = activity.ModuleId });
+            return RedirectToAction("ModuleDetails", "Modules", new {id = activity.ModuleId});
         }
 
         protected override void Dispose(bool disposing)

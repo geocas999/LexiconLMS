@@ -1,21 +1,16 @@
-﻿using LexiconLMS.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PagedList; 
-using System.Web.Security;
-using Microsoft.AspNet.Identity;
+using LexiconLMS.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace LexiconLMS.Controllers
 {
     [Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Teacher
         public ActionResult TeacherOverview()
@@ -27,14 +22,15 @@ namespace LexiconLMS.Controllers
             teacherViewModel.Users = new List<ApplicationUser>();
 
             teacherViewModel.Courses = db.Courses.ToList();
-            
+
             // Find users with only the teacher role
-            teacherViewModel.Users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(teacherRoleId.Id)).ToList();
+            teacherViewModel.Users =
+                db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(teacherRoleId.Id)).ToList();
 
             teacherViewModel.Roles = db.Roles.ToList();
             return View(teacherViewModel);
         }
-   
+
         // GET: /Teacher/Users
         //2016-07-01 Anette - Users, link navbar for Teacher
         //2016-07-04 Anette - Sort Order UserName and CourseName
@@ -61,14 +57,14 @@ namespace LexiconLMS.Controllers
                 searchString = currentFilter;
             }
 
-            ViewBag.CurrentFilter = searchString;    
+            ViewBag.CurrentFilter = searchString;
 
             var users = from s in db.Users
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
+                select s;
+            if (!string.IsNullOrEmpty(searchString))
             {
                 users = users.Where(s => s.Name.Contains(searchString)
-                                        || s.Course.Name.Contains(searchString));
+                                         || s.Course.Name.Contains(searchString));
             }
 
 

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using LexiconLMS.Models;
 
@@ -13,7 +10,7 @@ namespace LexiconLMS.Controllers
     [Authorize]
     public class DocumentsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Documents/DocumentDetails/5
         public ActionResult DocumentDetails(int? id)
@@ -22,7 +19,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
+            var document = db.Documents.Find(id);
             if (document == null)
             {
                 return HttpNotFound();
@@ -35,25 +32,21 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
-            
             var course = new RegisterDocumentModel();
 
             if (courseId != null)
             {
-                course.CourseId = (int)courseId;
-
+                course.CourseId = (int) courseId;
             }
 
             if (moduleId != null)
             {
-                course.ModuleId = (int)moduleId;
-
+                course.ModuleId = (int) moduleId;
             }
 
             if (activityId != null)
             {
-                course.ActivityId = (int)activityId;
-
+                course.ActivityId = (int) activityId;
             }
 
 
@@ -66,13 +59,15 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument([Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document document)
+        public ActionResult AddDocument(
+            [Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document
+                document)
         {
             if (ModelState.IsValid)
             {
                 document.TimeStamp = DateTime.Now;
 
-                var user = db.Users.FirstOrDefault(u => u.UserName  == User.Identity.Name);
+                var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 document.UserId = user.Id;
 
                 db.Documents.Add(document);
@@ -80,20 +75,20 @@ namespace LexiconLMS.Controllers
 
                 if (document.CourseId != null)
                 {
-                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                    return RedirectToAction("CourseDetails", "Courses", new {id = document.CourseId});
                 }
 
                 if (document.ModuleId != null)
                 {
-                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
+                    return RedirectToAction("ModuleDetails", "Modules", new {id = document.ModuleId});
                 }
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
+                    return RedirectToAction("ActivityDetails", "Activities", new {id = document.ActivityId});
                 }
 
-                return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                return RedirectToAction("CourseDetails", "Courses", new {id = document.CourseId});
                 //return RedirectToAction("Index");
             }
 
@@ -102,7 +97,7 @@ namespace LexiconLMS.Controllers
         }
 
         //2016-07-01, ym: ovan: ändrar på funktionen
-        
+
         // GET: Documents/EditDocument/5
         [Authorize(Roles = "Teacher")]
         public ActionResult EditDocument(int? id)
@@ -111,8 +106,8 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
-          
+            var document = db.Documents.Find(id);
+
             if (document == null)
             {
                 return HttpNotFound();
@@ -126,7 +121,8 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult EditDocument([Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
+        public ActionResult EditDocument(
+            [Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +141,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
+            var document = db.Documents.Find(id);
             if (document == null)
             {
                 return HttpNotFound();
@@ -159,7 +155,7 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Document document = db.Documents.Find(id);
+            var document = db.Documents.Find(id);
             db.Documents.Remove(document);
             db.SaveChanges();
             return RedirectToAction("Index");
