@@ -9,6 +9,8 @@ namespace LexiconLMS.Models
     public class Course
     {
         public int CourseId { get; set; }
+
+        [Display(Name="Course name")]
         public string Name { get; set; }
         public string Description { get; set; }
 

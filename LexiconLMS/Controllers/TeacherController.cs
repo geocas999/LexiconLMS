@@ -24,9 +24,8 @@ namespace LexiconLMS.Controllers
             var rStore = new RoleStore<IdentityRole>();
             var teacherRoleId = rStore.Roles.First(r => r.Name == "Teacher");
 
-            teacherViewModel.Courses = new List<Course>();
             teacherViewModel.Users = new List<ApplicationUser>();
-            
+
             teacherViewModel.Courses = db.Courses.ToList();
             
             // Find users with only the teacher role

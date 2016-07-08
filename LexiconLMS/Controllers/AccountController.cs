@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using LexiconLMS.Migrations;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -24,7 +25,7 @@ namespace LexiconLMS.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +37,9 @@ namespace LexiconLMS.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -65,9 +66,9 @@ namespace LexiconLMS.Controllers
             else if (User.Identity.IsAuthenticated)
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
-                return RedirectToAction("CourseDetails", "Courses", new {id = user.CourseId});
+                return RedirectToAction("CourseDetails", "Courses", new { id = user.CourseId });
             }
-                    
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -144,7 +145,7 @@ namespace LexiconLMS.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -160,7 +161,7 @@ namespace LexiconLMS.Controllers
 
         //
         // GET: /Account/Register
-        //[AllowAnonymous]
+        [Authorize(Roles = "Teacher")]
         public ActionResult Register()
         {
             return View();
@@ -174,23 +175,33 @@ namespace LexiconLMS.Controllers
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize (Roles = "Teacher")]
+        [Authorize(Roles = "Teacher")]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber};
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(UserManager.FindByEmail(user.Email).Id, model.UserRole.Value.ToString());
             }
-            
+
             return RedirectToAction("Register");// View(new RegisterViewModel());
         }
 
+        // GET: /Account/ApplicationUserDetails
+        [Authorize(Roles = "Teacher")]
+        public ActionResult ApplicationUserDetails(string userId)
+        {
+            var user = UserManager.FindById(userId);
+            return View(user);
+        }
+
+        // GET: /Account/EditApplicationUser
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditApplicationUser(string userId)
         {
             var user = UserManager.FindById(userId);
-            var userToEdit = new EditUserViewModel()
+            var userToEdit = new EditUserViewModel
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -206,6 +217,7 @@ namespace LexiconLMS.Controllers
             return View(userToEdit);
         }
 
+        // Post: /Account/EditApplicationUser
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
@@ -225,6 +237,32 @@ namespace LexiconLMS.Controllers
 
             return RedirectPermanent("EditApplicationUser");
         }
+
+        // GET: /Account/DeleteApplicationUser
+        [Authorize(Roles = "Teacher")]
+        public ActionResult DeleteApplicationUser(string userId)
+        {
+            var user = UserManager.FindById(userId);
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            return View(UserManager.FindById(userId));
+        }
+
+        // POST: /Account/DeleteApplicationUser
+        [HttpPost, ActionName("DeleteApplicationUser")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Teacher")]
+        public ActionResult DeleteApplicationUserConfirmed(string userId)
+        {
+            var user = UserManager.FindById(userId);
+            var success = UserManager.Delete(user);
+            Console.WriteLine(success);
+            return RedirectToAction("TeacherOverview", "Teacher");
+        }
+
 
         //
         // GET: /Account/ConfirmEmail

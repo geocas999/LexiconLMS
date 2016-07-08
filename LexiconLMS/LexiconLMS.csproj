@@ -320,6 +320,8 @@
     <Content Include="Views\Activities\ActivityDetails.cshtml" />
     <Content Include="Views\Activities\EditActivity.cshtml" />
     <Content Include="Views\Account\EditApplicationUser.cshtml" />
+    <Content Include="Views\Account\ApplicationUserDetails.cshtml" />
+    <Content Include="Views\Account\DeleteApplicationUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
