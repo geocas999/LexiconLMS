@@ -7,13 +7,17 @@ namespace LexiconLMS.Models
     public class Activity
     {
         public int ActivityId { get; set; }
+
+        [Display(Name = "Activity name")]
         public string Name { get; set; }
         public ActivityType Type { get; set; }
 
+        [Display(Name = "Start date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartTime { get; set; }
 
+        [Display(Name = "End date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
