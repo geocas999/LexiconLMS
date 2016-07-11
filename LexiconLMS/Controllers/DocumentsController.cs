@@ -40,17 +40,17 @@ namespace LexiconLMS.Controllers
 
             if (courseId != null)
             {
-                course.CourseId = (int) courseId;
+                course.CourseId = (int)courseId;
             }
 
             if (moduleId != null)
             {
-                course.ModuleId = (int) moduleId;
+                course.ModuleId = (int)moduleId;
             }
 
             if (activityId != null)
             {
-                course.ActivityId = (int) activityId;
+                course.ActivityId = (int)activityId;
             }
 
 
@@ -72,7 +72,7 @@ namespace LexiconLMS.Controllers
 
             if (document != null)
             {
-                
+
                 //string uploadedFile = string.Empty;
 
                 //List<AddDocumentModel> uploadFiles = new List<AddDocumentModel>();
@@ -80,7 +80,7 @@ namespace LexiconLMS.Controllers
                 fileName = Path.GetFileName(document.UploadedFile.FileName);
                 destinationPath = Path.Combine(Server.MapPath("~/LMSDocuments/"), fileName);
                 document.UploadedFile.SaveAs(destinationPath);
-                
+
 
                 if (Session["document"] != null)
                 {
@@ -120,25 +120,25 @@ namespace LexiconLMS.Controllers
                 document.FilePath = destinationPath;
                 document.Name = fileName;
 
-                db.Documents.Add(new Document() { Name = document.Name, UserId = document.UserId, FilePath = document.FilePath, DocumentType = document.DocumentType, Description = document.Description, TimeStamp = document.TimeStamp,CourseId =document.CourseId, ModuleId = document.ModuleId, ActivityId=document.ActivityId, });
+                db.Documents.Add(new Document() { Name = document.Name, UserId = document.UserId, FilePath = document.FilePath, DocumentType = document.DocumentType, Description = document.Description, TimeStamp = document.TimeStamp, CourseId = document.CourseId, ModuleId = document.ModuleId, ActivityId = document.ActivityId, });
                 db.SaveChanges();
 
                 if (document.CourseId != null)
                 {
-                    return RedirectToAction("CourseDetails", "Courses", new {id = document.CourseId});
+                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
                 }
 
                 if (document.ModuleId != null)
                 {
-                    return RedirectToAction("ModuleDetails", "Modules", new {id = document.ModuleId});
+                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
                 }
 
                 if (document.ActivityId != null)
                 {
-                    return RedirectToAction("ActivityDetails", "Activities", new {id = document.ActivityId});
+                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
                 }
 
-                return RedirectToAction("CourseDetails", "Courses", new {id = document.CourseId});
+                return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
                 //return RedirectToAction("Index");
             }
 
@@ -174,13 +174,16 @@ namespace LexiconLMS.Controllers
         public ActionResult EditDocument(
             [Bind(Include = "DocumentId,Name,Type,Description,TimeStamp,Uploader,CourseId,ModuleId,ActivityId")] Document document)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(document).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(document);
+            if (!ModelState.IsValid) return View(document);
+            db.Entry(document).State = EntityState.Modified;
+            db.SaveChanges();
+            if (document.CourseId != null)
+                return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+            if (document.ModuleId != null)
+                return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
+            if (document.ActivityId != null)
+                return RedirectToAction("ActivityDetails", "Activities", new {id = document.ActivityId});
+            return HttpNotFound();
         }
 
         // GET: Documents/DeleteDocument/5
@@ -206,9 +209,21 @@ namespace LexiconLMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var document = db.Documents.Find(id);
-            db.Documents.Remove(document);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                if (document.CourseId != null)
+                    return RedirectToAction("CourseDetails", "Courses", new { id = document.CourseId });
+                if (document.ModuleId != null)
+                    return RedirectToAction("ModuleDetails", "Modules", new { id = document.ModuleId });
+                if (document.ActivityId != null)
+                    return RedirectToAction("ActivityDetails", "Activities", new { id = document.ActivityId });
+            }
+            finally
+            {
+                db.Documents.Remove(document);
+                db.SaveChanges();
+            }
+            return HttpNotFound();
         }
 
         protected override void Dispose(bool disposing)
