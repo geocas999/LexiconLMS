@@ -146,6 +146,21 @@ namespace LexiconLMS.Controllers
             //return View(document);
         }
 
+        //2016-07-11/ George C. / Added open file - download functionality
+        public FileResult OpenFile(string fileName)
+        {
+            try
+            {
+                return File(new FileStream(Server.MapPath("~/LMSDocuments/" + fileName), FileMode.Open), "application/octetstream", fileName);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         //2016-07-01, ym: ovan: ändrar på funktionen
 
         // GET: Documents/EditDocument/5
