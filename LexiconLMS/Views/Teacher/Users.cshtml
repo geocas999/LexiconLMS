@@ -60,8 +60,7 @@
             <td>
                 @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == item.Id)).Select(r => r.Name))
             </td>
-
-            <td>@Html.ActionLink("More...", "Users", "Users", new { id = item.Id }, null)
+            <td> @Html.ActionLink("More...", "ApplicationUserDetails", "Account", new { userId = item.Id }, null)
             </td>
         </tr>
         }

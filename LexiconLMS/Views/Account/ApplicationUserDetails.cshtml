@@ -115,7 +115,10 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "EditApplicationUser", "Account", new {userId = Model.Id}, null) |
-    @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
-</p>
+
+    <p>
+    @Html.ActionLink("Edit User", "EditApplicationUser", "Account", new { userId = Model.Id }, null ) |
+    @Html.ActionLink("Delete", "DeleteApplicationUser", "Account", new { userId = Model.Id }, null ) |
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+    
+    </p>
