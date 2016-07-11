@@ -143,10 +143,13 @@
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            name
+            Name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Documents.First().Description)
+        </th>
+        <th>
+           Open file / Download
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
@@ -161,10 +164,19 @@
     {
         <tr>
             <td>
+                @*@Html.ActionLink("",modelItem => document.Name)*@
                 @Html.DisplayFor(modelItem => document.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.Description)
+            </td>
+            <td style="text-align: center">
+                <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                    <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                </a>
+                @*<a class="viewc" href="">
+                    <img width="16" height="16" border="0" src="~/Images/Upload2.jpg" class="link">
+                </a>*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.TimeStamp)

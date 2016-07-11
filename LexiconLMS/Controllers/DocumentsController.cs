@@ -5,6 +5,8 @@ using System.Net;
 using System.Web.Mvc;
 using LexiconLMS.Models;
 using System.IO;
+using System.Web;
+using System.Collections.Generic;
 
 namespace LexiconLMS.Controllers
 {
@@ -143,6 +145,21 @@ namespace LexiconLMS.Controllers
             return RedirectToAction("AddDocument");
             //return View(document);
         }
+
+        //2016-07-11/ George C. / Added open file - download functionality
+        public FileResult OpenFile(string fileName)
+        {
+            try
+            {
+                return File(new FileStream(Server.MapPath("~/LMSDocuments/" + fileName), FileMode.Open), "application/octetstream", fileName);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //2016-07-01, ym: ovan: ändrar på funktionen
 

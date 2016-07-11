@@ -40,7 +40,7 @@ namespace LexiconLMS.Migrations
                 uManager.Create(user, "pass123");
                 context.Users.AddOrUpdate(u => u.UserName, user);
 
-                if (user.UserName == "teacher@lexicon.se")
+                if (user.UserName == "teacher@lexicon.se" || user.UserName == "george@lexicon.se" || user.UserName == "anette@lexicon.se" || user.UserName == "yaser@lexicon.se" || user.UserName == "fredrik@lexicon.se")
                 {
                     tempUser = uManager.FindByName(user.UserName);
                     uManager.AddToRole(tempUser.Id, "Teacher");
