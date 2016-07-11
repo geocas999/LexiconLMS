@@ -229,6 +229,14 @@
     <Compile Include="Migrations\201607051239432_Added activity name.Designer.cs">
       <DependentUpon>201607051239432_Added activity name.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607070920132_Added FilePath to Document Model.cs" />
+    <Compile Include="Migrations\201607070920132_Added FilePath to Document Model.Designer.cs">
+      <DependentUpon>201607070920132_Added FilePath to Document Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.cs" />
+    <Compile Include="Migrations\201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.Designer.cs">
+      <DependentUpon>201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -254,6 +262,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\remove.jpg" />
+    <Content Include="Images\Upload2.jpg" />
+    <Content Include="Images\view.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -268,6 +279,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Documents\AddDocument.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -312,7 +324,6 @@
     <Content Include="Views\Modules\EditModule.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Teacher\Users.cshtml" />
-    <Content Include="Views\Documents\AddDocument.cshtml" />
     <Content Include="Views\Documents\DeleteDocument.cshtml" />
     <Content Include="Views\Documents\DocumentDetails.cshtml" />
     <Content Include="Views\Documents\EditDocument.cshtml" />
@@ -326,6 +337,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LMSDocuments\" />
     <Folder Include="Migrations\201606271156159_user\" />
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +378,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607051239432_Added activity name.resx">
       <DependentUpon>201607051239432_Added activity name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607070920132_Added FilePath to Document Model.resx">
+      <DependentUpon>201607070920132_Added FilePath to Document Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.resx">
+      <DependentUpon>201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

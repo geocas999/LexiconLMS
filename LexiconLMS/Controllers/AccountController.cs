@@ -82,7 +82,7 @@ namespace LexiconLMS.Controllers
                     {
                         return RedirectToAction("TeacherOverview", "Teacher");
                     }
-                    if (UserManager.IsInRole(loggedInUser.Id, "Student"))
+                    else if (UserManager.IsInRole(loggedInUser.Id, "Student"))
                     {
                         return RedirectToAction("CourseDetails", "Courses", new {id = loggedInUser.CourseId});
                     }

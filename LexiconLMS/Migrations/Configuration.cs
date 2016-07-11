@@ -40,7 +40,7 @@ namespace LexiconLMS.Migrations
                 uManager.Create(user, "pass123");
                 context.Users.AddOrUpdate(u => u.UserName, user);
 
-                if (user.UserName == "teacher@lexicon.se")
+                if (user.UserName == "teacher@lexicon.se" || user.UserName == "george@lexicon.se" || user.UserName == "anette@lexicon.se" || user.UserName == "yaser@lexicon.se" || user.UserName == "fredrik@lexicon.se")
                 {
                     tempUser = uManager.FindByName(user.UserName);
                     uManager.AddToRole(tempUser.Id, "Teacher");
@@ -730,7 +730,8 @@ namespace LexiconLMS.Migrations
                 Name = "Schedule",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.Scheman
             };
 
             var document2 = new Document()
@@ -741,7 +742,8 @@ namespace LexiconLMS.Migrations
                 Name = "Syllabus",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.HandledningAktivitet
             };
 
             var document3 = new Document()
@@ -752,7 +754,9 @@ namespace LexiconLMS.Migrations
                 Name = "C# good-to-know",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.AnteckningarAktivitet
+
             };
 
             var document4 = new Document()
@@ -763,7 +767,8 @@ namespace LexiconLMS.Migrations
                 Name = "C# Tips&Tricks",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.AnteckningarAktivitet
             };
 
             var document5 = new Document()
@@ -774,7 +779,8 @@ namespace LexiconLMS.Migrations
                 Name = "C# conventions",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.HandledningAktivitet
             };
 
             var document6 = new Document()
@@ -785,7 +791,8 @@ namespace LexiconLMS.Migrations
                 Name = "Exercise 1",
                 TimeStamp = DateTime.Now,
                 Type = ".pdf",
-                UserId = user.Id
+                UserId = user.Id,
+                DocumentType = DocumentType.Övningsuppgift
             };
             context.Documents.AddOrUpdate(d => d.DocumentId, document);
             context.Documents.AddOrUpdate(d => d.DocumentId, document2);

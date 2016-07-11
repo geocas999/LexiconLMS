@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace LexiconLMS.Models
 {
@@ -16,30 +17,36 @@ namespace LexiconLMS.Models
 
     public class RegisterDocumentModel
     {
-        [Required]
+
+        public HttpPostedFileBase UploadedFile { get; set; }
+       
+        [Display(Name = "FilePath")]
+        public string FilePath { get; set; }
+
+        //[Required]
         [Display(Name = "DocumentType")]
-        public DocumentType? DocumentType { get; set; }
+        public DocumentType DocumentType { get; set; }
 
-        [Required]
-        [Display(Name = "DocumentId")]
-        public int DocumentId { get; set; }
+        //[Required]
+        //[Display(Name = "DocumentId")]
+        //public int DocumentId { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
+        //[Required]
+        [DataType(DataType.Text )]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Text)]
         [Display(Name = "Type")]
         public string Type { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Text)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Time)]
         [Display(Name = "TimeStamp")]
         public DateTime TimeStamp { get; set; }

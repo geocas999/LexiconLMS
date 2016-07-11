@@ -3,47 +3,48 @@
 @{
     ViewBag.Title = "Document details";
 }
+<div>
+    @if (Model.CourseId != null)
+    {
+        <ol class="breadcrumb h3">
+            @if (User.IsInRole("Teacher"))
+            {
+                <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+            }
+            <li>@Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null)</li>
+            <li class="active"> @Model.Name </li>
+        </ol>
+    }
+    @if (Model.ModuleId != null)
+    {
+        <ol class="breadcrumb h3">
+            @if (User.IsInRole("Teacher"))
+            {
+                <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+            }
+            <li>@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Module.CourseId}, null)</li>
+            <li>@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new {id = Model.ModuleId}, null)</li>
+            <li class="active"> @Model.Name </li>
+        </ol>
+    }
+    @if (Model.ActivityId != null)
+    {
+        <ol class="breadcrumb h3">
+            @if (User.IsInRole("Teacher"))
+            {
+                <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+            }
+            <li>@Html.ActionLink(Model.Activity.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Activity.Module.CourseId}, null)</li>
+            <li>@Html.ActionLink(Model.Activity.Module.Name, "ModuleDetails", "Modules", new {id = Model.Activity.ModuleId}, null)</li>
+            <li>@Html.ActionLink(Model.Activity.Type.ToString(), "ActivityDetails", "Activities", new {id = Model.ActivityId}, null)</li>
+            <li class="active"> @Model.Name </li>
+        </ol>
+    }
+</div>
 
 <div>
-    <div>
-        @if (Model.CourseId != null)
-        {
-            <ol class="breadcrumb">
-                @if (User.IsInRole("Teacher"))
-                {
-                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
-                }
-                <li class="h2">@Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null)</li>
-                <li class="active h2"> @Model.Name </li>
-            </ol>
-        }
-        @if (Model.ModuleId != null)
-        {
-            <ol class="breadcrumb">
-                @if (User.IsInRole("Teacher"))
-                {
-                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
-                }
-                <li class="h2">@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Module.CourseId}, null)</li>
-                <li class="h2">@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new {id = Model.ModuleId}, null)</li>
-                <li class="active h2"> @Model.Name </li>
-            </ol>
-        }
-        @if (Model.ActivityId != null)
-        {
-            <ol class="breadcrumb">
-                @if (User.IsInRole("Teacher"))
-                {
-                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
-                }
-                <li class="h2">@Html.ActionLink(Model.Activity.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Activity.Module.CourseId}, null)</li>
-                <li class="h2">@Html.ActionLink(Model.Activity.Module.Name, "ModuleDetails", "Modules", new {id = Model.Activity.ModuleId}, null)</li>
-                <li class="h2">@Html.ActionLink(Model.Activity.Type.ToString(), "ActivityDetails", "Activities", new {id = Model.ActivityId}, null)</li>
-                <li class="active h2"> @Model.Name </li>
-            </ol>
-        }
-    </div>
     <hr/>
+    <h3>Document</h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)

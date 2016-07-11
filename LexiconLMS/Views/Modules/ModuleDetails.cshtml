@@ -1,24 +1,25 @@
-﻿@model LexiconLMS.Models.Module
+﻿@using LexiconLMS.Models
+@model LexiconLMS.Models.Module
 
 @{
     ViewBag.Title = "Module details";
 }
 
 <div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb h3">
         @if (User.IsInRole("Teacher"))
         {
             <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
         }
-        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </li>
+        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </>
         <li class="active"> @Model.Name </li>
     </ol>
 </div>
 
-<hr/>
+<hr />
 
 <div>
-    <h2>Module - @Model.Name</h2>
+    <h3>Module</h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Course.Name)
@@ -71,13 +72,13 @@
 <p>
     @if (User.IsInRole("Teacher"))
     {
-        @Html.ActionLink("Edit", "EditModule", new {id = Model.ModuleId})
+        @Html.ActionLink("Edit", "EditModule", new { id = Model.ModuleId })
         <span>|</span>
     }
-    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new {id = Model.CourseId}, null)
+    @Html.ActionLink("Back to Course", "CourseDetails", "Courses", new { id = Model.CourseId }, null)
 </p>
 
-<hr/>
+<hr />
 
 <h4>Activities in module</h4>
 
@@ -115,13 +116,13 @@
                 @Html.DisplayFor(modelItem => activity.EndTime)
             </td>
             <td>
-                @Html.ActionLink("Details", "ActivityDetails", "Activities", new {id = activity.ActivityId}, null)
+                @Html.ActionLink("Details", "ActivityDetails", "Activities", new { id = activity.ActivityId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditActivity", "Activities", new {id = activity.ActivityId}, null)
+                    @Html.ActionLink("Edit", "EditActivity", "Activities", new { id = activity.ActivityId }, null)
                     <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteActivity", "Activities", new {id = activity.ActivityId}, null)
+                    @Html.ActionLink("Delete", "DeleteActivity", "Activities", new { id = activity.ActivityId }, null)
                 }
             </td>
         </tr>
@@ -132,22 +133,23 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new {id = Model.ModuleId}, null)
+        @Html.ActionLink("Add new activity", "AddActivity", "Activities", new { id = Model.ModuleId }, null)
     </p>
-    } @*2016-07-04, ym: nedan: skapar kod för dokument*@<hr/>
+} @*2016-07-04, ym: nedan: skapar kod för dokument*@<hr />
 
 <h4>Documents in module</h4>
 
 <table class="table table-striped table-hover">
+    @{ var doc = new Document();}
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Name)
+            @Html.DisplayNameFor(model => doc.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Documents.First().Description)
+            @Html.DisplayNameFor(model => doc.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Documents.First().TimeStamp)
+            @Html.DisplayNameFor(model => doc.TimeStamp)
         </th>
         <th>
             Uploader
@@ -171,13 +173,13 @@
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new {id = document.DocumentId}, null)
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditDocument", "Documents", new {id = document.DocumentId}, null)
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null)
                     <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new {id = document.DocumentId}, null)
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>
@@ -185,9 +187,10 @@
 
 </table>
 
-<p>
-    @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new {moduleId = Model.ModuleId}, null)
-</p>
-
-
+@if (User.IsInRole("Teacher"))
+{
+    <p>
+        @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { moduleId = Model.ModuleId }, null)
+    </p>
+}
 @*2016-07-04, ym: ovan: skapar kod för dokument*@

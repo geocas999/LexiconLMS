@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using LexiconLMS.Models;
+using System.IO;
+using System.Web;
+using System.Collections.Generic;
 
 namespace LexiconLMS.Controllers
 {
@@ -32,6 +35,7 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
+
             var course = new RegisterDocumentModel();
 
             if (courseId != null)
@@ -53,24 +57,70 @@ namespace LexiconLMS.Controllers
             return View(course);
         }
 
+        //2016-06-08/George C. / Added functionality for uploading a file + setting relevant properties for the uploade file
         // POST: Documents/AddDocument
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Teacher")]
-        public ActionResult AddDocument(
-            [Bind(Include = "DocumentType,DocumentId,Name,Type,Description,CourseId,ModuleId,ActivityId")] Document
-                document)
+        //public ActionResult AddDocument (HttpPostedFileBase file_Uploader, Document document)
+        public ActionResult AddDocument([Bind(Include = "FilePath,UploadedFile,DocumentType,Name,Type,Description,CourseId,ModuleId,ActivityId")] RegisterDocumentModel document, HttpPostedFileBase UploadedFile)
         {
+            string fileName = string.Empty;
+            string destinationPath = string.Empty;
+
+            if (document != null)
+            {
+                
+                //string uploadedFile = string.Empty;
+
+                //List<AddDocumentModel> uploadFiles = new List<AddDocumentModel>();
+                //List<Document> AddDocumentModel = new List<Document>()
+                fileName = Path.GetFileName(document.UploadedFile.FileName);
+                destinationPath = Path.Combine(Server.MapPath("~/LMSDocuments/"), fileName);
+                document.UploadedFile.SaveAs(destinationPath);
+                
+
+                if (Session["document"] != null)
+                {
+                    var isFileNameRepete = ((List<Document>)Session["document"]).Find(x => x.Name == fileName);
+                    if (isFileNameRepete == null)
+                    {
+                        //uploadFiles.Add(new AddDocumentModel { Name = fileName, FilePath = destinationPath });
+                        ((List<Document>)Session["document"]).Add(new Document { Name = fileName, FilePath = destinationPath });
+                        ViewBag.Message = "File Uploaded Successfully";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "File already exists";
+                    }
+                }
+                else
+                {
+                    //uploadFiles.Add(new AddDocumentModel { Name = fileName, FilePath = destinationPath });
+                    //Session["UpLoadedFile"] = uploadFiles;
+                    ViewBag.Message = "File Uploaded Successfully";
+                }
+            }
+            //    return View();
+            //}
+
             if (ModelState.IsValid)
             {
+                document.ModuleId = document.ModuleId == 0 ? null : document.ModuleId;
+                document.CourseId = document.CourseId == 0 ? null : document.CourseId;
+                document.ActivityId = document.ActivityId == 0 ? null : document.ActivityId;
+                ////UserId,CourseId,ModuleId,ActivityId
+
                 document.TimeStamp = DateTime.Now;
 
                 var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 document.UserId = user.Id;
+                document.FilePath = destinationPath;
+                document.Name = fileName;
 
-                db.Documents.Add(document);
+                db.Documents.Add(new Document() { Name = document.Name, UserId = document.UserId, FilePath = document.FilePath, DocumentType = document.DocumentType, Description = document.Description, TimeStamp = document.TimeStamp,CourseId =document.CourseId, ModuleId = document.ModuleId, ActivityId=document.ActivityId, });
                 db.SaveChanges();
 
                 if (document.CourseId != null)
@@ -95,6 +145,21 @@ namespace LexiconLMS.Controllers
             return RedirectToAction("AddDocument");
             //return View(document);
         }
+
+        //2016-07-11/ George C. / Added open file - download functionality
+        public FileResult OpenFile(string fileName)
+        {
+            try
+            {
+                return File(new FileStream(Server.MapPath("~/LMSDocuments/" + fileName), FileMode.Open), "application/octetstream", fileName);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //2016-07-01, ym: ovan: ändrar på funktionen
 
