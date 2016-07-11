@@ -6,12 +6,12 @@
 }
 
 <div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb h3">
         @if (User.IsInRole("Teacher"))
         {
             <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
         }
-        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new { id = Model.CourseId }, null) </li>
+        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </>
         <li class="active"> @Model.Name </li>
     </ol>
 </div>
@@ -19,7 +19,7 @@
 <hr />
 
 <div>
-    <h2>Module - @Model.Name</h2>
+    <h3>Module</h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Course.Name)

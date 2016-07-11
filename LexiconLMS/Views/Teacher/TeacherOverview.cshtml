@@ -1,56 +1,67 @@
-﻿@model LexiconLMS.Models.TeacherViewModels
+﻿ @model LexiconLMS.Models.TeacherViewModels
 
 @{
     ViewBag.Title = "Overview";
 }
 
-<h2>Teacher Overview</h2>
-<h3>Courses</h3>
-<p>
-    @Html.ActionLink("Add new course", "AddCourse", "Courses")
-</p>
+<div>
+    <ol class="breadcrumb h3">
+        @if (User.IsInRole("Teacher"))
+        {
+            <li class="active">Overview</li>
+        }
+    </ol>
+</div>
 
-<table class="table table-striped table-hover" id="AddCourse">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.CourseId)
-            </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <hr/>
+    <h3>Courses</h3>
+    <p>
+        @Html.ActionLink("Add new course", "AddCourse", "Courses")
+    </p>
 
-    @foreach (var item in Model.Courses)
-    {
+    <table class="table table-striped table-hover" id="AddCourse">
         <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.CourseId)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @{ var startDate = item.StartDate.ToString("yyyy-MM-dd"); }
-                @Html.DisplayFor(modelItem => startDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditCourse", "Courses", new {id = item.CourseId}, null) |
-                @Html.ActionLink("Details", "CourseDetails", "Courses", new {id = item.CourseId}, null) |
-                @Html.ActionLink("Delete", "DeleteCourse", "Courses", new {id = item.CourseId}, null)
-            </td>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CourseId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CourseId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @{ var startDate = item.StartDate.ToString("yyyy-MM-dd"); }
+                    @Html.DisplayFor(modelItem => startDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditCourse", "Courses", new {id = item.CourseId}, null) |
+                    @Html.ActionLink("Details", "CourseDetails", "Courses", new {id = item.CourseId}, null) |
+                    @Html.ActionLink("Delete", "DeleteCourse", "Courses", new {id = item.CourseId}, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
 <hr/>
 

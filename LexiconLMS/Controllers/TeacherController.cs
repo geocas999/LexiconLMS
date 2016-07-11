@@ -36,14 +36,18 @@ namespace LexiconLMS.Controllers
         //2016-07-04 Anette - Sort Order UserName and CourseName
         //2016-07-05 Anette - Search function for view Users
         //2016-07-07 Anette - PagingList, added PackedList.css in ~/Content/
+        //2016-07-07 Anette - Column Role name and sort function
 
         public ViewResult Users(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            var UsersViewModel = new UsersViewModel();
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CourseNameSortParm = sortOrder == "Course.Name" ? "course_desc" : "Course.Name";
             ViewBag.CourseIdSortParm = sortOrder == "Course.Id" ? "courseId_desc" : "Course.Id";
-
+            ViewBag.RolesNameSortParm = sortOrder == "Roles.Name" ? "roles_desc" : "Roles.Name";
+           
             if (searchString != null)
             {
                 page = 1;
@@ -81,16 +85,24 @@ namespace LexiconLMS.Controllers
                 case "courseId_desc":
                     users = users.OrderByDescending(s => s.Course.CourseId);
                     break;
+                case "Roles.Name":
+                    users = users.OrderBy(s => s.Roles.FirstOrDefault().RoleId);
+                    break;
+                case "roles_desc":
+                    users = users.OrderByDescending(s => s.Roles.FirstOrDefault().RoleId);
+                    break;
+                
                 default:
                     users = users.OrderBy(s => s.Name);
                     break;
             }
 
-            var pageSize = 10;
-            var pageNumber = page ?? 1;
-            return View(users.ToPagedList(pageNumber, pageSize));
+            UsersViewModel.Roles = db.Roles.ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            UsersViewModel.Users = users.ToPagedList(pageNumber, pageSize);
+            return View(UsersViewModel);
         }
-
         public ActionResult UserDetails(string id)
         {
             return View();

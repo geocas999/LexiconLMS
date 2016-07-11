@@ -1,0 +1,82 @@
+﻿@model LexiconLMS.Models.Document
+
+@{
+    ViewBag.Title = "FileUpload";
+}
+
+<h2>File Upload</h2>
+@using (@Html.BeginForm("FileUpload", "Documents", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))
+@*@using (@Html.BeginForm("FileUpload", "FileUpload", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))*@
+{
+    <table>
+        <tr>
+            <td>
+                <input type="file" name="document" />
+            </td>
+            <td>
+                <input type="submit" id="bttn_Upload" value="Upload" />
+            </td>
+        </tr>
+    </table>
+    if (Session["document"] != null)
+    {
+        <div class="upload">
+            <div style="width: 500px;">
+                <table id="uloadTable" border="1">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (List<LexiconLMS.Models.Document>)Session["document"])
+                    {
+                            <tr id="@item.Name">
+                                <td>@item.Name</td>
+                                <td style="text-align: center">
+                                    <a class="viewc" href="@Url.Action("OpenFile", "FileUpload", new { @fileName = item.Name })">
+                                        <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                                    </a>
+                                    <a class="viewc" href="">
+                                        <img width="16" height="16" border="0" src="~/Images/Upload2.jpg" class="link">
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}
+@* Code below not needed to main FileUpload functionality. Code are not implemented yet.
+    2016-07-07/ George C. *@
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if ('@ViewBag.Message' == 'File Uploaded Successfully') {
+            alert('File Uploaded Successfully');
+        }
+        if ('@ViewBag.Message' == 'File already exists') {
+            alert('File already exists');
+        }
+        $('#uloadTable td img.link').live('click', function () {
+            var filename = $(this).parent().parent().parent().attr('id');
+            $(this).parent().parent().parent().remove();
+            $.ajax({
+                type: "post",
+                url: "/FileUpload/RemoveUploadFile?fileName=" + filename,
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    alert('File Deleted');
+                    if (data == 0) {
+                        $('#uloadTable').remove();
+                    }
+                }
+            });
+        });
+    });
+</script>
