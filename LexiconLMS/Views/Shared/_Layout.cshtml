@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title Lexicon LMS</title>
     @Styles.Render("~/Content/css")
@@ -9,32 +9,32 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                @if (User.IsInRole("Teacher"))
+
+            @if (User.IsInRole("Teacher"))
 
             {
-                    <a href="@Url.Action("TeacherOverview", "Teacher")" class="navbar-brand">
-                        <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32" />
-                    </a>
-                }
-                else
-                {
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32" />
+                <a href="@Url.Action("TeacherOverview", "Teacher")" class="navbar-brand">
+                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32"/>
                 </a>
-                }
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/Content/images/logo-lexiconLMS.gif" title="title" alt="additional title" width="179" height="32"/>
+                </a>
+            }
 
 
-            </div>
+        </div>
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" style="margin-top:6px;">
@@ -63,8 +63,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", false)
 </body>
 </html>

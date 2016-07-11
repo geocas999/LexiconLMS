@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LexiconLMS.Models.ApplicationUser>
+﻿@model LexiconLMS.Models.UsersViewModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 
 @{
     ViewBag.Title = "Users";
@@ -10,37 +12,40 @@
     @*@Html.ActionLink("Create New User", "Create")*@
 </p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Users", "Users", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search"/>
     </p>
 }
 
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.ActionLink("Name", "Users", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Name", "Users", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            PhoneNumber
         </th>
         <th>
-            @Html.ActionLink("Course Name", "Users", new { sortOrder = ViewBag.CourseNameSortParm })
+            @Html.ActionLink("Course name", "Users", new { sortOrder = ViewBag.CourseNameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-         @*<th>
-            @Html.DisplayNameFor(model => model.Roles)
-        </th>*@
-      <tr>
+        <th>
+            @Html.ActionLink("Role name", "Users", new { sortOrder = ViewBag.RolesNameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            User Details
+        </th>
+    <tr>
 
-    @foreach (var item in Model)
-    {
+        @foreach (var item in Model.Users)
+        {
         <tr>
-           <td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -51,15 +56,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Course.Name)
-            </td>        
-            @*@<td>
-                @foreach (var role in item.Roles)
-                {
-                    @Html.DisplayFor(modelItem => role)
-                }
-            </td>*@
-            @*<td>@Html.ActionLink("User details", "Users", "Users", new { id = item.Id }, null)</td>   *@    
+            </td>
+            <td>
+                @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == item.Id)).Select(r => r.Name))
+            </td>
+
+            <td>@Html.ActionLink("More...", "Users", "Users", new { id = item.Id }, null)
+            </td>
         </tr>
-    }
+        }
 
 </table>
+<br/>
+
+    @Html.PagedListPager(Model.Users, page => Url.Action("Users",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LexiconLMS.Models;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Web.Security;
 
 namespace LexiconLMS.Controllers
 {
@@ -19,9 +15,8 @@ namespace LexiconLMS.Controllers
     [Authorize]
     public class CoursesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         private ApplicationUserManager _userManager;
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
         public CoursesController()
         {
@@ -34,14 +29,8 @@ namespace LexiconLMS.Controllers
 
         public ApplicationUserManager UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
         }
 
         // GET: Courses
@@ -61,7 +50,7 @@ namespace LexiconLMS.Controllers
             }
 
             var course = new AddStudenToCourseModel();
-            course.CourseId = (int)id;
+            course.CourseId = (int) id;
 
             return View(course);
         }
@@ -74,7 +63,12 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, CourseId = model.CourseId };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    CourseId = model.CourseId
+                };
                 var course = db.Courses.Find(model.CourseId);
                 course.Students.Add(user);
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -86,7 +80,7 @@ namespace LexiconLMS.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("CourseDetails", new { id = course.CourseId});
+                    return RedirectToAction("CourseDetails", new {id = course.CourseId});
                 }
                 AddErrors(result);
             }
@@ -102,7 +96,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            var course = db.Courses.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -143,7 +137,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            var course = db.Courses.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -176,7 +170,7 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            var course = db.Courses.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -190,7 +184,7 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
+            var course = db.Courses.Find(id);
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("TeacherOverview", "Teacher");
@@ -206,15 +200,13 @@ namespace LexiconLMS.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            get { return HttpContext.GetOwinContext().Authentication; }
         }
 
         private void AddErrors(IdentityResult result)
@@ -224,6 +216,7 @@ namespace LexiconLMS.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+
         #endregion
     }
 }

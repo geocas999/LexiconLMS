@@ -4,11 +4,46 @@
     ViewBag.Title = "Document details";
 }
 
-<h2>@Model.Name</h2>
-
 <div>
-    <h4>Document</h4>
-    <hr />
+    <div>
+        @if (Model.CourseId != null)
+        {
+            <ol class="breadcrumb">
+                @if (User.IsInRole("Teacher"))
+                {
+                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+                }
+                <li class="h2">@Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null)</li>
+                <li class="active h2"> @Model.Name </li>
+            </ol>
+        }
+        @if (Model.ModuleId != null)
+        {
+            <ol class="breadcrumb">
+                @if (User.IsInRole("Teacher"))
+                {
+                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+                }
+                <li class="h2">@Html.ActionLink(Model.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Module.CourseId}, null)</li>
+                <li class="h2">@Html.ActionLink(Model.Module.Name, "ModuleDetails", "Modules", new {id = Model.ModuleId}, null)</li>
+                <li class="active h2"> @Model.Name </li>
+            </ol>
+        }
+        @if (Model.ActivityId != null)
+        {
+            <ol class="breadcrumb">
+                @if (User.IsInRole("Teacher"))
+                {
+                    <li class="h2"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+                }
+                <li class="h2">@Html.ActionLink(Model.Activity.Module.Course.Name, "CourseDetails", "Courses", new {id = Model.Activity.Module.CourseId}, null)</li>
+                <li class="h2">@Html.ActionLink(Model.Activity.Module.Name, "ModuleDetails", "Modules", new {id = Model.Activity.ModuleId}, null)</li>
+                <li class="h2">@Html.ActionLink(Model.Activity.Type.ToString(), "ActivityDetails", "Activities", new {id = Model.ActivityId}, null)</li>
+                <li class="active h2"> @Model.Name </li>
+            </ol>
+        }
+    </div>
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -77,22 +112,22 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DocumentId }) |
+    @Html.ActionLink("Edit", "EditDocument", new {id = Model.DocumentId}) |
 
 
     @if (Model.CourseId > 0)
     {
-        @Html.ActionLink("Back", "CourseDetails/" + Model.CourseId.ToString(), "Courses")
+        @Html.ActionLink("Back", "CourseDetails/" + Model.CourseId, "Courses")
     }
 
     @if (Model.ModuleId > 0)
     {
-        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId.ToString(), "Modules")
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId, "Modules")
     }
 
     @if (Model.ActivityId > 0)
     {
-        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId.ToString(), "Activities")
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId, "Activities")
     }
 
 </p>
