@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LexiconLMS.Models
@@ -10,6 +11,8 @@ namespace LexiconLMS.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
+
+        [Display(Name ="Uploaded")]
         public DateTime TimeStamp { get; set; }
 
         public DocumentType DocumentType { get; set; }
