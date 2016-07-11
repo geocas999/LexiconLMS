@@ -5,6 +5,8 @@ using System.Net;
 using System.Web.Mvc;
 using LexiconLMS.Models;
 using System.IO;
+using System.Web;
+using System.Collections.Generic;
 
 namespace LexiconLMS.Controllers
 {

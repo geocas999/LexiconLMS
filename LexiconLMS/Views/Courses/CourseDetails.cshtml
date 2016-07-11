@@ -5,7 +5,7 @@
 }
 
 <div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb h3">
         @if (User.IsInRole("Teacher"))
         {
             <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
@@ -19,7 +19,7 @@
 <hr/>
 
 <div>
-    <h2>Course - @Model.Name</h2>
+    <h3>Course</h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)

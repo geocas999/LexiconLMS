@@ -8,17 +8,17 @@
     <ol class="breadcrumb">
         @if (User.IsInRole("Teacher"))
         {
-            <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
+            <li class="h3"> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
         }
-        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </li>
-        <li class="active"> @Model.Name </li>
+        <li class="h3"> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </li>
+        <li class="active h3"> @Model.Name </li>
     </ol>
 </div>
 
 <hr/>
 
 <div>
-    <h2>Module - @Model.Name</h2>
+    <h3>Module</h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Course.Name)
