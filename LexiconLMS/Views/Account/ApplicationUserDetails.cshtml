@@ -42,19 +42,19 @@
         </dd>
 
         @*<dt>
-                @Html.DisplayNameFor(model => model.PasswordHash)
-            </dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.PasswordHash)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.SecurityStamp)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.SecurityStamp)
+        <dd>
+            @Html.DisplayFor(model => model.SecurityStamp)
             </dd>*@
 
         <dt>
@@ -74,35 +74,35 @@
         </dd>
 
         @*<dt>
-                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-            </dt>
+            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.TwoFactorEnabled)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorEnabled)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LockoutEndDateUtc)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LockoutEnabled)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LockoutEnabled)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.AccessFailedCount)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AccessFailedCount)
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
             </dd>*@
 
         <dt>
@@ -143,16 +143,9 @@
   
 
 </div>
-
-
-
-
-
-
 <p>
-    <div></div>
-
-
-    @Html.ActionLink("Edit", "EditApplicationUser", "Account", new {userId = Model.Id}, null) |
-    @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
+    @Html.ActionLink("Users", "Users", "Teacher") |
+    @Html.ActionLink("Edit User", "EditApplicationUser", "Account", new { userId = Model.Id }, null) |
+    @Html.ActionLink("Delete User", "DeleteApplicationUser", "Account", new { userId = Model.Id }, null )
+          
 </p>
