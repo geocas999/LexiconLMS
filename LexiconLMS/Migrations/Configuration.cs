@@ -6,7 +6,7 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-
+    using System.Linq;
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -264,7 +264,7 @@ namespace LexiconLMS.Migrations
                 Email = "teacher@lexicon.se",
                 Name = "Teacher Teachersson",
                 PhoneNumber = "073-555138232",
-                CourseId = 3
+                //CourseId = 3
             },
             new ApplicationUser
             {
@@ -272,7 +272,7 @@ namespace LexiconLMS.Migrations
                 Email = "fredrik@lexicon.se",
                 Name = "Fredrik Lindroth",
                 PhoneNumber = "08-2501223",
-                CourseId = 2
+                //CourseId = 2
             },
             new ApplicationUser
             {
@@ -280,7 +280,7 @@ namespace LexiconLMS.Migrations
                 Email = "anette@lexicon.se",
                 Name = "Anette Tillbom",
                 PhoneNumber = "076-7788999",
-                CourseId = 3
+                //CourseId = 3
             },
             new ApplicationUser
             {
@@ -288,7 +288,7 @@ namespace LexiconLMS.Migrations
                 Email = "yaser@lexicon.se",
                 Name = "Yaser Mosavi",
                 PhoneNumber = "070-0011223",
-                CourseId = 6
+                //CourseId = 6
             },
             new ApplicationUser
             {
@@ -296,7 +296,15 @@ namespace LexiconLMS.Migrations
                 Email = "george@lexicon.se",
                 Name = "George Caspersson",
                 PhoneNumber = "070-0011223",
-                CourseId = 5
+                //CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "kalle@lexicon.se",
+                Email = "kalle@lexicon.se",
+                Name = "Kalle Andersson",
+                PhoneNumber = "073-0014523",
+                CourseId = 1
             },
             new ApplicationUser
             {
@@ -722,27 +730,40 @@ namespace LexiconLMS.Migrations
 
         private static void SeedDocuments(ApplicationDbContext context, ApplicationUser user)
         {
+            //var document = new Document()
+            //{
+            //    DocumentId = 1,
+            //    CourseId = 1,
+            //    Description = "Schedule",
+            //    Name = "Schedule",
+            //    TimeStamp = DateTime.Now,
+            //    Type = ".pdf",
+            //    UserId = user.Id,
+            //    DocumentType = DocumentType.Scheman
+            //};
             var document = new Document()
             {
                 DocumentId = 1,
                 CourseId = 1,
-                Description = "Schedule",
-                Name = "Schedule",
+                Description = "Föreläsning Bootstrap",
+                Name = "Föreläsning Bootstrap.pptx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
-                DocumentType = DocumentType.Scheman
+                //Type = ".pptx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.HandledningAktivitet
             };
 
             var document2 = new Document()
             {
                 DocumentId = 2,
                 CourseId = 1,
-                Description = "This is what you should know after this course.",
-                Name = "Syllabus",
+                Description = "Föreläsning MVC",
+                Name = "Föreläsning MVC.pptx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
+                //Type = ".pptx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
                 DocumentType = DocumentType.HandledningAktivitet
             };
 
@@ -750,12 +771,13 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 3,
                 ModuleId = 1,
-                Description = "Helpful links",
-                Name = "C# good-to-know",
+                Description = "Föreläsning AngularJS",
+                Name = "Föreläsning AngularJS.pptx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
-                DocumentType = DocumentType.AnteckningarAktivitet
+                //Type = ".pptx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.HandledningAktivitet
 
             };
 
@@ -763,37 +785,160 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 4,
                 ModuleId = 1,
-                Description = "Neat C# tricks",
-                Name = "C# Tips&Tricks",
+                Description = "Föreläsning JavaScript",
+                Name = "Föreläsning JavaScript.pptx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
-                DocumentType = DocumentType.AnteckningarAktivitet
+                //Type = ".pptx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                DocumentType = DocumentType.HandledningAktivitet
             };
 
             var document5 = new Document()
             {
                 DocumentId = 5,
                 ModuleId = 1,
-                Description = "Good C# conventions that makes you a better programmer.",
-                Name = "C# conventions",
+                Description = "Övningsuppgift 1 - BootStrap.",
+                Name = "Övningsuppgift 1 - BootStrap.docx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
-                DocumentType = DocumentType.HandledningAktivitet
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
             };
 
             var document6 = new Document()
             {
                 DocumentId = 6,
                 ActivityId = 4,
-                Description = "Object oriented exercise",
-                Name = "Exercise 1",
+                Description = "Övningsuppgift 2 - MVC",
+                Name = "Övningsuppgift 1 - MVC.docx",
+                FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Type = ".pdf",
-                UserId = user.Id,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
+
+            var document7 = new Document()
+            {
+                DocumentId = 7,
+                ActivityId = 4,
+                Description = "Övningsuppgift 3 - AngularJS",
+                Name = "Övningsuppgift 3 - AngularJS.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
+
+            var document8 = new Document()
+            {
+                DocumentId = 8,
+                ActivityId = 4,
+                Description = "Övningsuppgift 4 - JavaScript",
+                Name = "Övningsuppgift 4 - JavaScript.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
+
+            var document9 = new Document()
+            {
+                DocumentId = 9,
+                ActivityId = 4,
+                Description = "160601 - Kursschema NB16",
+                Name = "160601 - Kursschema NB16.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "anette@lexicon.se").Id,
+                DocumentType = DocumentType.Scheman
+            };
+
+            var document10 = new Document()
+            {
+                DocumentId = 10,
+                ActivityId = 4,
+                Description = "KlasslistaNB16-epost",
+                Name = "KlasslistaNB16-epost.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "anette@lexicon.se").Id,
+                DocumentType = DocumentType.Övrigt
+            };
+
+            var document11 = new Document()
+            {
+                DocumentId = 11,
+                ActivityId = 4,
+                Description = "TorgInfo 2016-07-08",
+                Name = "TorgInfo 2016-07-08.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "yaser@lexicon.se").Id,
+                DocumentType = DocumentType.TorgInfo
+            };
+
+            var document12 = new Document()
+            {
+                DocumentId = 12,
+                ActivityId = 4,
+                Description = "TorgInfo 2016-07-11",
+                Name = "TorgInfo 2016-07-11.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "yaser@lexicon.se").Id,
+                DocumentType = DocumentType.TorgInfo
+            };
+
+            var document13 = new Document()
+            {
+                DocumentId = 13,
+                ActivityId = 4,
+                Description = "KalleAndersson_Inlämning_övning1",
+                Name = "KalleAndersson_Inlämning_övning1.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document14 = new Document()
+            {
+                DocumentId = 14,
+                ActivityId = 4,
+                Description = "KalleAndersson_Inlämning_övning2",
+                Name = "KalleAndersson_Inlämning_övning2.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document15 = new Document()
+            {
+                DocumentId = 15,
+                ActivityId = 4,
+                Description = "KalleAndersson_Inlämning_övning3",
+                Name = "KalleAndersson_Inlämning_övning3.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+
+
             context.Documents.AddOrUpdate(d => d.DocumentId, document);
             context.Documents.AddOrUpdate(d => d.DocumentId, document2);
             context.Documents.AddOrUpdate(d => d.DocumentId, document3);
