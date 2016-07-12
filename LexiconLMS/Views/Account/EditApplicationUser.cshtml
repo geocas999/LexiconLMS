@@ -60,13 +60,14 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default"/>
-            </div>
+              </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to overview", "TeacherOverview", "Teacher")
+    @Html.ActionLink("Users", "Users", "Teacher")|
+    @Html.ActionLink("Back to User Details", null, null, null, new { href = Request.UrlReferrer })
 </div>
 
 @section Scripts {

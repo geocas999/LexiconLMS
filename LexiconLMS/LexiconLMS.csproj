@@ -268,6 +268,21 @@
     <Content Include="Images\view.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="LMSDocuments\160601 - Kursschema NB16.pdf" />
+    <Content Include="LMSDocuments\Föreläsning AngularJS.pptx" />
+    <Content Include="LMSDocuments\Föreläsning BootStrap.pptx" />
+    <Content Include="LMSDocuments\Föreläsning JavaScript.pptx" />
+    <Content Include="LMSDocuments\Föreläsning MVC.pptx" />
+    <Content Include="LMSDocuments\KalleAndersson_Inlämning_övning1.pdf" />
+    <Content Include="LMSDocuments\KalleAndersson_Inlämning_övning2.pdf" />
+    <Content Include="LMSDocuments\KalleAndersson_Inlämning_övning3.pdf" />
+    <Content Include="LMSDocuments\KlasslistaNB16-epost.pdf" />
+    <Content Include="LMSDocuments\TorgInfo 2016-07-08.docx" />
+    <Content Include="LMSDocuments\TorgInfo 2016-07-11.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 1 - BootStrap.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 2 - MVC.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 3 - AngularJS.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 4 - JavaScript.docx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -339,7 +354,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="LMSDocuments\" />
     <Folder Include="Migrations\201606271156159_user\" />
   </ItemGroup>
   <ItemGroup>

@@ -183,6 +183,9 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult ApplicationUserDetails(string userId)
         {
+
+
+
             var user = UserManager.FindById(userId);
             return View(user);
         }
@@ -223,7 +226,7 @@ namespace LexiconLMS.Controllers
                 user.CourseId = userWithNewInfo.CourseId;
 
                 UserManager.Update(user);
-                return RedirectToAction("TeacherOverview", "Teacher");
+                return RedirectToAction("Users", "Teacher");
             }
 
             return RedirectPermanent("EditApplicationUser");
@@ -251,7 +254,8 @@ namespace LexiconLMS.Controllers
             var user = UserManager.FindById(userId);
             var success = UserManager.Delete(user);
             Console.WriteLine(success);
-            return RedirectToAction("TeacherOverview", "Teacher");
+           //return RedirectToAction("TeacherOverview", "Teacher");
+           return RedirectToAction("Users", "Teacher");
         }
 
 
