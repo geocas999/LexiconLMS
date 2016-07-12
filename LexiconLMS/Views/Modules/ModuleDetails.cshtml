@@ -11,7 +11,7 @@
         {
             <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
         }
-        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new {id = Model.CourseId}, null) </>
+        <li> @Html.ActionLink(Model.Course.Name, "CourseDetails", "Courses", new { id = Model.CourseId }, null) </>
         <li class="active"> @Model.Name </li>
     </ol>
 </div>
@@ -149,6 +149,9 @@
             @Html.DisplayNameFor(model => doc.Description)
         </th>
         <th>
+            Open file / Download
+        </th>
+        <th>
             @Html.DisplayNameFor(model => doc.TimeStamp)
         </th>
         <th>
@@ -165,6 +168,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.Description)
+            </td>
+            <td style="text-align: center">
+                <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                    <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.TimeStamp)
@@ -193,4 +201,4 @@
         @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { moduleId = Model.ModuleId }, null)
     </p>
 }
-@*2016-07-04, ym: ovan: skapar kod för dokument*@
+    @*2016-07-04, ym: ovan: skapar kod för dokument*@

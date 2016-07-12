@@ -89,6 +89,9 @@
             @Html.DisplayNameFor(model => doc.Description)
         </th>
         <th>
+            Open file / Download
+        </th>
+        <th>
             @Html.DisplayNameFor(model => doc.TimeStamp)
         </th>
         <th>
@@ -105,6 +108,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.Description)
+            </td>
+            <td style="text-align: center">
+                <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                    <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.TimeStamp)
