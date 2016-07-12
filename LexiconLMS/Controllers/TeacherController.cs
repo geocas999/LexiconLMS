@@ -103,9 +103,5 @@ namespace LexiconLMS.Controllers
             UsersViewModel.Users = users.ToPagedList(pageNumber, pageSize);
             return View(UsersViewModel);
         }
-        public ActionResult UserDetails(string id)
-        {
-            return View();
-        }
     }
 }

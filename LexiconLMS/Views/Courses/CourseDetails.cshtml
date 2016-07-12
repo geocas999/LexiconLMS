@@ -58,23 +58,6 @@
     </p>
 }
 <hr />
-<div>
-    <h4>Students</h4>
-    <dl class="dl-horizontal">
-        @foreach (var student in Model.Students)
-        {
-            <dd>
-                @Html.DisplayFor(modelItem => student.UserName)
-            </dd>
-        }
-    </dl>
-    @if (User.IsInRole("Teacher"))
-    {
-        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-        <hr />
-    }
-</div>
-
 
 <h4>Modules in course</h4>
 
@@ -213,3 +196,31 @@
 
 
 @*2016-06-29, ym: ovan: skapar kod för dokument*@
+
+
+<div>
+    <h4>Students</h4>
+    <dl class="dl-horizontal">
+
+        @{int i = 0;
+
+            foreach (var student in Model.Students)
+            {
+
+                i++;
+
+                <dd>
+                    <div style="padding-left: 10px;"> <b>@i: </b> @Html.ActionLink(student.Name, "ApplicationUserDetails", "Account", new { userId = student.Id }, null) </div>
+                </dd>
+            }
+        }
+    </dl>
+    @if (User.IsInRole("Teacher"))
+    {
+        @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
+        <hr />
+    }
+</div>
+
+@*2016-07-12 Anette - Moved Student to bottom in this view  *@
+@*2016-07-12 YM - Added counter and links to student list*@
