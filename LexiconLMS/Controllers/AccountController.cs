@@ -179,15 +179,33 @@ namespace LexiconLMS.Controllers
             return RedirectToAction("Register"); // View(new RegisterViewModel());
         }
 
+
         // GET: /Account/ApplicationUserDetails
-        [Authorize(Roles = "Teacher")]
+        [Authorize]
         public ActionResult ApplicationUserDetails(string userId)
         {
 
+            if (User.IsInRole("Student") )
+            {
+                if (userId == User.Identity.GetUserId())
+                {
+                    var user = UserManager.FindById(userId);
+                    return View(user);
+                }
+                else
+                {
+                    return null;
+                };
+            }
 
+            if (User.IsInRole("Teacher"))
+            {
+                var user = UserManager.FindById(userId);
+                return View(user);
+            }
 
-            var user = UserManager.FindById(userId);
-            return View(user);
+            return null;
+
         }
 
         // GET: /Account/EditApplicationUser

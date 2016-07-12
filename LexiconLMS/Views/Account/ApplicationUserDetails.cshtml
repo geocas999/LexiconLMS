@@ -134,7 +134,25 @@
 
                 if (document.DocumentType == LexiconLMS.Models.DocumentType.Övningsuppgift)
                 {
-                    <div style="padding-left: 50px;"> <b>Dokument: </b> @Html.DisplayFor(modelItem => document.Name)</div>
+
+
+                        <div style="padding-left: 50px;"> 
+
+                            <b>Dokument: </b>
+
+                            <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                                <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                            </a>
+    
+    
+   @Html.DisplayFor(modelItem => document.Name)
+                        
+                        
+                        
+                        </div>
+                    
+
+
                 }
 
             }

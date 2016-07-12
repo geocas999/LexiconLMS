@@ -162,9 +162,6 @@
                 <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
                     <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
                 </a>
-                @*<a class="viewc" href="">
-                    <img width="16" height="16" border="0" src="~/Images/Upload2.jpg" class="link">
-                </a>*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => document.TimeStamp)
@@ -204,7 +201,7 @@
 
         @{int i = 0;
 
-            foreach (var student in Model.Students)
+            foreach (var student in Model.Students.OrderBy(i2 => i2.Name).ToList())
             {
 
                 i++;
