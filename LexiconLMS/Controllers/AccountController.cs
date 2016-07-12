@@ -183,6 +183,9 @@ namespace LexiconLMS.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult ApplicationUserDetails(string userId)
         {
+
+
+
             var user = UserManager.FindById(userId);
             return View(user);
         }
