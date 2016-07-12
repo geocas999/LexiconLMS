@@ -40,7 +40,7 @@ namespace LexiconLMS.Migrations
                 uManager.Create(user, "pass123");
                 context.Users.AddOrUpdate(u => u.UserName, user);
 
-                if (user.UserName == "teacher@lexicon.se" || user.UserName == "george@lexicon.se" || user.UserName == "anette@lexicon.se" || user.UserName == "yaser@lexicon.se" || user.UserName == "fredrik@lexicon.se")
+                if (user.UserName == "teacher@lexicon.se" || user.UserName == "george.caspersson@lexicon.se" || user.UserName == "anette@lexicon.se" || user.UserName == "yaser@lexicon.se" || user.UserName == "fredrik@lexicon.se")
                 {
                     tempUser = uManager.FindByName(user.UserName);
                     uManager.AddToRole(tempUser.Id, "Teacher");
@@ -230,11 +230,21 @@ namespace LexiconLMS.Migrations
                 EndTime = DateTime.Now.AddDays(1),
                 ModuleId = 1
             };
+            var activity5 = new Activity()
+            {
+                ActivityId = 5,
+                Description = "Webb",
+                Type = ActivityType.Exercise,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddDays(1),
+                ModuleId = 2
+            };
 
             context.Activities.AddOrUpdate(activity);
             context.Activities.AddOrUpdate(activity2);
             context.Activities.AddOrUpdate(activity3);
             context.Activities.AddOrUpdate(activity4);
+            context.Activities.AddOrUpdate(activity5);
         }
 
         private static void SeedRoles(RoleManager<IdentityRole> rManager)
@@ -292,34 +302,42 @@ namespace LexiconLMS.Migrations
             },
             new ApplicationUser
             {
-                UserName = "george@lexicon.se",
-                Email = "george@lexicon.se",
+                UserName = "george.caspersson@lexicon.se",
+                Email = "george.caspersson@lexicon.se",
                 Name = "George Caspersson",
-                PhoneNumber = "070-0011223",
+                PhoneNumber = "076-2053189",
                 //CourseId = 5
             },
             new ApplicationUser
             {
-                UserName = "kalle@lexicon.se",
-                Email = "kalle@lexicon.se",
+                UserName = "kalle.andersson@lexicon.se",
+                Email = "kalle.andersson@lexicon.se",
                 Name = "Kalle Andersson",
                 PhoneNumber = "073-0014523",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Brice.Lambson@lexicon.se",
-                Email = "brice.lambson@lexicon.se",
-                Name = "Brice Lambson",
-                PhoneNumber = "",
+                UserName = "sven.gustafsson@lexicon.se",
+                Email = "sven.gustafsson@lexicon.se",
+                Name = "Sven Gustafsson",
+                PhoneNumber = "073-6614525",
                 CourseId = 2
             },
             new ApplicationUser
             {
-                UserName = "RowanMiller@lexicon.se",
-                Email = "rowan.miller@lexicon.se",
-                Name = "Rowan Miller",
-                PhoneNumber = "",
+                UserName = "nils.eriksson@lexicon.se",
+                Email = "nils.eriksson@lexicon.se",
+                Name = "Nils Eriksson",
+                PhoneNumber = "073-4414527",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "lisa.andersson@lexicon.se",
+                Email = "lisa.andersson@lexicon.se",
+                Name = "Lisa Andersson",
+                PhoneNumber = "073-02214529",
                 CourseId = 5
             },
             new ApplicationUser
@@ -650,78 +668,80 @@ namespace LexiconLMS.Migrations
                 PhoneNumber = "",
                 CourseId = 3
             },
-            new ApplicationUser
-            {
-                UserName = "Holger.Pettersson@lexicon.se",
-                Email = "holger.pettersson@lexicon.se",
-                Name = "Holger Pettersson",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Fia.Nilsson@lexicon.se",
-                Email = "fia.nilsson@lexicon.se",
-                Name = "Fia Nilsson",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Thomas.Edison@lexicon.se",
-                Email = "thomas.edison@lexicon.se",
-                Name = "Thomas Edison",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Ulla.Ljung@lexicon.se",
-                Email = "ulla.ljung@lexicon.se",
-                Name = "Ulla Ljung",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Patsy.McBrian@lexicon.se",
-                Email = "patsy.mcbrian@lexicon.se",
-                Name = "Patsy McBrian",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Jens.Eliasson@lexicon.se",
-                Email = "jens.eliasson@lexicon.se",
-                Name = "Jens Eliasson",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Kalle.Svensson@lexicon.se",
-                Email = "kalle.svensson@lexicon.se",
-                Name = "Kalle Svensson",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Anne.Reasoner@lexicon.se",
-                Email = "anne.reasoner@lexicon.se",
-                Name = "Anne Reasoner",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Henry.Ford@lexicon.se",
-                Email = "henry.ford@lexicon.se",
-                Name = "Henry Ford",
-                PhoneNumber = "",
-                CourseId = 1
-            }
+
+            // Commented out CourseId = 1 Users
+            //new ApplicationUser
+            //{
+            //    UserName = "Holger.Pettersson@lexicon.se",
+            //    Email = "holger.pettersson@lexicon.se",
+            //    Name = "Holger Pettersson",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Fia.Nilsson@lexicon.se",
+            //    Email = "fia.nilsson@lexicon.se",
+            //    Name = "Fia Nilsson",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Thomas.Edison@lexicon.se",
+            //    Email = "thomas.edison@lexicon.se",
+            //    Name = "Thomas Edison",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Ulla.Ljung@lexicon.se",
+            //    Email = "ulla.ljung@lexicon.se",
+            //    Name = "Ulla Ljung",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Patsy.McBrian@lexicon.se",
+            //    Email = "patsy.mcbrian@lexicon.se",
+            //    Name = "Patsy McBrian",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Jens.Eliasson@lexicon.se",
+            //    Email = "jens.eliasson@lexicon.se",
+            //    Name = "Jens Eliasson",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Kalle.Svensson@lexicon.se",
+            //    Email = "kalle.svensson@lexicon.se",
+            //    Name = "Kalle Svensson",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Anne.Reasoner@lexicon.se",
+            //    Email = "anne.reasoner@lexicon.se",
+            //    Name = "Anne Reasoner",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //},
+            //new ApplicationUser
+            //{
+            //    UserName = "Henry.Ford@lexicon.se",
+            //    Email = "henry.ford@lexicon.se",
+            //    Name = "Henry Ford",
+            //    PhoneNumber = "",
+            //    CourseId = 1
+            //}
         };
 
 
@@ -744,7 +764,7 @@ namespace LexiconLMS.Migrations
             var document = new Document()
             {
                 DocumentId = 1,
-                CourseId = 1,
+                ModuleId = 1,
                 Description = "Föreläsning C#",
                 Name = "Föreläsning C#.pptx",
                 FilePath = "~/LMSDocuments",
@@ -757,7 +777,7 @@ namespace LexiconLMS.Migrations
             var document2 = new Document()
             {
                 DocumentId = 2,
-                CourseId = 1,
+                ModuleId = 2,
                 Description = "Föreläsning Bootstrap",
                 Name = "Föreläsning Bootstrap.pptx",
                 FilePath = "~/LMSDocuments",
@@ -776,7 +796,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pptx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.HandledningAktivitet
             };
 
@@ -790,7 +810,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pptx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.HandledningAktivitet
             };
 
@@ -817,7 +837,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pptx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.HandledningAktivitet
             };
 
@@ -830,7 +850,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
 
@@ -843,7 +863,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
 
@@ -856,7 +876,7 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
 
@@ -869,51 +889,48 @@ namespace LexiconLMS.Migrations
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
 
-            //var document11 = new Document()
-            //{
-            //    DocumentId = 11,
-            //    ModuleId = 2,
-            //    //ActivityId = 4,
-            //    Description = "Övningsuppgift 5 - HTML",
-            //    Name = "Övningsuppgift 5 - HTML.docx",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".docx",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
-            //    DocumentType = DocumentType.Övningsuppgift
-            //};
+            var document11 = new Document()
+            {
+                DocumentId = 11,
+                ActivityId = 5,
+                Description = "Övningsuppgift 5 - HTML",
+                Name = "Övningsuppgift 5 - HTML.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
 
-            //var document12 = new Document()
-            //{
-            //    DocumentId = 12,
-            //    ModuleId = 2,
-            //    //ActivityId = 4,
-            //    Description = "Övningsuppgift 6 - AngularJS",
-            //    Name = "Övningsuppgift 6 - AngularJS.docx",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    Type = ".docx",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "george@lexicon.se").Id,
-            //    DocumentType = DocumentType.Övningsuppgift
-            //};
+            var document12 = new Document()
+            {
+                DocumentId = 12,
+                ActivityId = 5,
+                Description = "Övningsuppgift 6 - AngularJS",
+                Name = "Övningsuppgift 6 - AngularJS.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
 
-            //var document13 = new Document()
-            //{
-            //    DocumentId = 13,
-            //    ModuleId = 2,
-            //    //ActivityId = 4,
-            //    Description = "Övningsuppgift 7 - JavaScript",
-            //    Name = "Övningsuppgift 7 - JavaScript.docx",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".docx",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
-            //    DocumentType = DocumentType.Övningsuppgift
-            //};
+            var document13 = new Document()
+            {
+                DocumentId = 13,
+                ActivityId = 5,
+                Description = "Övningsuppgift 7 - JavaScript",
+                Name = "Övningsuppgift 7 - JavaScript.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
 
             var document14 = new Document()
             {
@@ -970,126 +987,473 @@ namespace LexiconLMS.Migrations
             var document18 = new Document()
             {
                 DocumentId = 18,
-                ModuleId = 1,
                 ActivityId = 4,
                 Description = "KalleAndersson_Inlämning_övning1",
                 Name = "KalleAndersson_Inlämning_övning1.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pdf",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
                 DocumentType = DocumentType.Inlämningsuppgift
             };
 
             var document19 = new Document()
             {
                 DocumentId = 19,
-                ModuleId = 1,
                 ActivityId = 4,
                 Description = "KalleAndersson_Inlämning_övning2",
                 Name = "KalleAndersson_Inlämning_övning2.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pdf",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
                 DocumentType = DocumentType.Inlämningsuppgift
             };
 
             var document20 = new Document()
             {
                 DocumentId = 20,
-                ModuleId = 1,
                 ActivityId = 4,
                 Description = "KalleAndersson_Inlämning_övning3",
                 Name = "KalleAndersson_Inlämning_övning3.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pdf",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
                 DocumentType = DocumentType.Inlämningsuppgift
             };
 
             var document21 = new Document()
             {
                 DocumentId = 21,
-                ModuleId = 1,
                 ActivityId = 4,
                 Description = "KalleAndersson_Inlämning_övning4",
                 Name = "KalleAndersson_Inlämning_övning4.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".pdf",
-                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
                 DocumentType = DocumentType.Inlämningsuppgift
             };
 
 
-            //var document22 = new Document()
-            //{
-            //    DocumentId = 22,
-            //    ModuleId = 2,
-            //    //ActivityId = 4,
-            //    Description = "KalleAndersson_Inlämning_övning5",
-            //    Name = "KalleAndersson_Inlämning_övning5.pdf",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".pdf",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
-            //    DocumentType = DocumentType.Inlämningsuppgift
-            //};
+            var document22 = new Document()
+            {
+                DocumentId = 22,
+                ActivityId = 5,
+                Description = "KalleAndersson_Inlämning_övning5",
+                Name = "KalleAndersson_Inlämning_övning5.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
 
-            //var document23 = new Document()
-            //{
-            //    DocumentId = 23,
-            //    ModuleId = 2,
-            //    Description = "KalleAndersson_Inlämning_övning6",
-            //    Name = "KalleAndersson_Inlämning_övning6.pdf",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".pdf",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
-            //    DocumentType = DocumentType.Inlämningsuppgift
-            //};
+            var document23 = new Document()
+            {
+                DocumentId = 23,
+                ActivityId = 5,
+                Description = "KalleAndersson_Inlämning_övning6",
+                Name = "KalleAndersson_Inlämning_övning6.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
 
-            //var document24 = new Document()
-            //{
-            //    DocumentId = 24,
-            //    ModuleId = 2,
-            //    Description = "KalleAndersson_Inlämning_övning7",
-            //    Name = "KalleAndersson_Inlämning_övning7.pdf",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".pdf",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
-            //    DocumentType = DocumentType.Inlämningsuppgift
-            //};
+            var document24 = new Document()
+            {
+                DocumentId = 24,
+                ActivityId = 5,
+                Description = "KalleAndersson_Inlämning_övning7",
+                Name = "KalleAndersson_Inlämning_övning7.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
 
-            //var document25 = new Document()
-            //{
-            //    DocumentId = 25,
-            //    ModuleId = 2,
-            //    Description = "KalleAndersson_Inlämning_övning8",
-            //    Name = "KalleAndersson_Inlämning_övning8.pdf",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".pdf",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle@lexicon.se").Id,
-            //    DocumentType = DocumentType.Inlämningsuppgift
-            //};
+            var document25 = new Document()
+            {
+                DocumentId = 25,
+                ActivityId = 5,
+                Description = "KalleAndersson_Inlämning_övning8",
+                Name = "KalleAndersson_Inlämning_övning8.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "kalle.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
 
-            //var document26 = new Document()
-            //{
-            //    DocumentId = 26,
-            //    ModuleId = 2,
-            //    //ActivityId = 4,
-            //    Description = "Övningsuppgift 8 - BootStrap",
-            //    Name = "Övningsuppgift 8 - BootStrap.docx",
-            //    FilePath = "~/LMSDocuments",
-            //    TimeStamp = DateTime.Now,
-            //    //Type = ".docx",
-            //    UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
-            //    DocumentType = DocumentType.Övningsuppgift
-            //};
+            var document26 = new Document()
+            {
+                DocumentId = 26,
+                ActivityId = 5,
+                Description = "Övningsuppgift 8 - BootStrap",
+                Name = "Övningsuppgift 8 - BootStrap.docx",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
+
+            var document27 = new Document()
+            {
+                DocumentId = 27,
+                ActivityId = 1,
+                Description = "Pluralsight C# Fundamentals, del 1",
+                Name = "Pluralsight C# Fundamentals, del 1.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
+
+            var document28 = new Document()
+            {
+                DocumentId = 28,
+                ActivityId = 2,
+                Description = "Pluralsight C# Fundamentals, del 2",
+                Name = "Pluralsight C# Fundamentals, del 2.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".docx",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "fredrik@lexicon.se").Id,
+                DocumentType = DocumentType.Övningsuppgift
+            };
+
+            // Lisa Andersson
+            var document29 = new Document()
+            {
+                DocumentId = 29,
+                ActivityId = 4,
+                Description = "LisaAndersson_Inlämning_övning1",
+                Name = "LisaAndersson_Inlämning_övning1.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document30 = new Document()
+            {
+                DocumentId = 30,
+                ActivityId = 4,
+                Description = "LisaAndersson_Inlämning_övning2",
+                Name = "LisaAndersson_Inlämning_övning2.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document31 = new Document()
+            {
+                DocumentId = 31,
+                ActivityId = 4,
+                Description = "LisaAndersson_Inlämning_övning3",
+                Name = "LisaAndersson_Inlämning_övning3.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document32 = new Document()
+            {
+                DocumentId = 32,
+                ActivityId = 4,
+                Description = "LisaAndersson_Inlämning_övning4",
+                Name = "LisaAndersson_Inlämning_övning4.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+
+            var document33 = new Document()
+            {
+                DocumentId = 33,
+                ActivityId = 5,
+                Description = "LisaAndersson_Inlämning_övning5",
+                Name = "LisaAndersson_Inlämning_övning5.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document34 = new Document()
+            {
+                DocumentId = 34,
+                ActivityId = 5,
+                Description = "LisaAndersson_Inlämning_övning6",
+                Name = "LisaAndersson_Inlämning_övning6.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document35 = new Document()
+            {
+                DocumentId = 35,
+                ActivityId = 5,
+                Description = "LisaAndersson_Inlämning_övning7",
+                Name = "LisaAndersson_Inlämning_övning7.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document36 = new Document()
+            {
+                DocumentId = 36,
+                ActivityId = 5,
+                Description = "LisaAndersson_Inlämning_övning8",
+                Name = "LisaAndersson_Inlämning_övning8.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "lisa.andersson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            // End Lisa
+
+
+            // Sven Gustafsson
+            var document37 = new Document()
+            {
+                DocumentId = 37,
+                ActivityId = 4,
+                Description = "Sven Gustafsson_Inlämning_övning1",
+                Name = "Sven Gustafsson_Inlämning_övning1.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document38 = new Document()
+            {
+                DocumentId = 38,
+                ActivityId = 4,
+                Description = "Sven Gustafsson_Inlämning_övning2",
+                Name = "Sven Gustafsson_Inlämning_övning2.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document39 = new Document()
+            {
+                DocumentId = 39,
+                ActivityId = 4,
+                Description = "Sven Gustafsson_Inlämning_övning3",
+                Name = "Sven Gustafsson_Inlämning_övning3.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document40 = new Document()
+            {
+                DocumentId = 40,
+                ActivityId = 4,
+                Description = "Sven Gustafsson_Inlämning_övning4",
+                Name = "Sven Gustafsson_Inlämning_övning4.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+
+            var document41 = new Document()
+            {
+                DocumentId = 41,
+                ActivityId = 5,
+                Description = "Sven Gustafsson_Inlämning_övning5",
+                Name = "Sven Gustafsson_Inlämning_övning5.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document42 = new Document()
+            {
+                DocumentId = 42,
+                ActivityId = 5,
+                Description = "Sven Gustafsson_Inlämning_övning6",
+                Name = "Sven Gustafsson_Inlämning_övning6.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document43 = new Document()
+            {
+                DocumentId = 43,
+                ActivityId = 5,
+                Description = "Sven Gustafsson_Inlämning_övning7",
+                Name = "Sven Gustafsson_Inlämning_övning7.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document44 = new Document()
+            {
+                DocumentId = 44,
+                ActivityId = 5,
+                Description = "Sven Gustafsson_Inlämning_övning8",
+                Name = "Sven Gustafsson_Inlämning_övning8.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "sven.gustafsson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            // End Sven
+
+
+            // Nils Eriksson
+            var document45 = new Document()
+            {
+                DocumentId = 45,
+                ActivityId = 4,
+                Description = "Nils Eriksson_Inlämning_övning1",
+                Name = "Nils Eriksson_Inlämning_övning1.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document46 = new Document()
+            {
+                DocumentId = 46,
+                ActivityId = 4,
+                Description = "Nils Eriksson_Inlämning_övning2",
+                Name = "Nils Eriksson_Inlämning_övning2.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document47 = new Document()
+            {
+                DocumentId = 47,
+                ActivityId = 4,
+                Description = "Nils Eriksson_Inlämning_övning3",
+                Name = "Nils Eriksson_Inlämning_övning3.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document48 = new Document()
+            {
+                DocumentId = 48,
+                ActivityId = 4,
+                Description = "Nils Eriksson_Inlämning_övning4",
+                Name = "Nils Eriksson_Inlämning_övning4.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+
+            var document49 = new Document()
+            {
+                DocumentId = 49,
+                ActivityId = 5,
+                Description = "Nils Eriksson_Inlämning_övning5",
+                Name = "Nils Eriksson_Inlämning_övning5.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document50 = new Document()
+            {
+                DocumentId = 50,
+                ActivityId = 5,
+                Description = "Nils Eriksson_Inlämning_övning6",
+                Name = "Nils Eriksson_Inlämning_övning6.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document51 = new Document()
+            {
+                DocumentId = 51,
+                ActivityId = 5,
+                Description = "Nils Eriksson_Inlämning_övning7",
+                Name = "Nils Eriksson_Inlämning_övning7.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+
+            var document52 = new Document()
+            {
+                DocumentId = 52,
+                ActivityId = 5,
+                Description = "Nils Eriksson_Inlämning_övning8",
+                Name = "Nils Eriksson_Inlämning_övning8.pdf",
+                FilePath = "~/LMSDocuments",
+                TimeStamp = DateTime.Now,
+                //Type = ".pdf",
+                UserId = context.Users.FirstOrDefault(u => u.UserName == "nils.eriksson@lexicon.se").Id,
+                DocumentType = DocumentType.Inlämningsuppgift
+            };
+            // End Nils
+
+
 
 
             context.Documents.AddOrUpdate(d => d.DocumentId, document);
@@ -1102,9 +1466,9 @@ namespace LexiconLMS.Migrations
             context.Documents.AddOrUpdate(d => d.DocumentId, document8);
             context.Documents.AddOrUpdate(d => d.DocumentId, document9);
             context.Documents.AddOrUpdate(d => d.DocumentId, document10);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document11);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document12);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document13);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document11);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document12);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document13);
             context.Documents.AddOrUpdate(d => d.DocumentId, document14);
             context.Documents.AddOrUpdate(d => d.DocumentId, document15);
             context.Documents.AddOrUpdate(d => d.DocumentId, document16);
@@ -1113,11 +1477,37 @@ namespace LexiconLMS.Migrations
             context.Documents.AddOrUpdate(d => d.DocumentId, document19);
             context.Documents.AddOrUpdate(d => d.DocumentId, document20);
             context.Documents.AddOrUpdate(d => d.DocumentId, document21);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document22);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document23);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document24);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document25);
-            //context.Documents.AddOrUpdate(d => d.DocumentId, document26);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document22);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document23);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document24);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document25);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document26);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document27);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document28);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document29);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document30);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document31);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document32);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document33);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document34);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document35);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document36);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document37);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document38);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document39);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document40);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document41);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document42);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document43);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document44);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document45);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document46);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document47);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document48);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document49);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document50);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document51);
+            context.Documents.AddOrUpdate(d => d.DocumentId, document52);
         }
     }
 }
