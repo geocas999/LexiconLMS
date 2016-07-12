@@ -7,6 +7,7 @@ using LexiconLMS.Models;
 using System.IO;
 using System.Web;
 using System.Collections.Generic;
+using Microsoft.Owin.Security.Provider;
 
 namespace LexiconLMS.Controllers
 {
@@ -32,7 +33,7 @@ namespace LexiconLMS.Controllers
 
         // GET: Documents/AddDocument
         //2016-07-01, ym: nedan: ändrar på funktionen
-        [Authorize(Roles = "Teacher")]
+        [Authorize]
         public ActionResult AddDocument(int? courseId, int? moduleId, int? activityId)
         {
 
@@ -53,6 +54,12 @@ namespace LexiconLMS.Controllers
                 course.ActivityId = (int)activityId;
             }
 
+            if (User.IsInRole("Student"))
+            {
+                course.DocumentType = DocumentType.Inlämningsuppgift;
+                return View("AddStudentExercise", course);
+            }
+
 
             return View(course);
         }
@@ -63,7 +70,7 @@ namespace LexiconLMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        [Authorize]
         //public ActionResult AddDocument (HttpPostedFileBase file_Uploader, Document document)
         public ActionResult AddDocument([Bind(Include = "FilePath,UploadedFile,DocumentType,Name,Type,Description,CourseId,ModuleId,ActivityId")] RegisterDocumentModel document, HttpPostedFileBase UploadedFile)
         {
@@ -72,9 +79,7 @@ namespace LexiconLMS.Controllers
 
             if (document != null)
             {
-
                 //string uploadedFile = string.Empty;
-
                 //List<AddDocumentModel> uploadFiles = new List<AddDocumentModel>();
                 //List<Document> AddDocumentModel = new List<Document>()
                 fileName = Path.GetFileName(document.UploadedFile.FileName);
@@ -108,11 +113,6 @@ namespace LexiconLMS.Controllers
 
             if (ModelState.IsValid)
             {
-                document.ModuleId = document.ModuleId == 0 ? null : document.ModuleId;
-                document.CourseId = document.CourseId == 0 ? null : document.CourseId;
-                document.ActivityId = document.ActivityId == 0 ? null : document.ActivityId;
-                ////UserId,CourseId,ModuleId,ActivityId
-
                 document.TimeStamp = DateTime.Now;
 
                 var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);

@@ -1,0 +1,87 @@
+﻿@model LexiconLMS.Models.RegisterDocumentModel
+
+@{
+    ViewBag.Title = "Upload student exercise";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("AddDocument", "Documents", FormMethod.Post, new {  @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(model => model.DocumentType)
+        @Html.HiddenFor(model => model.CourseId)
+        @Html.HiddenFor(model => model.ModuleId)
+        @Html.HiddenFor(model => model.ActivityId)
+        @Html.HiddenFor(model => model.Type)
+
+        <div class="form-group">
+            <h4 class ="col-md-10">Select your exercise.</h4>
+            <input class="col-md-10" type="file" name="UploadedFile"/>
+            @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+            @*<div class="col-md-10">
+                @Html.TextBoxFor(model => model.UploadedFile, new { @type = "file", @name= "UploadedFile" })
+                @{string fileName = Model.Name; }
+                @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Name)
+
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>*@
+        </div>
+            <div class="form-group hidden">
+            @*@{string destinationPath = Model.FilePath; }*@
+
+            @Html.LabelFor(model => model.FilePath, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @*@Html.EditorFor(modelFilePath => destinationPath, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.EditorFor(model => model.FilePath, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.FilePath, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Add" class="btn btn-default" />*@
+                <input type="submit" id="bttn_Upload" value="Upload" />
+            </div>
+        </div>
+    </div>
+                }
+
+<div>
+    @if (Model.CourseId > 0)
+    {
+        @Html.ActionLink("Back", "CourseDetails/" + Model.CourseId, "Courses")
+    }
+
+
+    @if (Model.ModuleId > 0)
+    {
+        @Html.ActionLink("Back", "ModuleDetails/" + Model.ModuleId, "Modules")
+    }
+
+
+    @if (Model.ActivityId > 0)
+    {
+        @Html.ActionLink("Back", "ActivityDetails/" + Model.ActivityId, "Activities")
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

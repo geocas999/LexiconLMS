@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using LexiconLMS.Models;
@@ -22,7 +23,15 @@ namespace LexiconLMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(activity);
+
+            var activityDetailsViewModel = new ActivityDetailsViewModel
+            {
+                Acticity = activity,
+                Documents = activity.Documents.Where(d => d.DocumentType != DocumentType.Inlämningsuppgift).ToList(),
+                StudentExercises =
+                    activity.Documents.Where(d => d.DocumentType == DocumentType.Inlämningsuppgift).ToList()
+            };
+            return View(activityDetailsViewModel);
         }
 
         // GET: Activities/AddActivity
