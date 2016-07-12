@@ -38,7 +38,6 @@
             @Html.ActionLink("Role name", "Users", new { sortOrder = ViewBag.RolesNameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            User Details
         </th>
     <tr>
 
@@ -60,7 +59,7 @@
             <td>
                 @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == item.Id)).Select(r => r.Name))
             </td>
-            <td> @Html.ActionLink("More...", "ApplicationUserDetails", "Account", new { userId = item.Id }, null)
+            <td> @Html.ActionLink("Details", "ApplicationUserDetails", "Account", new { userId = item.Id }, null)
             </td>
         </tr>
         }
