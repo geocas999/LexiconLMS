@@ -265,7 +265,7 @@ namespace LexiconLMS.Migrations
                 UserName = "student@lexicon.se",
                 Email = "student@lexicon.se",
                 Name = "Student Studentsson",
-                PhoneNumber = "070-0011223",
+                PhoneNumber = "070-50011223",
                 CourseId = 1
             },
             new ApplicationUser
@@ -273,7 +273,7 @@ namespace LexiconLMS.Migrations
                 UserName = "teacher@lexicon.se",
                 Email = "teacher@lexicon.se",
                 Name = "Teacher Teachersson",
-                PhoneNumber = "073-555138232",
+                PhoneNumber = "073-5513832",
                 //CourseId = 3
             },
             new ApplicationUser
@@ -281,7 +281,7 @@ namespace LexiconLMS.Migrations
                 UserName = "fredrik@lexicon.se",
                 Email = "fredrik@lexicon.se",
                 Name = "Fredrik Lindroth",
-                PhoneNumber = "08-2501223",
+                PhoneNumber = "070-2551823",
                 //CourseId = 2
             },
             new ApplicationUser
@@ -289,7 +289,7 @@ namespace LexiconLMS.Migrations
                 UserName = "anette@lexicon.se",
                 Email = "anette@lexicon.se",
                 Name = "Anette Tillbom",
-                PhoneNumber = "076-7788999",
+                PhoneNumber = "076-7788931",
                 //CourseId = 3
             },
             new ApplicationUser
@@ -297,7 +297,7 @@ namespace LexiconLMS.Migrations
                 UserName = "yaser@lexicon.se",
                 Email = "yaser@lexicon.se",
                 Name = "Yaser Mosavi",
-                PhoneNumber = "070-0011223",
+                PhoneNumber = "070-6021523",
                 //CourseId = 6
             },
             new ApplicationUser
@@ -313,7 +313,7 @@ namespace LexiconLMS.Migrations
                 UserName = "kalle.andersson@lexicon.se",
                 Email = "kalle.andersson@lexicon.se",
                 Name = "Kalle Andersson",
-                PhoneNumber = "073-0014523",
+                PhoneNumber = "073-6014520",
                 CourseId = 1
             },
             new ApplicationUser
@@ -345,215 +345,215 @@ namespace LexiconLMS.Migrations
                 UserName = "Annika.Pettersson@lexicon.se",
                 Email = "annika.pettersson@lexicon.se",
                 Name = "Annika Pettersson",
-                PhoneNumber = "",
+                PhoneNumber = "070-89213213",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Karl.Gunnarsson@lexicon.se",
-                Email = "karl.gunnarsson@lexicon.se",
+                UserName = "Karl.Gunnarsson@live.com",
+                Email = "karl.gunnarsson@live.com",
                 Name = "Karl Gunnarsson",
-                PhoneNumber = "",
+                PhoneNumber = "071-8903322",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Henrik.Henriksson@lexicon.se",
-                Email = "henrik.henriksson@lexicon.se",
+                UserName = "Henrik.Henriksson@telia.se",
+                Email = "henrik.henriksson@telia.se",
                 Name = "Henrik Henriksson",
-                PhoneNumber = "",
+                PhoneNumber = "073-4548887",
                 CourseId = 6
             },
             new ApplicationUser
             {
-                UserName = "paul.smith@lexicon.se",
-                Email = "paul.smith@lexicon.se",
+                UserName = "paul.smith@yahoo.com",
+                Email = "paul.smith@yahoo.com",
                 Name = "Paul Smith",
-                PhoneNumber = "",
+                PhoneNumber = "08-3654987",
                 CourseId = 2
             },
             new ApplicationUser
             {
-                UserName = "Karin.Svedin@lexicon.se",
-                Email = "karin.svedin@lexicon.se",
+                UserName = "Karin.Svedin@bredband.net",
+                Email = "karin.svedin@bredband.net",
                 Name = "Karin Svedin",
-                PhoneNumber = "",
+                PhoneNumber = "08-45668522",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Nicklas.Malm@lexicon.se",
-                Email = "nicklas.malm@lexicon.se",
+                UserName = "Nicklas.Malm@bredband.net",
+                Email = "nicklas.malm@bredband.net",
                 Name = "Nicklas Malm",
-                PhoneNumber = "",
-                CourseId = 1
+                PhoneNumber = "05-7864328",
+                CourseId = 2
             },
             new ApplicationUser
             {
-                UserName = "Linda.Thatcher@lexicon.se",
-                Email = "linda.thatcher@lexicon.se",
+                UserName = "Linda.Thatcher@bredband.net",
+                Email = "linda.thatcher@bredband.net",
                 Name = "Linda Thatcher",
-                PhoneNumber = "",
+                PhoneNumber = "08-4680082",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Charles.deGaulle@lexicon.se",
-                Email = "charles.degaulle@lexicon.se",
+                UserName = "Charles.deGaulle@hotmail.com",
+                Email = "charles.degaulle@hotmail.com",
                 Name = "Charles de Gaulle",
-                PhoneNumber = "",
+                PhoneNumber = "070-9761674",
                 CourseId = 5
             },
             new ApplicationUser
             {
-                UserName = "Margret.Thatcher@lexicon.se",
-                Email = "margret.thatcher@lexicon.se",
+                UserName = "Margret.Thatcher@bredband.net",
+                Email = "margret.thatcher@bredband.nete",
                 Name = "Margret Thatcher",
-                PhoneNumber = "",
+                PhoneNumber = "072-6791254",
                 CourseId = 4
             },
             new ApplicationUser
             {
-                UserName = "Winston.Churchill@lexicon.se",
-                Email = "winston.churchill@lexicon.se",
+                UserName = "Winston.Churchill@bahnhof.se",
+                Email = "winston.churchill@bahnhof.se",
                 Name = "Winston Churchill",
-                PhoneNumber = "",
-                CourseId = 3
+                PhoneNumber = "075-6314994",
+                CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Mahatma.Gandhi@lexicon.se",
-                Email = "mahatma.gandhi@lexicon.se",
+                UserName = "Mahatma.Gandhi@hotmail.com",
+                Email = "mahatma.gandhi@hotmail.com",
                 Name = "Mahatma Gandhi",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Bill.Gates@lexicon.se",
-                Email = "bill.gates@lexicon.se",
-                Name = "Bill Gates",
-                PhoneNumber = "",
+                PhoneNumber = "073-6408933",
                 CourseId = 2
             },
             new ApplicationUser
             {
-                UserName = "John.MKeynes@lexicon.se",
-                Email = "john.mkeynes@lexicon.se",
+                UserName = "Bill.Gates@bahnhof.se",
+                Email = "bill.gates@bahnhof.se",
+                Name = "Bill Gates",
+                PhoneNumber = "070-6302045",
+                CourseId = 2
+            },
+            new ApplicationUser
+            {
+                UserName = "John.MKeynes@comhem.se",
+                Email = "john.mkeynes@comhem.se",
                 Name = "John M Keynes",
-                PhoneNumber = "",
+                PhoneNumber = "072-6895573",
                 CourseId = 6
             },
             new ApplicationUser
             {
-                UserName = "Mikhail.Gorbachev@lexicon.se",
-                Email = "mikhail.gorbachev@lexicon.se",
+                UserName = "Mikhail.Gorbachev@tele2.se",
+                Email = "mikhail.gorbachev@tele2.se",
                 Name = "Mikhail Gorbachev",
-                PhoneNumber = "",
+                PhoneNumber = "08-5804678",
                 CourseId = 5
             },
             new ApplicationUser
             {
-                UserName = "George.Orwell@lexicon.se",
-                Email = "george.orwell@lexicon.se",
+                UserName = "George.Orwell@comhem.se",
+                Email = "george.orwell@comhem.se",
                 Name = "George Orwell",
-                PhoneNumber = "",
+                PhoneNumber = "08-5302211",
                 CourseId = 4
             },
             new ApplicationUser
             {
-                UserName = "Pablo.Picasso@lexicon.se",
-                Email = "pablo.picasso@lexicon.se",
+                UserName = "Pablo.Picasso@glocalnet.net",
+                Email = "pablo.picasso@glocalnet.net",
                 Name = "Pablo Picasso",
-                PhoneNumber = "",
+                PhoneNumber = "076-7235590",
                 CourseId = 6
             },
             new ApplicationUser
             {
-                UserName = "Muhammad.Ali@lexicon.se",
-                Email = "muhammad.ali@lexicon.se",
+                UserName = "Muhammad.Ali@tele2.se",
+                Email = "muhammad.ali@tele2.se",
                 Name = "Muhammad Ali",
-                PhoneNumber = "",
+                PhoneNumber = "08-2548937",
                 CourseId = 2
             },
            new ApplicationUser
             {
-                UserName = "Louis.Pasteur@lexicon.se",
-                Email = "louis.pasteur@lexicon.se",
+                UserName = "Louis.Pasteur@comhem.se",
+                Email = "louis.pasteur@comhem.se",
                 Name = "Louis Pasteur",
-                PhoneNumber = "",
-                CourseId = 1
-            },
-            new ApplicationUser
-            {
-                UserName = "Lena.Karlsson@lexicon.se",
-                Email = "lena.karlsson@lexicon.se",
-                Name = "Lena Karlsson",
-                PhoneNumber = "",
-                CourseId = 5
-            },
-            new ApplicationUser
-            {
-                UserName = "Lena.Karlsson2@lexicon.se",
-                Email = "lena.karlsson2@lexicon.se",
-                Name = "Lena Karlsson",
-                PhoneNumber = "",
+                PhoneNumber = "08-7025490",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Charles.Darwin@lexicon.se",
-                Email = "charles.darwin@lexicon.se",
+                UserName = "Lena.Karlsson@glocalnet.net",
+                Email = "lena.karlsson@glocalnet.net",
+                Name = "Lena Karlsson",
+                PhoneNumber = "08-7608914",
+                CourseId = 5
+            },
+            new ApplicationUser
+            {
+                UserName = "Lena.Karlsson2@spray.se",
+                Email = "lena.karlsson2@spray.se",
+                Name = "Lena Karlsson",
+                PhoneNumber = "08-7206230",
+                CourseId = 3
+            },
+            new ApplicationUser
+            {
+                UserName = "Charles.Darwin@spray.se",
+                Email = "charles.darwin@spray.se",
                 Name = "Charles Darwin",
-                PhoneNumber = "",
+                PhoneNumber = "071-69812457",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Per.Karlsson@lexicon.se",
-                Email = "per.karlsson@lexicon.se",
+                UserName = "Per.Karlsson@microsoft.se",
+                Email = "per.karlsson@microsoft.se",
                 Name = "Per Karlsson",
-                PhoneNumber = "",
+                PhoneNumber = "076-9380506",
                 CourseId = 2
             },
             new ApplicationUser
             {
-                UserName = "Svante.Johnsson@lexicon.se",
-                Email = "svante.johnsson@lexicon.se",
+                UserName = "Svante.Johnsson@glocalnet.net",
+                Email = "svante.johnsson@glocalnet.net",
                 Name = "Svante Johnsson",
-                PhoneNumber= "",
+                PhoneNumber= "070-6408277",
                 CourseId = 4
             },
             new ApplicationUser
             {
-                UserName = "Leo.Tolstoy@lexicon.se",
-                Email = "leo.tolstoy@lexicon.se",
+                UserName = "Leo.Tolstoy@microsoft.se",
+                Email = "leo.tolstoy@microsoft.se",
                 Name = "Leo Tolstoy",
-                PhoneNumber = "",
+                PhoneNumber = "08-3502225",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Peter.Taylor@lexicon.se",
-                Email = "peter.taylor@lexicon.se",
+                UserName = "Peter.Taylor@mail2web.com",
+                Email = "peter.taylor@mail2web.com",
                 Name = "Peter Taylor",
-                PhoneNumber = "",
-                CourseId = 1
+                PhoneNumber = "08-5604512",
+                CourseId = 4
             },
             new ApplicationUser
             {
-                UserName = "Chris.Harrison@lexicon.se",
-                Email = "chris.harrison@lexicon.se",
+                UserName = "Chris.Harrison@bredbandsbolaget.se",
+                Email = "chris.harrison@bredbandsbolaget.se",
                 Name = "Chris Harrison",
-                PhoneNumber = "",
-                CourseId = 1
+                PhoneNumber = "08-7206643",
+                CourseId = 6
             },
            new ApplicationUser
             {
-                UserName = "Elvis.Presley@lexicon.se",
-                Email = "elvis.presley@lexicon.se",
+                UserName = "Elvis.Presley@mail2web.com",
+                Email = "elvis.presley@mail2web.com",
                 Name = "Elvis Presley",
-                PhoneNumber = "",
+                PhoneNumber = "070-5506677",
                 CourseId = 1
             },
             new ApplicationUser
@@ -561,112 +561,112 @@ namespace LexiconLMS.Migrations
                 UserName = "Christopher.Columbus@lexicon.se",
                 Email = "christopher.columbus@lexicon.se",
                 Name = "Christopher Columbus",
-                PhoneNumber = "",
+                PhoneNumber = "070-6305574",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Roger.Karlsson@lexicon.se",
-                Email = "roger.karlsson@lexicon.se",
+                UserName = "Roger.Karlsson@mail2web.com",
+                Email = "roger.karlsson@mail2web.com",
                 Name = "Roger Karlsson",
-                PhoneNumber = "",
-                CourseId = 1
+                PhoneNumber = "08-6503387",
+                CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Gunilla.Berg@lexicon.se",
-                Email = "gunilla.ber@lexicon.se",
+                UserName = "Gunilla.Berg@bredbandsbolaget.se",
+                Email = "gunilla.ber@bredbandsbolaget.se",
                 Name = "Gunilla Berg",
-                PhoneNumber = "",
-                CourseId = 1
+                PhoneNumber = "08-6302271",
+                CourseId = 6
             },
             new ApplicationUser
             {
-                UserName = "Paul.McCartney@lexicon.se",
-                Email = "paul.mccartney@lexicon.se",
+                UserName = "Paul.McCartney@comhem.se",
+                Email = "paul.mccartney@comhem.se",
                 Name = "Paul McCartney",
-                PhoneNumber = "",
+                PhoneNumber = "08-9305681",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Thomas.Edisson@lexicon.se",
-                Email = "thomas.edisson@lexicon.se",
+                UserName = "Thomas.Edisson@yahoo.com",
+                Email = "thomas.edisson@yahoo.com",
                 Name = "Thomas Edisson",
-                PhoneNumber = "",
+                PhoneNumber = "070-86071982",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Aung.SanSuuKyi@lexicon.se",
-                Email = "aung.sansuukyi@lexicon.se",
+                UserName = "Aung.SanSuuKyi@comhem.se",
+                Email = "aung.sansuukyi@comhem.se",
                 Name = "Aung San Suu Kyi",
-                PhoneNumber = "",
+                PhoneNumber = "08-6873342",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Albert.Einstein@lexicon.se",
-                Email = "albert.einstein@lexicon.se",
+                UserName = "Albert.Einstein@bredbandsbolaget.se",
+                Email = "albert.einstein@bredbandsbolaget.se",
                 Name = "Albert Einstein",
-                PhoneNumber = "",
+                PhoneNumber = "071-7496681",
                 CourseId = 1
             },
             new ApplicationUser
             {
-                UserName = "Nils.Nilsson@lexicon.se",
-                Email = "nils.nilsson@lexicon.se",
+                UserName = "Nils.Nilsson@yahoo.se",
+                Email = "nils.nilsson@yahoo.se",
                 Name = "Nils Nilsson",
-                PhoneNumber = "",
+                PhoneNumber = "08-6389917",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Jonas.Helmersson@lexicon.se",
-                Email = "jonas.helmersson@lexicon.se",
+                UserName = "Jonas.Helmersson@comhem.se",
+                Email = "jonas.helmersson@comhem.se",
                 Name = "Jonas Helmersson",
-                PhoneNumber = "",
-                CourseId = 3
+                PhoneNumber = "08-48902211",
+                CourseId = 4
             },
             new ApplicationUser
             {
-                UserName = "JK.Rowling@lexicon.se",
-                Email = "jk.rowling@lexicon.se",
+                UserName = "JK.Rowling@live.com",
+                Email = "jk.rowling@live.com",
                 Name = "J.K. Rowling",
-                PhoneNumber = "",
+                PhoneNumber = "08-79821113",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Lisa.Svensson@lexicon.se",
-                Email = "lisa.svensson@lexicon.se",
+                UserName = "Lisa.Svensson@hotmail.se",
+                Email = "lisa.svensson@hotmail.se",
                 Name = "Lisa Svensson",
-                PhoneNumber = "",
+                PhoneNumber = "076-2595578",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Pernilla.Lind@lexicon.se",
-                Email = "pernilla.lind@lexicon.se",
+                UserName = "Pernilla.Lind@live.com",
+                Email = "pernilla.lind@live.com",
                 Name = "Pernilla Lind",
-                PhoneNumber = "",
+                PhoneNumber = "071-4508811",
                 CourseId = 3
             },
             new ApplicationUser
             {
-                UserName = "Barack.Obama@lexicon.se",
-                Email = "barack.obama@lexicon.se",
+                UserName = "Barack.Obama@comhem.se",
+                Email = "barack.obama@comhem.se",
                 Name = "Barack Obama",
-                PhoneNumber = "",
-                CourseId = 3
+                PhoneNumber = "070-6487899",
+                CourseId = 6
             },
             new ApplicationUser
             {
-                UserName = "Richard.Branson@lexicon.se",
-                Email = "richard.branson@lexicon.se",
+                UserName = "Richard.Branson@live.come",
+                Email = "richard.branson@live.com",
                 Name = "Richard Branson",
-                PhoneNumber = "",
-                CourseId = 3
+                PhoneNumber = "070-6847724",
+                CourseId = 2
             },
 
             // Commented out CourseId = 1 Users
