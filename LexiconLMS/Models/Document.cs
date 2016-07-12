@@ -15,6 +15,7 @@ namespace LexiconLMS.Models
         [Display(Name ="Uploaded")]
         public DateTime TimeStamp { get; set; }
 
+        [Display(Name="Document type")]
         public DocumentType DocumentType { get; set; }
         //public string DocumentType { get; set; }
 

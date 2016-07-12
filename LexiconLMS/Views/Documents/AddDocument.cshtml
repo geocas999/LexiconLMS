@@ -68,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.DocumentType, "Doc Type", new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(m => m.DocumentType, new {@class = "form-control"})
+                @Html.EnumDropDownListFor(m => m.DocumentType,  new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.DocumentType, "", new {@class = "text-danger"})
             </div>
         </div>
