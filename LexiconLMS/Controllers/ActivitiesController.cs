@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using LexiconLMS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LexiconLMS.Controllers
 {
@@ -18,20 +19,29 @@ namespace LexiconLMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var activity = db.Activities.Find(id);
-            if (activity == null)
+
+            var activity = new ActivityDetailsViewModel
+            {
+                Activity = db.Activities.Find(id),
+            };
+
+            if (activity.Activity == null)
             {
                 return HttpNotFound();
             }
 
-            var activityDetailsViewModel = new ActivityDetailsViewModel
+            activity.Documents =
+                activity.Activity.Documents.Where(d => d.DocumentType != DocumentType.Inlämningsuppgift).ToList();
+            activity.StudentExercises =
+                activity.Activity.Documents.Where(d => d.DocumentType == DocumentType.Inlämningsuppgift).ToList();
+            
+            // If the user is a student, only show those exercises that the student is the author of.
+            if (User.IsInRole("Student"))
             {
-                Acticity = activity,
-                Documents = activity.Documents.Where(d => d.DocumentType != DocumentType.Inlämningsuppgift).ToList(),
-                StudentExercises =
-                    activity.Documents.Where(d => d.DocumentType == DocumentType.Inlämningsuppgift).ToList()
-            };
-            return View(activityDetailsViewModel);
+                activity.StudentExercises = activity.StudentExercises.Where(d => d.UserId == User.Identity.GetUserId()).ToList();
+            }
+
+            return View(activity);
         }
 
         // GET: Activities/AddActivity

@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.Designer.cs">
       <DependentUpon>201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607121156536_Added deadline prop to document.cs" />
+    <Compile Include="Migrations\201607121156536_Added deadline prop to document.Designer.cs">
+      <DependentUpon>201607121156536_Added deadline prop to document.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -411,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.resx">
       <DependentUpon>201607081348302_Changed datatype for DocumentType from string to DocumentType in DocumentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121156536_Added deadline prop to document.resx">
+      <DependentUpon>201607121156536_Added deadline prop to document.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
