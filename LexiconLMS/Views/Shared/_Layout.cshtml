@@ -43,7 +43,7 @@
                         {
                         <li>@Html.ActionLink("OverView", "TeacherOverview", "Teacher")</li>
                         <li>@Html.ActionLink("Users", "Users", "Teacher")</li>
-                        <li>@Html.ActionLink("Upload Document", "AddDocument", "Documents")</li>
+                        @*<li>@Html.ActionLink("Upload Document", "AddDocument", "Documents")</li>*@
                         @*<li>@Html.ActionLink("Upload", "Index", "Upload")</li>*@
                         }
                         else if (User.IsInRole("Student"))

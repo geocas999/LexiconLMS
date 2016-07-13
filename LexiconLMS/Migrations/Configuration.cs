@@ -888,6 +888,7 @@ namespace LexiconLMS.Migrations
                 Name = "Övningsuppgift 4 - C#.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
+                Deadline = DateTime.Now.AddDays(1),
                 //Type = ".docx",
                 UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
