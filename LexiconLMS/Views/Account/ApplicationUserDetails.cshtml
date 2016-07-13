@@ -112,13 +112,15 @@
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
-
     </dl>
-
+    <p>
+        @Html.ActionLink("Al Users", "Users", "Teacher") |
+        @Html.ActionLink("Edit User", "EditApplicationUser", "Account", new { userId = Model.Id }, null) |
+        @Html.ActionLink("Delete User", "DeleteApplicationUser", "Account", new { userId = Model.Id }, null)
+    </p>
+    <hr />
 
     <h2>Course overview:</h2>
-
-
 
     @foreach (var module in Model.Course.Modules)
     {
@@ -148,13 +150,4 @@
         }
     }
 
-
 </div>
-<br />
-<p>
-
-    @Html.ActionLink("Users", "Users", "Teacher") |
-    @Html.ActionLink("Edit User", "EditApplicationUser", "Account", new { userId = Model.Id }, null) |
-    @Html.ActionLink("Delete User", "DeleteApplicationUser", "Account", new { userId = Model.Id }, null)
-
-</p>
