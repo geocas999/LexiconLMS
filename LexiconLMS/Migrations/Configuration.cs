@@ -849,7 +849,7 @@ namespace LexiconLMS.Migrations
                 Name = "Övningsuppgift 1 - C#.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                //Type = ".docx",
+                Deadline = DateTime.Now.AddDays(7),
                 UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
@@ -862,7 +862,7 @@ namespace LexiconLMS.Migrations
                 Name = "Övningsuppgift 2 - C#.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                //Type = ".docx",
+                Deadline = DateTime.Now.AddDays(-2),
                 UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
@@ -875,7 +875,7 @@ namespace LexiconLMS.Migrations
                 Name = "Övningsuppgift 3 - C#.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                //Type = ".docx",
+                Deadline = DateTime.Now.AddDays(1),
                 UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };

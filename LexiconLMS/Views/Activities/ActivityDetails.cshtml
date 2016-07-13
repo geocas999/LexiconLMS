@@ -1,4 +1,6 @@
-﻿@using LexiconLMS.Models
+﻿@using System.Data.SqlTypes
+@using LexiconLMS.Models
+@using Microsoft.AspNet.Identity
 @model LexiconLMS.Models.ActivityDetailsViewModel
 
 @{
@@ -11,9 +13,9 @@
         {
             <li> @Html.ActionLink("Overview", "TeacherOverview", "Teacher") </li>
         }
-        <li>@Html.ActionLink(Model.Acticity.Module.Course.Name, "CourseDetails", "Courses", new { id = Model.Acticity.Module.CourseId }, null)</li>
-        <li>@Html.ActionLink(Model.Acticity.Module.Name, "ModuleDetails", "Modules", new { id = Model.Acticity.ModuleId }, null)</li>
-        <li class="active"> @Model.Acticity.Type </li>
+        <li>@Html.ActionLink(Model.Activity.Module.Course.Name, "CourseDetails", "Courses", new { id = Model.Activity.Module.CourseId }, null)</li>
+        <li>@Html.ActionLink(Model.Activity.Module.Name, "ModuleDetails", "Modules", new { id = Model.Activity.ModuleId }, null)</li>
+        <li class="active"> @Model.Activity.Type </li>
     </ol>
 
 </div>
@@ -23,43 +25,43 @@
     <h3>Activity</h3>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Acticity.Module.Name)
+            @Html.DisplayNameFor(model => model.Activity.Module.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acticity.Module.Name)
+            @Html.DisplayFor(model => model.Activity.Module.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Acticity.Type)
+            @Html.DisplayNameFor(model => model.Activity.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acticity.Type)
+            @Html.DisplayFor(model => model.Activity.Type)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Acticity.StartTime)
+            @Html.DisplayNameFor(model => model.Activity.StartTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acticity.StartTime)
+            @Html.DisplayFor(model => model.Activity.StartTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Acticity.EndTime)
+            @Html.DisplayNameFor(model => model.Activity.EndTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acticity.EndTime)
+            @Html.DisplayFor(model => model.Activity.EndTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Acticity.Description)
+            @Html.DisplayNameFor(model => model.Activity.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acticity.Description)
+            @Html.DisplayFor(model => model.Activity.Description)
         </dd>
 
     </dl>
@@ -67,9 +69,9 @@
 <p>
     @if (User.IsInRole("Teacher"))
     {
-        @Html.ActionLink("Edit", "EditActivity", new { id = Model.Acticity.ActivityId })<span>|</span>
+        @Html.ActionLink("Edit", "EditActivity", new { id = Model.Activity.ActivityId })<span>|</span>
     }
-    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.Acticity.ModuleId }, null)
+    @Html.ActionLink("Back to module", "ModuleDetails", "Modules", new { id = Model.Activity.ModuleId }, null)
 </p>
 
 <hr />
@@ -97,11 +99,15 @@
         <th>
             Uploader
         </th>
+        <th>
+            @Html.DisplayNameFor(model => doc.Deadline)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var document in Model.Documents)
     {
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => document.Name)
@@ -120,6 +126,24 @@
             <td>
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
+            @if (document.Deadline < DateTime.Now)
+            {
+                <td class="text-danger">
+                    @Html.DisplayFor(modelItem => document.Deadline)
+                </td>
+            }
+            else if (document.Deadline < DateTime.Now.AddDays(2))
+            {
+                <td class="text-warning">
+                    @Html.DisplayFor(modelItem => document.Deadline)
+                </td>
+            }
+            else
+            {
+                <td class="text-success">
+                    @Html.DisplayFor(modelItem => document.Deadline)
+                </td>
+            }
             <td>
                 @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
@@ -138,7 +162,7 @@
 @if (User.IsInRole("Teacher"))
 {
     <p>
-        @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { activityId = Model.Acticity.ActivityId }, null)
+        @Html.ActionLink("Upload New Document", "AddDocument", "Documents", new { activityId = Model.Activity.ActivityId }, null)
     </p>
 }
 
@@ -194,12 +218,13 @@
             </td>
         </tr>
     }
+
 </table>
 
 @if (User.IsInRole("Student"))
 {
     <p>
-        @Html.ActionLink("Upload exercise", "AddDocument", "Documents", new { activityId = Model.Acticity.ActivityId }, null)
+        @Html.ActionLink("Upload exercise", "AddDocument", "Documents", new { activityId = Model.Activity.ActivityId }, null)
     </p>
 }
 

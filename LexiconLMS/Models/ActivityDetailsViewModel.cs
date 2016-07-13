@@ -7,7 +7,7 @@ namespace LexiconLMS.Models
 {
     public class ActivityDetailsViewModel
     {
-        public Activity Acticity { get; set; }
+        public Activity Activity { get; set; }
         public ICollection<Document> Documents { get; set; }
         public ICollection<Document> StudentExercises { get; set; }
     }
