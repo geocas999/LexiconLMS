@@ -15,11 +15,11 @@
         <li>@Html.ActionLink(Model.Acticity.Module.Name, "ModuleDetails", "Modules", new { id = Model.Acticity.ModuleId }, null)</li>
         <li class="active"> @Model.Acticity.Type </li>
     </ol>
-        
+
 </div>
 
 <div>
-    <hr/>
+    <hr />
     <h3>Activity</h3>
     <dl class="dl-horizontal">
         <dt>
@@ -142,7 +142,7 @@
     </p>
 }
 
-<hr/>
+<hr />
 <h4>Student exercises</h4>
 
 <table class="table table-striped table-hover">
@@ -171,6 +171,11 @@
             <td>
                 @Html.DisplayFor(modelItem => document.Description)
             </td>
+            <td style="text-align: center">
+                <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                    <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                </a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => document.TimeStamp)
             </td>
@@ -178,13 +183,13 @@
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new {id = document.DocumentId}, null)
+                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditDocument", "Documents", new {id = document.DocumentId}, null)
+                    @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null)
                     <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new {id = document.DocumentId}, null)
+                    @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
                 }
             </td>
         </tr>
@@ -198,4 +203,4 @@
     </p>
 }
 
-@*2016-07-04, ym: ovan: skapar kod för dokument*@
+    @*2016-07-04, ym: ovan: skapar kod för dokument*@

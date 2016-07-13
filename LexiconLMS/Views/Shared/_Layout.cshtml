@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -44,11 +45,20 @@
                         <li>@Html.ActionLink("Users", "Users", "Teacher")</li>
                         <li>@Html.ActionLink("Upload Document", "AddDocument", "Documents")</li>
                         @*<li>@Html.ActionLink("Upload", "Index", "Upload")</li>*@
-            }
+                        }
                         else if (User.IsInRole("Student"))
-            { 
+                        {
+
                             <li>@Html.ActionLink("Course", "CourseDetails", "Courses", new { id = 1 }, null)</li>
-                        @*<li>@Html.ActionLink("Upload Document", "AddDocument", "Documents")</li>*@
+
+                            var kebab = User.Identity.GetUserId(); 
+                                
+
+                        <li>@Html.ActionLink("My page", "ApplicationUserDetails", "Account", new { userId = kebab }, null)</li>
+
+                            
+
+                            @*@<li>@Html.ActionLink("Upload Document", "AddDocument", "Documents")</li>*@
                         }
                     </ul>
                     @Html.Partial("_LoginPartial")
