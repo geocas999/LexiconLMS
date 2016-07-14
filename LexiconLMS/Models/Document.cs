@@ -11,6 +11,9 @@ namespace LexiconLMS.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Deadline { get; set; }
 
         [Display(Name ="Uploaded")]

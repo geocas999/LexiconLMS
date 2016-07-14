@@ -11,6 +11,13 @@ namespace LexiconLMS.Models
         public string Username { get; set; }
 
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,6 +13,15 @@ namespace LexiconLMS.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+
+        [Display(Name = "Email confirmed")]
+        public override bool EmailConfirmed { get; set; }
+        [Display(Name = "Phone number")]
+        public override string PhoneNumber { get; set; }
+        [Display(Name = "Phone number conf.")]
+        public override bool PhoneNumberConfirmed { get; set; }
+        [Display(Name = "User name")]
+        public override string UserName { get; set; }
 
         public int? CourseId { get; set; }
         public virtual Course Course { get; set; }

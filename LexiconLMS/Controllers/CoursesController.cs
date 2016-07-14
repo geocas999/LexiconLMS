@@ -66,12 +66,15 @@ namespace LexiconLMS.Controllers
                 var user = new ApplicationUser
                 {
                     UserName = model.Username,
+                    Name = model.Name,
+                    PhoneNumber = model.PhoneNumber,
                     Email = model.Email,
                     CourseId = model.CourseId
                 };
                 var course = db.Courses.Find(model.CourseId);
                 course.Students.Add(user);
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(UserManager.FindByEmail(user.Email).Id, "Student");
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

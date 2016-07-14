@@ -72,7 +72,7 @@ namespace LexiconLMS.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         //public ActionResult AddDocument (HttpPostedFileBase file_Uploader, Document document)
-        public ActionResult AddDocument([Bind(Include = "FilePath,UploadedFile,DocumentType,Name,Type,Description,CourseId,ModuleId,ActivityId")] RegisterDocumentModel document, HttpPostedFileBase UploadedFile)
+        public ActionResult AddDocument([Bind(Include = "FilePath,UploadedFile,DocumentType,Name,Type,Deadline,Description,CourseId,ModuleId,ActivityId")] RegisterDocumentModel document, HttpPostedFileBase UploadedFile)
         {
             string fileName = string.Empty;
             string destinationPath = string.Empty;
@@ -120,7 +120,9 @@ namespace LexiconLMS.Controllers
                 document.FilePath = destinationPath;
                 document.Name = fileName;
 
-                db.Documents.Add(new Document() { Name = document.Name, UserId = document.UserId, FilePath = document.FilePath, DocumentType = document.DocumentType, Description = document.Description, TimeStamp = document.TimeStamp, CourseId = document.CourseId, ModuleId = document.ModuleId, ActivityId = document.ActivityId, });
+                db.Documents.Add(new Document() { Name = document.Name, UserId = document.UserId, FilePath = document.FilePath, DocumentType = document.DocumentType,
+                    Description = document.Description, TimeStamp = document.TimeStamp, Deadline = document.Deadline, CourseId = document.CourseId, ModuleId = document.ModuleId,
+                    ActivityId = document.ActivityId, });
                 db.SaveChanges();
 
                 if (document.CourseId != null)
