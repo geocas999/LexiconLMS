@@ -83,7 +83,7 @@
 
     @foreach (var module in Model.Modules)
     {
-        <tr>
+        <tr class="datarow" onclick="location.href = '@(Url.Action("ModuleDetails", "Modules", new {id = module.ModuleId}))'">
             <td>
                 @Html.DisplayFor(modelItem => module.Name)
             </td>
@@ -99,13 +99,11 @@
                 @module.EndDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.ActionLink("Details", "ModuleDetails", "Modules", new { id = module.ModuleId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
+                    @Html.ActionLink("Edit", "EditModule", "Modules", new {id = module.ModuleId}, null)
                     <span>|</span>
-                    @Html.ActionLink("Edit", "EditModule", "Modules", new { id = module.ModuleId }, null)
-                    <span>|</span>
-                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new { id = module.ModuleId }, null)
+                    @Html.ActionLink("Delete", "DeleteModule", "Modules", new {id = module.ModuleId}, null)
                 }
             </td>
         </tr>
@@ -150,7 +148,7 @@
 
     @foreach (var document in Model.Documents)
     {
-        <tr>
+        <tr class="datarow" onclick="location.href = '@(Url.Action("DocumentDetails", "Documents", new {id = document.DocumentId}))'">
             <td>
                 @*@Html.ActionLink("",modelItem => document.Name,)*@
                 @Html.DisplayFor(modelItem => document.Name)
@@ -170,10 +168,8 @@
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
-                {
-                    <span>|</span>
+                {   
                     @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null)
                     <span>|</span>
                     @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
@@ -190,7 +186,7 @@
         @Html.ActionLink("Upload new document", "AddDocument", "Documents", new { courseId = Model.CourseId }, null)
     </p>
 }
-
+<hr/>
 
 @*2016-06-29, ym: ovan: skapar kod för dokument*@
 
@@ -215,7 +211,6 @@
     @if (User.IsInRole("Teacher"))
     {
         @Html.ActionLink("Add student to course", "AddStudent", new { id = Model.CourseId })
-        <hr />
     }
 </div>
 

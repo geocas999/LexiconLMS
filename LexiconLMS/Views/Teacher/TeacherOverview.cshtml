@@ -37,29 +37,28 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model.Courses)
+        @foreach (var course in Model.Courses)
         {
-            <tr>
+            <tr class="datarow" onclick="location.href = '@(Url.Action("CourseDetails", "Courses", new {id = course.CourseId}))'">
                 @*<td>
                         @Html.DisplayFor(modelItem => item.CourseId)
                     </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => course.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => course.Description)
                 </td>
                 <td>
-                    @{ var startDate = item.StartDate.ToString("yyyy-MM-dd"); }
+                    @{ var startDate = course.StartDate.ToString("yyyy-MM-dd"); }
                     @Html.DisplayFor(modelItem => startDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditCourse", "Courses", new {id = item.CourseId}, null) |
-                    @Html.ActionLink("Details", "CourseDetails", "Courses", new {id = item.CourseId}, null) |
-                    @Html.ActionLink("Delete", "DeleteCourse", "Courses", new {id = item.CourseId}, null)
+                    @Html.ActionLink("Edit", "EditCourse", "Courses", new { id = course.CourseId }, null) |
+                    @Html.ActionLink("Delete", "DeleteCourse", "Courses", new { id = course.CourseId }, null)
                 </td>
             </tr>
-        }
+                        }
     </table>
 </div>
 
@@ -92,7 +91,7 @@
 
     @foreach (var user in Model.Users)
     {
-        <tr>
+        <tr class="datarow" onclick="location.href = '@(Url.Action("ApplicationUserDetails", "Account", new {userId = user.Id}))'">
             <td>
                 @Html.DisplayFor(modelItem => user.Name)
             </td>
@@ -106,9 +105,8 @@
                 @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name))
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditApplicationUser", "Account", new {userId = user.Id}, null) |
-                @Html.ActionLink("Details", "ApplicationUserDetails", "Account", new {userId = user.Id}, null) |
-                @Html.ActionLink("Delete", "DeleteApplicationUser", "Account", new {userId = user.Id}, null)
+                @Html.ActionLink("Edit", "EditApplicationUser", "Account", new { userId = user.Id }, null) |
+                @Html.ActionLink("Delete", "DeleteApplicationUser", "Account", new { userId = user.Id }, null)
             </td>
         </tr>
     }

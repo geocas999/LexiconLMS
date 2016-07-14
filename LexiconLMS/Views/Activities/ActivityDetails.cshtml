@@ -108,7 +108,7 @@
     @foreach (var document in Model.Documents)
     {
 
-        <tr>
+        <tr class="datarow" onclick="location.href = '@(Url.Action("DocumentDetails", "Documents", new {id = document.DocumentId}))'">
             <td>
                 @Html.DisplayFor(modelItem => document.Name)
             </td>
@@ -145,10 +145,8 @@
                 </td>
             }
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
-                    <span>|</span>
                     @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null)
                     <span>|</span>
                     @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)
@@ -191,7 +189,7 @@
 
     @foreach (var document in Model.StudentExercises)
     {
-        <tr>
+        <tr class="datarow" onclick="location.href = '@(Url.Action("DocumentDetails", "Documents", new {id = document.DocumentId}))'">
             <td>
                 @Html.DisplayFor(modelItem => document.Name)
             </td>
@@ -210,10 +208,8 @@
                 @Html.DisplayFor(modelItem => document.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "DocumentDetails", "Documents", new { id = document.DocumentId }, null)
                 @if (User.IsInRole("Teacher"))
                 {
-                    <span>|</span>
                     @Html.ActionLink("Edit", "EditDocument", "Documents", new { id = document.DocumentId }, null)
                     <span>|</span>
                     @Html.ActionLink("Delete", "DeleteDocument", "Documents", new { id = document.DocumentId }, null)

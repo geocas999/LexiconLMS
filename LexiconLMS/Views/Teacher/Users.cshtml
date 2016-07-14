@@ -37,32 +37,28 @@
         <th>
             @Html.ActionLink("Role name", "Users", new { sortOrder = ViewBag.RolesNameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th>
-        </th>
     <tr>
 
-        @foreach (var item in Model.Users)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.Name)
-            </td>
-            <td>
-                @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == item.Id)).Select(r => r.Name))
-            </td>
-            <td> @Html.ActionLink("Details", "ApplicationUserDetails", "Account", new { userId = item.Id }, null)
-            </td>
-        </tr>
-        }
+    @foreach (var user in Model.Users)
+    {
+    <tr class="datarow" onclick="location.href = '@(Url.Action("ApplicationUserDetails", "Account", new {userId = user.Id}))'">
+        <td>
+            @Html.DisplayFor(modelItem => user.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => user.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => user.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => user.Course.Name)
+        </td>
+        <td>
+            @string.Join(", ", Model.Roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name))
+        </td>
+    </tr>
+    }
 
 </table>
 <br/>

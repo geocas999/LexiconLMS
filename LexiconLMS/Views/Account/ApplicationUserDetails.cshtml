@@ -1,4 +1,5 @@
-﻿@model LexiconLMS.Models.ApplicationUser
+﻿@using LexiconLMS.Migrations
+@model LexiconLMS.Models.ApplicationUser
 
 @{
     ViewBag.Title = "User";
@@ -118,36 +119,38 @@
         @Html.ActionLink("Edit User", "EditApplicationUser", "Account", new { userId = Model.Id }, null) |
         @Html.ActionLink("Delete User", "DeleteApplicationUser", "Account", new { userId = Model.Id }, null)
     </p>
-    <hr />
 
-    <h2>Course overview:</h2>
-
-    @foreach (var module in Model.Course.Modules)
+    @if (Model.Course != null)
     {
-        <div style="padding-left: 10px;"> <b>Module: </b> @Html.ActionLink(module.Name, "ModuleDetails/" + module.ModuleId, "Modules", null, null) </div>
+    <hr />
+        <h2>Course overview:</h2>
 
-
-        foreach (var activity in module.Activities)
+        foreach (var module in Model.Course.Modules)
         {
-            <div style="padding-left: 30px;"> <b>Activity: </b>@Html.ActionLink(activity.Description, "ActivityDetails/" + module.ModuleId, "Activities", null, null)</div>
+            <div style="padding-left: 10px;"> <b>Module: </b> @Html.ActionLink(module.Name, "ModuleDetails/" + module.ModuleId, "Modules", null, null) </div>
 
-            foreach (var document in activity.Documents)
+
+            foreach (var activity in module.Activities)
             {
+                <div style="padding-left: 30px;"> <b>Activity: </b>@Html.ActionLink(activity.Description, "ActivityDetails/" + module.ModuleId, "Activities", null, null)</div>
 
-                if (document.DocumentType == LexiconLMS.Models.DocumentType.Övningsuppgift)
+                foreach (var document in activity.Documents)
                 {
-                    <div style="padding-left: 50px;">
 
-                        <b>Document: </b>
+                    if (document.DocumentType == LexiconLMS.Models.DocumentType.Övningsuppgift)
+                    {
+                        <div style="padding-left: 50px;">
 
-                        <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
-                            <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
-                        </a>
-                        @Html.DisplayFor(modelItem => document.Name)
-                    </div>
+                            <b>Document: </b>
+
+                            <a class="viewc" href="@Url.Action("OpenFile", "Documents", new { @fileName = document.Name })">
+                                <img width="16" height="16" border="0" src="~/Images/view.jpg" class="viewc">
+                            </a>
+                            @Html.DisplayFor(modelItem => document.Name)
+                        </div>
+                    }
                 }
             }
         }
     }
-
 </div>
