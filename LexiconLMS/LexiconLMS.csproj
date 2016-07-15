@@ -293,10 +293,10 @@
     <Content Include="LMSDocuments\Övningsuppgift 2 - C#.docx" />
     <Content Include="LMSDocuments\Övningsuppgift 3 - C#.docx" />
     <Content Include="LMSDocuments\Övningsuppgift 4 - C#.docx" />
-    <Content Include="LMSDocuments\Övningsuppgift 5 - HTML.docx" />
-    <Content Include="LMSDocuments\Övningsuppgift 6 - AngularJS.docx" />
-    <Content Include="LMSDocuments\Övningsuppgift 7 - JavaScript.docx" />
-    <Content Include="LMSDocuments\Övningsuppgift 8 - BootStrap.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 5.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 6.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 7.docx" />
+    <Content Include="LMSDocuments\Övningsuppgift 8.docx" />
     <Content Include="LMSDocuments\Kursschema DotNET-Vår2016.pdf" />
     <Content Include="LMSDocuments\Pluralsight C# Fundamentals, del 1.pdf" />
     <Content Include="LMSDocuments\Pluralsight C# Fundamentals, del 2.pdf" />
@@ -324,6 +324,8 @@
     <Content Include="LMSDocuments\SvenGustafsson_Inlämning_övning6.pdf" />
     <Content Include="LMSDocuments\SvenGustafsson_Inlämning_övning7.pdf" />
     <Content Include="LMSDocuments\SvenGustafsson_Inlämning_övning8.pdf" />
+    <Content Include="LMSDocuments\C#-exercise2.pdf" />
+    <Content Include="LMSDocuments\C#-exercise1.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

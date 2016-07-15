@@ -72,7 +72,7 @@ namespace LexiconLMS.Migrations
                 CourseId = 2,
                 Name = ".NET Höst 2016",
                 Description = "Påbyggnadsutbildning",
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now.AddDays(150)
             };
             var course3 = new Course
             {
@@ -86,7 +86,7 @@ namespace LexiconLMS.Migrations
                 CourseId = 4,
                 Name = "Java Höst 2016",
                 Description = "Påbyggnadsutbildning",
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now.AddDays(150)
             };
             var course5 = new Course
             {
@@ -100,7 +100,7 @@ namespace LexiconLMS.Migrations
                 CourseId = 6,
                 Name = "Sharepoint Höst 2016",
                 Description = "IT-support med Sharepoint",
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now.AddDays(150)
             };
 
             context.Courses.AddOrUpdate(course1);
@@ -199,7 +199,7 @@ namespace LexiconLMS.Migrations
                 ActivityId = 1,
                 Description = "Pluralsight C# Fundamentals, del 1",
                 Type = ActivityType.Elearning,
-                StartTime = DateTime.Now,
+                StartTime = DateTime.Now.AddDays(1),
                 EndTime = DateTime.Now.AddDays(1),
                 ModuleId = 1
             };
@@ -208,8 +208,8 @@ namespace LexiconLMS.Migrations
                 ActivityId = 2,
                 Description = "Pluralsight C# Fundamentals, del 2",
                 Type = ActivityType.Elearning,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddDays(1),
+                StartTime = DateTime.Now.AddDays(2),
+                EndTime = DateTime.Now.AddDays(2),
                 ModuleId = 1
             };
             var activity3 = new Activity()
@@ -217,26 +217,45 @@ namespace LexiconLMS.Migrations
                 ActivityId = 3,
                 Description = "C# lecture with Adrian",
                 Type = ActivityType.Lecture,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddDays(1),
+                StartTime = DateTime.Now.AddDays(3),
+                EndTime = DateTime.Now.AddDays(3),
                 ModuleId = 1
             };
             var activity4 = new Activity()
             {
                 ActivityId = 4,
-                Description = "Exercises - C#",
-                Type = ActivityType.Exercise,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddDays(1),
+                Description = "Pluralsight C# Fundamentals, del 3",
+                Type = ActivityType.Elearning,
+                StartTime = DateTime.Now.AddDays(4),
+                EndTime = DateTime.Now.AddDays(4),
                 ModuleId = 1
             };
             var activity5 = new Activity()
             {
                 ActivityId = 5,
-                Description = "Webb",
-                Type = ActivityType.Exercise,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddDays(1),
+                Description = "Pluralsight C# Fundamentals, del 4",
+                Type = ActivityType.Elearning,
+                StartTime = DateTime.Now.AddDays(5),
+                EndTime = DateTime.Now.AddDays(5),
+                ModuleId = 1
+            };
+            var activity6 = new Activity()
+            {
+                ActivityId = 6,
+                Description = "C# lecture with Adrian",
+                Type = ActivityType.Lecture,
+                StartTime = DateTime.Now.AddDays(6),
+                EndTime = DateTime.Now.AddDays(6),
+                ModuleId = 1
+            };
+       
+            var activity7 = new Activity()
+            {
+                ActivityId = 6,
+                Description = "Pluralsight HTML5 & CSS",
+                Type = ActivityType.Elearning,
+                StartTime = DateTime.Now.AddDays(15),
+                EndTime = DateTime.Now.AddDays(15),
                 ModuleId = 2
             };
 
@@ -245,6 +264,8 @@ namespace LexiconLMS.Migrations
             context.Activities.AddOrUpdate(activity3);
             context.Activities.AddOrUpdate(activity4);
             context.Activities.AddOrUpdate(activity5);
+            context.Activities.AddOrUpdate(activity6);
+            context.Activities.AddOrUpdate(activity7);
         }
 
         private static void SeedRoles(RoleManager<IdentityRole> rManager)
@@ -844,12 +865,12 @@ namespace LexiconLMS.Migrations
             var document7 = new Document()
             {
                 DocumentId = 7,
-                ActivityId = 4,
-                Description = "Övningsuppgift 1 - C#.",
-                Name = "Övningsuppgift 1 - C#.docx",
+                ActivityId = 6,
+                Description = "C# - Exercise 1",
+                Name = "C#-exercise1.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
-                Deadline = DateTime.Now.AddDays(7),
+                Deadline = DateTime.Now.AddDays(1),
                 UserId = context.Users.FirstOrDefault(u => u.UserName == "george.caspersson@lexicon.se").Id,
                 DocumentType = DocumentType.Övningsuppgift
             };
@@ -857,9 +878,9 @@ namespace LexiconLMS.Migrations
             var document8 = new Document()
             {
                 DocumentId = 8,
-                ActivityId = 4,
-                Description = "Övningsuppgift 2 - C#.",
-                Name = "Övningsuppgift 2 - C#.docx",
+                ActivityId = 6,
+                Description = "C# - Exercise 1",
+                Name = "C#-exercise2.pdf",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 Deadline = DateTime.Now.AddDays(-2),
@@ -898,8 +919,8 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 11,
                 ActivityId = 5,
-                Description = "Övningsuppgift 5 - HTML",
-                Name = "Övningsuppgift 5 - HTML.docx",
+                Description = "Övningsuppgift 5",
+                Name = "Övningsuppgift 5.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
@@ -911,8 +932,8 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 12,
                 ActivityId = 5,
-                Description = "Övningsuppgift 6 - AngularJS",
-                Name = "Övningsuppgift 6 - AngularJS.docx",
+                Description = "Övningsuppgift 6",
+                Name = "Övningsuppgift 6.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 Type = ".docx",
@@ -924,8 +945,8 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 13,
                 ActivityId = 5,
-                Description = "Övningsuppgift 7 - JavaScript",
-                Name = "Övningsuppgift 7 - JavaScript.docx",
+                Description = "Övningsuppgift 7",
+                Name = "Övningsuppgift 7.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
@@ -988,7 +1009,7 @@ namespace LexiconLMS.Migrations
             var document18 = new Document()
             {
                 DocumentId = 18,
-                ActivityId = 4,
+                ActivityId = 6,
                 Description = "KalleAndersson_Inlämning_övning1",
                 Name = "KalleAndersson_Inlämning_övning1.pdf",
                 FilePath = "~/LMSDocuments",
@@ -1001,7 +1022,7 @@ namespace LexiconLMS.Migrations
             var document19 = new Document()
             {
                 DocumentId = 19,
-                ActivityId = 4,
+                ActivityId = 6,
                 Description = "KalleAndersson_Inlämning_övning2",
                 Name = "KalleAndersson_Inlämning_övning2.pdf",
                 FilePath = "~/LMSDocuments",
@@ -1094,8 +1115,8 @@ namespace LexiconLMS.Migrations
             {
                 DocumentId = 26,
                 ActivityId = 5,
-                Description = "Övningsuppgift 8 - BootStrap",
-                Name = "Övningsuppgift 8 - BootStrap.docx",
+                Description = "Övningsuppgift 8",
+                Name = "Övningsuppgift 8.docx",
                 FilePath = "~/LMSDocuments",
                 TimeStamp = DateTime.Now,
                 //Type = ".docx",
@@ -1133,7 +1154,7 @@ namespace LexiconLMS.Migrations
             var document29 = new Document()
             {
                 DocumentId = 29,
-                ActivityId = 4,
+                ActivityId = 6,
                 Description = "LisaAndersson_Inlämning_övning1",
                 Name = "LisaAndersson_Inlämning_övning1.pdf",
                 FilePath = "~/LMSDocuments",
@@ -1242,7 +1263,7 @@ namespace LexiconLMS.Migrations
             var document37 = new Document()
             {
                 DocumentId = 37,
-                ActivityId = 4,
+                ActivityId = 6,
                 Description = "Sven Gustafsson_Inlämning_övning1",
                 Name = "Sven Gustafsson_Inlämning_övning1.pdf",
                 FilePath = "~/LMSDocuments",
@@ -1351,7 +1372,7 @@ namespace LexiconLMS.Migrations
             var document45 = new Document()
             {
                 DocumentId = 45,
-                ActivityId = 4,
+                ActivityId = 6,
                 Description = "Nils Eriksson_Inlämning_övning1",
                 Name = "Nils Eriksson_Inlämning_övning1.pdf",
                 FilePath = "~/LMSDocuments",
